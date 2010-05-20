@@ -11,7 +11,7 @@ HOWTO use the stuff:
 1) Add LPManagedObjectContext, LPManagedObjectContextObservationInfo, LPManagedObject_ObservationInfo and LPManagedObject to your project
 
 2) Exchange the current NSManagedObjectContext with a LPManagedObjectContext (LPAutomatedObserving_AppDelegate.m:113)
-   after the CoreData stack is fully initialized send -(void) prepareDependendProperties; to the context
+   after the CoreData stack is fully initialized send -(void) prepareDependentProperties; to the context
 
 3) inherit each Class with dependent properties from LPManagedObject (Customer.m)
    implement the following two methods in each relevant class:
