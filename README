@@ -1,6 +1,6 @@
 CoreData - to-many relationships - observing
 
-General implementation solving the problem of properties dependend on the values of another entity in a to-many relationship
+General implementation solving the problem of properties dependent on the values of another entity in a to-many relationship
 
 Demonstrated with an example modelling Customers and Invoices
 The total sum of a customer has to be calculated from all invoices
@@ -13,7 +13,7 @@ HOWTO use the stuff:
 2) Exchange the current NSManagedObjectContext with a LPManagedObjectContext (LPAutomatedObserving_AppDelegate.m:113)
    after the CoreData stack is fully initialized send -(void) prepareDependendProperties; to the context
 
-3) inherit each Class with dependend properties from LPManagedObject (Customer.m)
+3) inherit each Class with dependent properties from LPManagedObject (Customer.m)
    implement the following two methods in each relevant class:
 
   +(NSArray*) keyPathsForValuesAffectingDerived<Key>
