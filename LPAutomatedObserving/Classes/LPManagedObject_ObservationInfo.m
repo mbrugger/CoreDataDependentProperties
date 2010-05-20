@@ -49,7 +49,6 @@ static NSString* const LPManagedObjectInterestingSelectorPrefix = @"keyPathsForV
 				if (propertiesWithDependencyInformation == nil)
 					propertiesWithDependencyInformation = [NSMutableArray array];
 				
-				NSLog(@"foundPrefix");
 				NSString* propertyName = [LPManagedObject propertyNameFromInterestingSelector:method_getName(method)];
 				[propertiesWithDependencyInformation addObject:propertyName];
 			}
