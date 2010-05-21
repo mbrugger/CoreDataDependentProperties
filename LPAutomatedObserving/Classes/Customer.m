@@ -30,6 +30,14 @@
 	[self updateDerivedSum];
 }
 
+#if MACOSX_DEPLOYMENT_TARGET >= 1060
+- (void)awakeFromSnapshotEvents:(NSSnapshotEventType)flags
+{
+	[super awakeFromSnapshotEvents:flags];
+	[self updateDerivedSum];
+}
+#endif
+
 - (void) dealloc
 {
 	self.sum = nil;
@@ -70,7 +78,7 @@
 	
 	// only update sum if really changed
 	if (self.sum == nil || self.sum.doubleValue != invoicesSum)
-		self.sum = [NSNumber numberWithInt:invoicesSum];
+		self.sum = [NSNumber numberWithDouble:invoicesSum];
 }
 
 @end

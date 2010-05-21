@@ -9,6 +9,12 @@
 #define DEBUG_OBSERVING 0
 #endif
 
+// this method is needed to properly restart observing in deleted objects after undo
+// in 10.6 and iPhone OS a different solution is possible!
+@interface NSManagedObjectContext (HiddenMethods)
+- (void)_undoDeletions:(id)object;
+@end
+
 @interface LPManagedObjectContext (PrivateMethods)
 -(void) processEntity:(NSEntityDescription*) entityDescription;
 -(void) addObservationInfo:(LPManagedObjectObservationInfo*) newObservationInfo;
@@ -113,4 +119,39 @@
 	[observationInfosForClass addObject:newObservationInfo];
 }
 
-@end
+
+// needed for 10.5 backwards compatibility
+// in 10.6 use
+#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
+	#if (__MAC_OS_X_VERSION_MIN_REQUIRED < 1060)
+
+- (void)_undoDeletions:(id)deletions
+{
+	[super _undoDeletions:deletions];
+	@try
+	{
+		for (id deletion in deletions)
+        {
+            if([deletion isKindOfClass:[NSManagedObject class]])
+            {    
+                [deletion awakeFromFetch]; // treating this as a fetch works for my purposes
+            }
+            else if ([deletion isKindOfClass:[NSArray class]])
+            {
+                for(id object in deletion)
+                {
+                    if([object isKindOfClass:[NSManagedObject class]])
+                        [object awakeFromFetch]; // treating this as a fetch works for my purposes
+                }
+            }
+        }
+	}
+	@catch (NSException *exception)
+	{
+		
+	}
+}
+	#endif
+#endif
+@end 
+

@@ -18,7 +18,7 @@
 	{
 		self.observingsActive = YES;
 		LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
-		NSAssert([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
+		NSAssert1([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
 		
 		NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
 		for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
@@ -48,7 +48,7 @@
 	if (self.observingsActive)
 	{
 		LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
-		NSAssert([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
+		NSAssert1([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
 		
 		NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
 		for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
@@ -89,6 +89,19 @@
 	[self startObserving];
 	
 }
+
+// awakeFromSnapshotEvents was introduced in 10.6
+// workaround for missing method in LPManagedObjectContext.m
+// - (void)_undoDeletions:(id)deletions;
+#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
+	#if !(__MAC_OS_X_VERSION_MIN_REQUIRED < 1060)
+- (void)awakeFromSnapshotEvents:(NSSnapshotEventType)flags
+{
+	[super awakeFromSnapshotEvents:flags];
+	[self startObserving];
+}
+	#endif
+#endif
 
 -(void) willTurnIntoFault
 {

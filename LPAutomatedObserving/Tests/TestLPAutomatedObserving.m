@@ -44,15 +44,15 @@
 	STAssertTrue(firstCustomer.sum.doubleValue == 0.0, @"customer with zero sum invoices should have zero sum %@", firstCustomer.sum);
 	
 	// change invoice sum
-	firstInvoice.invoiceSum = [NSNumber numberWithDouble:1.0];
-	STAssertTrue(firstCustomer.sum.doubleValue == 1.0, @"customer with invoices sum %@", firstCustomer.sum);
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:1.5];
+	STAssertTrue(firstCustomer.sum.doubleValue == 1.5, @"customer with invoices sum %@", firstCustomer.sum);
 	
 	// create second invoice
 	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];	
 
 	// change second invoice sum
 	secondInvoice.invoiceSum = [NSNumber numberWithDouble:1.0];
-	STAssertTrue(firstCustomer.sum.doubleValue == 2.0, @"customer with invoices sum %@", firstCustomer.sum);	
+	STAssertTrue(firstCustomer.sum.doubleValue == 2.5, @"customer with invoices sum %@", firstCustomer.sum);	
 }
 
 -(void) testChangeInvoiceCustomer
@@ -95,8 +95,8 @@
 	STAssertTrue(observerCount == 0, @"observer count %d", observerCount);
 	
 	// change invoice sum
-	firstInvoice.invoiceSum = [NSNumber numberWithDouble:1.0];
-	STAssertTrue(firstCustomer.sum.doubleValue == 1.0, @"customer with invoices sum %@", firstCustomer.sum);
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:1.5];
+	STAssertTrue(firstCustomer.sum.doubleValue == 1.5, @"customer with invoices sum %@", firstCustomer.sum);
 	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);
 	
 	// remove invoice from customer
@@ -276,9 +276,9 @@
 					   context:@"UnitTest"];
 	
 	Invoice* undeletedInvoice = [undeletedCustomer.invoices anyObject];
-	undeletedInvoice.invoiceSum = [NSNumber numberWithDouble:33.3];
+	undeletedInvoice.invoiceSum = [NSNumber numberWithDouble:33.33];
 	
-	STAssertTrue(undeletedCustomer.sum.doubleValue == 34.3, @"customer with invoices sum %@", undeletedCustomer.sum);
+	STAssertTrue(undeletedCustomer.sum.doubleValue == 34.33, @"customer with invoices sum %f", undeletedCustomer.sum.doubleValue);
 	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);
 	[undeletedCustomer removeObserver:self forKeyPath:@"sum"];
 }
