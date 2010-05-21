@@ -3,6 +3,8 @@ CoreData - to-many relationships - observing
 General implementation solving the problem of properties dependent on the values of another entity in a to-many relationship
 
 Demonstrated with an example modelling Customers and Invoices
+
+[![](http://github.com/mbrugger/CoreDataDependentProperties/raw/master/Resources/images/sample_model.png)](http://github.com/mbrugger/CoreDataDependentProperties/raw/master/Resources/images/sample_model.png)
 The total sum of a customer has to be calculated from all invoices
 Undo&Redo is fully functional with this implementation.
 
