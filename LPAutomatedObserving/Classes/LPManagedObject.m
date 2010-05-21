@@ -7,65 +7,73 @@
 #endif
 
 @implementation LPManagedObject
+@synthesize observingsActive;
 
 #pragma mark -
 #pragma mark NSManagedObject overridden methods
 
 -(void) startObserving
 {	
-	
-	LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
-	NSAssert([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
-	
-	NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
-	for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
+	if (!self.observingsActive)
 	{
-		id observer = [self valueForKey:customObservationInfo.observerObjectKeyPath];
+		self.observingsActive = YES;
+		LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
+		NSAssert([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
 		
-		NSString* observationKeyPath = nil;
-		if (customObservationInfo.observingType == LPManagedObjectObservationInfoRelation)
-			observationKeyPath = customObservationInfo.observedRelationKeyPath;
-		else
-			observationKeyPath = customObservationInfo.observedPropertyKeyPath;
-		
-		if (observer != nil)
+		NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
+		for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
 		{
-			if (DEBUG_OBSERVING) NSLog(@"startObserving <%p %@> observes <%p %@> keyPath: %@", observer, [observer className], self, [self className], observationKeyPath);
-			[self addObserver: observer
-				   forKeyPath:observationKeyPath
-					  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
-					  context:customObservationInfo];
+			id observer = [self valueForKey:customObservationInfo.observerObjectKeyPath];
+			
+			NSString* observationKeyPath = nil;
+			if (customObservationInfo.observingType == LPManagedObjectObservationInfoRelation)
+				observationKeyPath = customObservationInfo.observedRelationKeyPath;
+			else
+				observationKeyPath = customObservationInfo.observedPropertyKeyPath;
+			
+			if (observer != nil)
+			{
+				if (DEBUG_OBSERVING) NSLog(@"startObserving <%p %@> observes <%p %@> keyPath: %@", observer, [observer className], self, [self className], observationKeyPath);
+				[self addObserver: observer
+					   forKeyPath:observationKeyPath
+						  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
+						  context:customObservationInfo];
+			}
 		}
 	}
 }
 
 -(void) stopObserving
 {
-	LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
-	NSAssert([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
-	
-	NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
-	for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
-	{	
-		id observer = [self valueForKey:customObservationInfo.observerObjectKeyPath];
-		
-		NSString* observationKeyPath = nil;
-		if (customObservationInfo.observingType == LPManagedObjectObservationInfoRelation)
-			observationKeyPath = customObservationInfo.observedRelationKeyPath;
-		else
-			observationKeyPath = customObservationInfo.observedPropertyKeyPath;
-		
-		if (observer != nil)
-		{
-			if (DEBUG_OBSERVING) NSLog(@"stopObserving <%p %@> observes <%p %@> keyPath: %@", observer, [observer className], self, [self className], observationKeyPath);
-			[self removeObserver:observer
-					  forKeyPath:observationKeyPath];
-		}
-	}
-	
-	if ([self observationInfo] != nil)
+	if (self.observingsActive)
 	{
-		if (DEBUG_OBSERVING) NSLog(@"stopObserving failed: %@", [self observationInfo]);
+		LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
+		NSAssert([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
+		
+		NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
+		for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
+		{	
+			id observer = [self valueForKey:customObservationInfo.observerObjectKeyPath];
+			
+			NSString* observationKeyPath = nil;
+			if (customObservationInfo.observingType == LPManagedObjectObservationInfoRelation)
+				observationKeyPath = customObservationInfo.observedRelationKeyPath;
+			else
+				observationKeyPath = customObservationInfo.observedPropertyKeyPath;
+			
+			if (observer != nil)
+			{
+				if (DEBUG_OBSERVING) NSLog(@"stopObserving <%p %@> observes <%p %@> keyPath: %@", observer, [observer className], self, [self className], observationKeyPath);
+				[self removeObserver:observer
+						  forKeyPath:observationKeyPath];
+			}
+		}
+		
+		if ([self observationInfo] != nil)
+		{
+			if (DEBUG_OBSERVING) NSLog(@"stopObserving failed: %@", [self observationInfo]);
+		}
+		self.observingsActive = NO;
 	}
 }
 

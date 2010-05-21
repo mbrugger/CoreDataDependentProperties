@@ -2,7 +2,8 @@
 
 @interface LPManagedObject : NSManagedObject {
 
+	BOOL observingsActive;
 }
 
-
+@property (assign) BOOL observingsActive;
 @end

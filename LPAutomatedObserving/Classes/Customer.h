@@ -15,6 +15,7 @@
 -(void) updateDerivedSum;
 
 + (Customer*) insertNewCustomerWithName:(NSString*) newName inManagedObjectContext:(NSManagedObjectContext*) context;
++ (NSArray*) findAllCustomersInManagedObjectContext:(NSManagedObjectContext*) context;
 @end
 
 

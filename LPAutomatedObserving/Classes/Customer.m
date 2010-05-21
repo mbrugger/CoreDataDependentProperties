@@ -44,6 +44,21 @@
 	return newCustomer;
 }
 
++ (NSArray*) findAllCustomersInManagedObjectContext:(NSManagedObjectContext*) context
+{
+	NSError* error = nil;
+	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Customer"
+														 inManagedObjectContext:context];
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	request.entity = entityDescription;
+	NSArray *objects = [context executeFetchRequest:request error:&error];
+	if (!error)
+	{
+		return objects;
+	}
+	return nil;
+}
+
 -(void) updateDerivedSum
 {
 	double invoicesSum = 0.0;
