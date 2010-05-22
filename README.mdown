@@ -9,6 +9,8 @@ Demonstrated with an example modelling Customers and Invoices
 The total sum of a customer has to be calculated from all invoices
 Undo&Redo is fully functional with this implementation.
 
+The source is published under a BSD License, so feel free to use it wherever you want.
+
 HOWTO use the stuff:
 
 1) Add LPManagedObjectContext, LPManagedObjectContextObservationInfo, LPManagedObject_ObservationInfo and LPManagedObject to your project
