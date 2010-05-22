@@ -1,11 +1,13 @@
 CoreData - to-many relationships - observing
+============================================
 
 General implementation solving the problem of properties dependent on the properties of another entity in a to-many relationship
 
 
 Note from [developer.apple.com]
 -------------------------------
-Important: Note that you cannot set up dependencies on to-many relationships. For example, suppose you have an Order object with a to-many relationship (orderItems) to a collection of OrderItem objects, and OrderItem objects have a price attribute. You might want the Order object have a totalPrice attribute that is dependent upon the prices of all the OrderItem objects in the relationship. You can not do this by implementing keyPathsForValuesAffectingValueForKey: and returning orderItems.price as the keypath for totalPrice. You must observe the price attribute of each of the OrderItem objects in the orderItems collection and respond to changes in their values by updating totalPrice yourself.
+Important: 
+Note that you cannot set up dependencies on to-many relationships. For example, suppose you have an Order object with a to-many relationship (orderItems) to a collection of OrderItem objects, and OrderItem objects have a price attribute. You might want the Order object have a totalPrice attribute that is dependent upon the prices of all the OrderItem objects in the relationship. You can not do this by implementing keyPathsForValuesAffectingValueForKey: and returning orderItems.price as the keypath for totalPrice. You must observe the price attribute of each of the OrderItem objects in the orderItems collection and respond to changes in their values by updating totalPrice yourself.
 
 
 Demonstrated with an example modelling Customers and Invoices
