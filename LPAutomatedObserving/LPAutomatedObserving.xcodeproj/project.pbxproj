@@ -354,7 +354,7 @@
 				GCC_PREFIX_HEADER = LPAutomatedObserving_Prefix.pch;
 				INFOPLIST_FILE = "LPAutomatedObserving-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_CFLAGS = "-DDEBUG_OBSERVING";
+				OTHER_CFLAGS = "";
 				PRODUCT_NAME = LPAutomatedObserving;
 				WRAPPER_EXTENSION = app;
 			};
@@ -370,7 +370,7 @@
 				GCC_PREFIX_HEADER = LPAutomatedObserving_Prefix.pch;
 				INFOPLIST_FILE = "LPAutomatedObserving-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_CFLAGS = "-DDEBUG_OBSERVING";
+				OTHER_CFLAGS = "";
 				PRODUCT_NAME = LPAutomatedObserving;
 				WRAPPER_EXTENSION = app;
 			};
