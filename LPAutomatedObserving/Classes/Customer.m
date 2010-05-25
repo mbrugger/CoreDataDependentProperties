@@ -6,6 +6,7 @@
 
 @synthesize sum;
 
+@dynamic standardDiscount;
 @dynamic name;
 @dynamic invoices;
 
@@ -40,7 +41,9 @@
 
 - (void) dealloc
 {
-	self.sum = nil;
+	//self.sum = nil;
+	[sum release];
+	sum = nil;
 	[super dealloc];
 }
 

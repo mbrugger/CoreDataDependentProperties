@@ -8,9 +8,11 @@
 	NSNumber* sum;
 }
 
-@property (nonatomic, retain) NSNumber *sum;
+@property (nonatomic, retain) NSNumber *standardDiscount;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSSet *invoices;
+
+@property (nonatomic, retain) NSNumber *sum;
 
 -(void) updateDerivedSum;
 

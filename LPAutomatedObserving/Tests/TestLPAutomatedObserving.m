@@ -12,6 +12,7 @@
 	STAssertNotNil(firstCustomer, @"insert of new customer failed");
 	STAssertTrue([firstCustomer.name isEqualToString:@"customer A"], @"customer name wrong %@", firstCustomer.name);
 	STAssertTrue(firstCustomer.sum.doubleValue == 0.0, @"customer without invoices should have zero sum");
+	STAssertTrue(firstCustomer.standardDiscount.doubleValue == 0.0, @"customer without invoices should have zero sum");
 }
 
 -(void) testBasicInvoice
@@ -348,7 +349,45 @@
 	[firstCustomer removeObserver:self forKeyPath:@"sum"];
 }
 
+-(void) testChangeCustomerDiscount
+{
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:100.0];
+	secondInvoice.invoiceSum = [NSNumber numberWithDouble:100.0];
+	
+	STAssertTrue(firstCustomer.sum.doubleValue == 200.0, @"customer with invoices sum %@", firstCustomer.sum);
+	
+	firstInvoice.alreadyPaid = [NSNumber numberWithBool:YES];
+	STAssertTrue(firstCustomer.sum.doubleValue == 100.0, @"customer with invoices sum %@", firstCustomer.sum);
 
+	// changing discount
+	firstCustomer.standardDiscount = [NSNumber numberWithDouble:0.1];
+	// unpaid/unsent invoices get discount
+	STAssertTrue(secondInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
+	STAssertTrue(secondInvoice.discountedInvoiceSum.doubleValue == 90.0, @"sum %@", firstInvoice.discountedInvoiceSum);
+	
+	// paid invoices remain unchanged
+	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
+	STAssertTrue(firstInvoice.discountedInvoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.discountedInvoiceSum);
+}
+
+-(void) testAddInvoiceToCustomerWithDiscount
+{
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	// changing discount
+	firstCustomer.standardDiscount = [NSNumber numberWithDouble:0.1];
+
+	
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];	
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:100.0];
+
+	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
+	STAssertTrue(firstInvoice.discountedInvoiceSum.doubleValue == 90.0, @"sum %@", firstInvoice.discountedInvoiceSum);
+	
+}
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)observerContext
 {

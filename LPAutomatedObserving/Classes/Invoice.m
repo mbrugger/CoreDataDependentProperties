@@ -28,21 +28,26 @@
 	Invoice *newInvoice = [NSEntityDescription insertNewObjectForEntityForName:@"Invoice"
 														  inManagedObjectContext:context];
 	newInvoice.customer = newCustomer;
+	newInvoice.discount = newCustomer.standardDiscount;
 	return newInvoice;
 }
 
 -(void) updateDerivedDiscount
 {
-//	double invoicesSum = 0.0;
-//	for (Invoice* invoice in self.invoices)
-//	{
-//		if (!invoice.alreadyPaid.boolValue)
-//			invoicesSum += invoice.invoiceSum.doubleValue;
-//	}
-//	
-//	// only update sum if really changed
-//	if (self.sum == nil || self.sum.doubleValue != invoicesSum)
-//		self.sum = [NSNumber numberWithDouble:invoicesSum];
+	//transient property undo gets handeled by undomanager
+	//do nothing in this case!
+
+	if ([self.managedObjectContext.undoManager isUndoing]
+		||[self.managedObjectContext.undoManager isRedoing])
+	{
+		return;
+	}
+	
+	if (!self.alreadyPaid.boolValue
+		&& self.discount.doubleValue != self.customer.standardDiscount.doubleValue)
+	{
+		self.discount = self.customer.standardDiscount;
+	}
 }
 
 - (NSNumber*) discountedInvoiceSum
