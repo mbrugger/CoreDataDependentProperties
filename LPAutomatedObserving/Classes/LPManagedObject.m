@@ -25,16 +25,23 @@
 		{
 			id observer = [self valueForKey:customObservationInfo.observerObjectKeyPath];
 			
+			//wrap observer into a set
+			//support for to-one relation observing
+			if (observer != nil && ![observer isKindOfClass:[NSSet class]])
+			{
+				observer = [NSSet setWithObject:observer];
+			}
+			
 			NSString* observationKeyPath = nil;
 			if (customObservationInfo.observingType == LPManagedObjectObservationInfoRelation)
 				observationKeyPath = customObservationInfo.observedRelationKeyPath;
 			else
 				observationKeyPath = customObservationInfo.observedPropertyKeyPath;
 			
-			if (observer != nil)
+			for (LPManagedObject* observerObject in observer)
 			{
 				if (DEBUG_OBSERVING) NSLog(@"startObserving <%p %@> observes <%p %@> keyPath: %@", observer, [observer className], self, [self className], observationKeyPath);
-				[self addObserver: observer
+				[self addObserver: observerObject
 					   forKeyPath:observationKeyPath
 						  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
 						  context:customObservationInfo];
@@ -54,6 +61,13 @@
 		for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
 		{	
 			id observer = [self valueForKey:customObservationInfo.observerObjectKeyPath];
+
+			//wrap observer into a set
+			//support for to-one relation observing
+			if (observer != nil && ![observer isKindOfClass:[NSSet class]])
+			{
+				observer = [NSSet setWithObject:observer];
+			}
 			
 			NSString* observationKeyPath = nil;
 			if (customObservationInfo.observingType == LPManagedObjectObservationInfoRelation)
@@ -61,10 +75,10 @@
 			else
 				observationKeyPath = customObservationInfo.observedPropertyKeyPath;
 			
-			if (observer != nil)
+			for (LPManagedObject* observerObject in observer)
 			{
 				if (DEBUG_OBSERVING) NSLog(@"stopObserving <%p %@> observes <%p %@> keyPath: %@", observer, [observer className], self, [self className], observationKeyPath);
-				[self removeObserver:observer
+				[self removeObserver:observerObject
 						  forKeyPath:observationKeyPath];
 			}
 		}
@@ -125,6 +139,10 @@
 			
 			if (![oldValue isEqual:[NSNull null]] && oldValue != nil)
 			{
+				// if relation is to-one wrap object into set
+				if (![oldValue isKindOfClass:[NSSet class]])
+					oldValue = [NSSet setWithObject:oldValue];
+				
 				// disable observing
 				for (id object in oldValue)
 				{
@@ -135,6 +153,10 @@
 			
 			if (![newValue isEqual:[NSNull null]] && newValue != nil)
 			{
+				// if relation is to-one wrap object into set
+				if (![newValue isKindOfClass:[NSSet class]])
+					newValue = [NSSet setWithObject:newValue];				
+				
 				//establish observing
 				for (id object in newValue)
 				{

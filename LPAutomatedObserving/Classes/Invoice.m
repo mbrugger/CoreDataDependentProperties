@@ -10,10 +10,10 @@
 @dynamic customer;
 @dynamic discount;
 
-//+(NSArray*) keyPathsForValuesAffectingDerivedDiscount
-//{
-//	return [NSArray arrayWithObjects:@"customer.standardDiscount", nil];
-//}
++(NSArray*) keyPathsForValuesAffectingDerivedDiscount
+{
+	return [NSArray arrayWithObjects:@"customer.standardDiscount", nil];
+}
 
 +(NSArray*) keyPathsForValuesAffectingDiscountedInvoiceSum
 {
