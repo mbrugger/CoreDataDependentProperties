@@ -289,6 +289,67 @@
 	
 }
 
+-(void) testDiscountedInvoiceSum
+{
+	observerCount = 0;
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	
+	[firstInvoice addObserver:self 
+						forKeyPath:@"discountedInvoiceSum" 
+						   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+						   context:@"UnitTest"];	
+	
+	STAssertTrue(observerCount == 0, @"observer count %d", observerCount);
+	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 0.0, @"new invoices should have zero sum");
+
+	//change invoice sum
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:100];
+	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);	
+	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
+	
+	//change discount
+	firstInvoice.discount = [NSNumber numberWithDouble:0.3];
+	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
+	STAssertTrue(firstInvoice.discountedInvoiceSum.doubleValue == 70.0, @"sum %@", firstInvoice.discountedInvoiceSum);
+	STAssertTrue(observerCount == 2, @"observer count %d", observerCount);
+	
+	[firstInvoice removeObserver:self forKeyPath:@"discountedInvoiceSum"];
+}
+
+-(void) testDiscountedInvoiceSumCustomer
+{
+	observerCount = 0;
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	
+	[firstCustomer addObserver:self 
+				   forKeyPath:@"sum" 
+					  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+					  context:@"UnitTest"];	
+	
+	STAssertTrue(observerCount == 0, @"observer count %d", observerCount);
+	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 0.0, @"new invoices should have zero sum");
+	STAssertTrue(firstCustomer.sum.doubleValue == 0.0, @"customer with invoices sum %@", firstCustomer.sum);
+	
+	//change invoice sum
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:100];
+	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);	
+	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
+	STAssertTrue(firstCustomer.sum.doubleValue == 100.0, @"customer with invoices sum %@", firstCustomer.sum);
+	
+	//change discount
+	firstInvoice.discount = [NSNumber numberWithDouble:0.3];
+	STAssertTrue(observerCount == 2, @"observer count %d", observerCount);
+	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
+	STAssertTrue(firstInvoice.discountedInvoiceSum.doubleValue == 70.0, @"sum %@", firstInvoice.discountedInvoiceSum);
+	STAssertTrue(firstCustomer.sum.doubleValue == 70.0, @"customer with invoices sum %@", firstCustomer.sum);
+	
+	[firstCustomer removeObserver:self forKeyPath:@"sum"];
+}
+
+
+
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)observerContext
 {
 	if (observerContext == @"UnitTest")

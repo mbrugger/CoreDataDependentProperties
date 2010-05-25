@@ -11,7 +11,7 @@
 
 +(NSArray*) keyPathsForValuesAffectingDerivedSum
 {
-	return [NSArray arrayWithObjects:@"invoices.invoiceSum", @"invoices.alreadyPaid", nil];
+	return [NSArray arrayWithObjects:@"invoices.discountedInvoiceSum", @"invoices.alreadyPaid", nil];
 }
 
 -(void) awakeFromInsert
@@ -73,7 +73,7 @@
 	for (Invoice* invoice in self.invoices)
 	{
 		if (!invoice.alreadyPaid.boolValue)
-			invoicesSum += invoice.invoiceSum.doubleValue;
+			invoicesSum += invoice.discountedInvoiceSum.doubleValue;
 	}
 	
 	// only update sum if really changed
