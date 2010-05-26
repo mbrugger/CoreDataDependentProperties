@@ -124,6 +124,9 @@ static NSString* const LPManagedObjectInterestingSelectorPrefix = @"keyPathsForV
 	}
 	return observerInformation;
 }
+@end
+
+@implementation NSObject (LPManagedObjectExtension)
 
 +(BOOL) isInheritedFromClass:(Class) baseClass
 {
@@ -142,6 +145,7 @@ static NSString* const LPManagedObjectInterestingSelectorPrefix = @"keyPathsForV
 }
 
 @end
+
 
 #pragma mark -
 
