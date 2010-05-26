@@ -3,6 +3,12 @@ CoreData - to-many relationships - observing
 
 General implementation solving the problem of properties dependent on the properties of another entity in a to-many relationship
 
+Changes:
+--------
+(26.5.2010)
+ - Modified to work across to-one and to-many relations
+ - extended Sample and unit tests
+
 Problem Description
 -------------------
 
@@ -32,6 +38,8 @@ HOWTO use the stuff:
 
   +(NSArray*) keyPathsForValuesAffectingDerived<Key>
   -(void) updateDerived<Key>
+
+4) write unit tests!
 
 Finished!
 
