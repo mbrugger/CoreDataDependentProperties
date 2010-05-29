@@ -243,8 +243,14 @@
 	
 	// create undo group for delete operation
 	[self.context processPendingChanges];
-	[[self.context undoManager] removeAllActions];
+
+	[[self.context undoManager] setActionName:@"initialOperations"];
+	[[self.context undoManager] endUndoGrouping];
 	
+	
+
+	STAssertTrue([[self.context.undoManager undoMenuItemTitle] isEqualToString:@"Undo initialOperations"], @"undoName - %@",[self.context.undoManager undoMenuItemTitle]);
+
 	[self.context processPendingChanges];
 	[[self.context undoManager] beginUndoGrouping];
 	[[self.context undoManager] setActionName:@"delete"];
@@ -253,18 +259,22 @@
 	[self.context processPendingChanges];
 	[[self.context undoManager] endUndoGrouping];
 	
+	
 	NSArray* allCustomers = [Customer findAllCustomersInManagedObjectContext:self.context];
 	STAssertTrue(allCustomers.count == 0, @"all customers deleted %@", allCustomers);
 	
-//	NSLog(@"insertedObjects: %@", [self.context insertedObjects]);
-//	NSLog(@"undoName: %@", [self.context.undoManager undoMenuItemTitle]);
+	STAssertTrue([[self.context.undoManager undoMenuItemTitle] isEqualToString:@"Undo delete"], @"undoName - %@",[self.context.undoManager undoMenuItemTitle]);
 	[[self.context undoManager] undo];
-//	NSLog(@"insertedObjects: %@", [self.context insertedObjects]);	
-//	NSLog(@"undoName: %@", [self.context.undoManager undoMenuItemTitle]);
-
-	STAssertTrue([[self.context undoManager] canUndo] == NO, @"undoManager canUndo");
 	
-//	NSLog(@"undomanager: %@", [self.context undoManager]);
+	STAssertTrue([[self.context.undoManager undoMenuItemTitle] isEqualToString:@"Undo initialOperations"], @"undoName - %@",[self.context.undoManager undoMenuItemTitle]);
+	
+	
+	// test for value change
+	[self.context processPendingChanges];
+	[[self.context undoManager] beginUndoGrouping];
+
+	[[self.context undoManager] setActionName:@"change"];
+	
 	allCustomers = [Customer findAllCustomersInManagedObjectContext:self.context];
 	STAssertTrue(allCustomers.count == 1, @"customer undelete failed %d", allCustomers.count);
 	
@@ -279,6 +289,9 @@
 	Invoice* undeletedInvoice = [undeletedCustomer.invoices anyObject];
 	undeletedInvoice.invoiceSum = [NSNumber numberWithDouble:33.33];
 	
+	[self.context processPendingChanges];
+	[[self.context undoManager] endUndoGrouping];
+	
 	STAssertTrue(undeletedCustomer.sum.doubleValue == 34.33, @"customer with invoices sum %f", undeletedCustomer.sum.doubleValue);
 	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);
 	[undeletedCustomer removeObserver:self forKeyPath:@"sum"];
@@ -286,7 +299,29 @@
 
 
 -(void) testUndo
-{
+{	
+	[self testUndoDelete];
+	STAssertTrue([[self.context.undoManager undoMenuItemTitle] isEqualToString:@"Undo change"], @"undoName - %@",[self.context.undoManager undoMenuItemTitle]);
+	
+	NSArray* allCustomers = [Customer findAllCustomersInManagedObjectContext:self.context];
+	STAssertTrue(allCustomers.count == 1, @"customer undelete failed %d", allCustomers.count);
+	
+	//check if observings still work
+	observerCount = 0;
+	Customer* undeletedCustomer = [allCustomers lastObject];
+	[undeletedCustomer addObserver:self 
+						forKeyPath:@"sum" 
+						   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+						   context:@"UnitTest"];
+	
+	Invoice* undeletedInvoice = [undeletedCustomer.invoices anyObject];
+	
+	[[self.context undoManager] undo];
+	
+	STAssertTrue(undeletedCustomer.sum.doubleValue == 2.0, @"customer with invoices sum %f", undeletedCustomer.sum.doubleValue);
+	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);
+	
+	[undeletedCustomer removeObserver:self forKeyPath:@"sum"];
 	
 }
 

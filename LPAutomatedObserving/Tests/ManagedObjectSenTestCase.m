@@ -52,7 +52,7 @@
 	@catch (NSException * e)
 	{
 		NSLog(@"%@",e);
-		NSLog(@"%@", [e callStackSymbols]);
+		//NSLog(@"%@", [e callStackSymbols]);
 		NSLog(@"context reset failed!");
 		@throw(e);
 		
