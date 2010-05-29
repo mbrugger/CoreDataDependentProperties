@@ -37,12 +37,14 @@
 	//transient property undo gets handeled by undomanager
 	//do nothing in this case!
 
+	
 	if ([self.managedObjectContext.undoManager isUndoing]
 		||[self.managedObjectContext.undoManager isRedoing])
 	{
 		return;
 	}
 	
+	//NSLog(@"<%p %@> update discount", self, [self className]);	
 	if (!self.alreadyPaid.boolValue
 		&& self.discount.doubleValue != self.customer.standardDiscount.doubleValue)
 	{

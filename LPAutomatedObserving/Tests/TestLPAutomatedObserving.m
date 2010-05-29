@@ -314,12 +314,17 @@
 						   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
 						   context:@"UnitTest"];
 	
-	Invoice* undeletedInvoice = [undeletedCustomer.invoices anyObject];
+	//Invoice* undeletedInvoice = [undeletedCustomer.invoices anyObject];
 	
 	[[self.context undoManager] undo];
 	
 	STAssertTrue(undeletedCustomer.sum.doubleValue == 2.0, @"customer with invoices sum %f", undeletedCustomer.sum.doubleValue);
 	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);
+	
+	[[self.context undoManager] redo];
+	
+	STAssertTrue(undeletedCustomer.sum.doubleValue == 34.33, @"customer with invoices sum %f", undeletedCustomer.sum.doubleValue);
+	STAssertTrue(observerCount == 2, @"observer count %d", observerCount);
 	
 	[undeletedCustomer removeObserver:self forKeyPath:@"sum"];
 	
@@ -421,8 +426,120 @@
 
 	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
 	STAssertTrue(firstInvoice.discountedInvoiceSum.doubleValue == 90.0, @"sum %@", firstInvoice.discountedInvoiceSum);
+}
+
+-(void) testChangeCustomerDiscountUndo
+{
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:100.0];
+	secondInvoice.invoiceSum = [NSNumber numberWithDouble:100.0];
+	
+	STAssertTrue(firstCustomer.sum.doubleValue == 200.0, @"customer with invoices sum %@", firstCustomer.sum);
+	
+	firstInvoice.alreadyPaid = [NSNumber numberWithBool:YES];
+	STAssertTrue(firstCustomer.sum.doubleValue == 100.0, @"customer with invoices sum %@", firstCustomer.sum);
+	
+	
+	[self.context processPendingChanges];
+	
+	[[self.context undoManager] setActionName:@"initialOperations"];
+	[[self.context undoManager] endUndoGrouping];
+	
+	
+	
+	STAssertTrue([[self.context.undoManager undoMenuItemTitle] isEqualToString:@"Undo initialOperations"], @"undoName - %@",[self.context.undoManager undoMenuItemTitle]);
+	
+	[self.context processPendingChanges];
+	[[self.context undoManager] beginUndoGrouping];
+	
+	// changing discount
+	firstCustomer.standardDiscount = [NSNumber numberWithDouble:0.1];
+	// unpaid/unsent invoices get discount
+	STAssertTrue(secondInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
+	STAssertTrue(secondInvoice.discountedInvoiceSum.doubleValue == 90.0, @"sum %@", firstInvoice.discountedInvoiceSum);
+	
+	// paid invoices remain unchanged
+	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
+	STAssertTrue(firstInvoice.discountedInvoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.discountedInvoiceSum);
+	
+	[self.context processPendingChanges];
+	
+	[[self.context undoManager] setActionName:@"changedDiscount"];
+	[[self.context undoManager] endUndoGrouping];
+	
+	[secondInvoice addObserver:self 
+					forKeyPath:@"discount" 
+					   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+					   context:@"UnitTest"];
+	
+	NSLog(@"undo discount change");
+	[[self.context undoManager] undo];
+	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);
+	
+	[secondInvoice removeObserver:self forKeyPath:@"discount"];
+	
+
+}
+
+-(void) testChangeCustomerDiscountRedo
+{
 	
 }
+
+-(void) testDicountChangeCustomer
+{
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Customer* secondCustomer = [Customer insertNewCustomerWithName:@"customer B" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+
+	
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:100.0];
+
+	
+	STAssertTrue(firstCustomer.sum.doubleValue == 100.0, @"customer with invoices sum %@", firstCustomer.sum);
+	
+	firstCustomer.standardDiscount = [NSNumber numberWithDouble:0.1];
+	secondCustomer.standardDiscount = [NSNumber numberWithDouble:0.3];
+	
+	[self.context processPendingChanges];	
+	[[self.context undoManager] setActionName:@"initialOperations"];
+	[[self.context undoManager] endUndoGrouping];
+	
+	
+	[firstInvoice addObserver:self 
+					forKeyPath:@"discount" 
+					   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+					   context:@"UnitTest"];
+	
+	// create undo group to change customer of invoice
+	[self.context processPendingChanges];
+	[[self.context undoManager] beginUndoGrouping];
+	
+	firstInvoice.customer = secondCustomer;
+	
+	
+	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);
+	STAssertTrue(secondCustomer.sum.doubleValue == 70.0, @"customer with invoices sum %@", secondCustomer.sum);
+	[self.context processPendingChanges];	
+	[[self.context undoManager] setActionName:@"changeCustomer"];
+	[[self.context undoManager] endUndoGrouping];
+	
+	[[self.context undoManager] undo];
+	
+	STAssertTrue(observerCount == 2, @"observer count %d", observerCount);
+	STAssertTrue(firstCustomer.sum.doubleValue == 90.0, @"customer with invoices sum %@", firstCustomer.sum);
+	[[self.context undoManager] redo];
+	
+	STAssertTrue(observerCount == 3, @"observer count %d", observerCount);
+	STAssertTrue(secondCustomer.sum.doubleValue == 70.0, @"customer with invoices sum %@", secondCustomer.sum);
+	
+	[firstInvoice removeObserver:self forKeyPath:@"discount"];
+	
+}
+
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)observerContext
 {
