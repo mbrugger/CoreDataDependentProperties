@@ -14,12 +14,17 @@
 
 -(void) startObserving
 {	
+	LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
+	if (![context isKindOfClass:[LPManagedObjectContext class]])
+	{
+		// do not start observing in other managed object contexts
+		return;
+	}
+
 	if (!self.observingsActive)
 	{
-		self.observingsActive = YES;
-		LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
 		NSAssert1([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
-		
+		self.observingsActive = YES;		
 		NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
 		for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
 		{
@@ -52,9 +57,16 @@
 
 -(void) stopObserving
 {
+	LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
+	if (![context isKindOfClass:[LPManagedObjectContext class]])
+	{
+		// do not stop observing in other managed object contexts
+		return;
+	}
+	
 	if (self.observingsActive)
 	{
-		LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
+
 		NSAssert1([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
 		
 		NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
@@ -125,10 +137,17 @@
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	LPManagedObjectContext* managedObjectContext = (LPManagedObjectContext*) self.managedObjectContext;
+	LPManagedObjectContext* managedObjectContext = (LPManagedObjectContext*) self.managedObjectContext;	
+	
 	LPManagedObjectObservationInfo *observationInfo = (LPManagedObjectObservationInfo *)context;
 	if (observationInfo != nil && [observationInfo isKindOfClass:[LPManagedObjectObservationInfo class]])
 	{
+		if (![managedObjectContext isKindOfClass:[LPManagedObjectContext class]])
+		{
+			// do not handle observing if context is not an LPManagedObjectContext
+			return;
+		}
+		
 		//handle auto observing
 		if (object == self)
 		{
