@@ -36,8 +36,9 @@ HOWTO use the stuff:
 3) inherit each Class with dependent properties from LPManagedObject (Customer.m)
    implement the following two methods in each relevant class:
 
-  +(NSArray*) keyPathsForValuesAffectingDerived<Key>
-  -(void) updateDerived<Key>
+  +(NSArray*) keyPathsForValuesAffectingDerived&lt;Key&gt;
+
+  -(void) updateDerived&lt;Key&gt;
 
 4) write unit tests!
 
