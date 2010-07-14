@@ -14,9 +14,6 @@
 {
 	pool = [[NSAutoreleasePool alloc] init];
 	
-	NSMutableSet *allBundles = [[[NSMutableSet alloc] init] autorelease];
-	[allBundles addObjectsFromArray:[NSBundle allBundles]];
-	
 	NSBundle* bundle = [NSBundle bundleWithIdentifier:@"at.nimblo.LPAutmatedObserving.ModelTest"];
 	//NSLog(@"bundle: %@", bundle);
 	NSString* path = [bundle pathForResource:@"LPAutomatedObserving_DataModel"
