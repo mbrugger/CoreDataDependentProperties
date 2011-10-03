@@ -4,11 +4,10 @@
 
 @implementation Customer 
 
-@synthesize sum;
-
 @dynamic standardDiscount;
 @dynamic name;
 @dynamic invoices;
+@dynamic sum;
 
 +(NSArray*) keyPathsForValuesAffectingDerivedSum
 {
@@ -18,7 +17,6 @@
 -(void) awakeFromInsert
 {
 	[super awakeFromInsert];
-	self.sum = [NSNumber numberWithDouble:0.0];
 }
 
 -(void) awakeFromFetch
@@ -28,29 +26,21 @@
 	// update should not be done here in deep dependency trees
 	// could lead to performance issues
 	// implement a recalculate while deactivating observings
-	[self updateDerivedSum];
+	//[self updateDerivedSum];
 }
 
 #if MACOSX_DEPLOYMENT_TARGET >= 1060
 - (void)awakeFromSnapshotEvents:(NSSnapshotEventType)flags
 {
 	[super awakeFromSnapshotEvents:flags];
-	[self updateDerivedSum];
+	//	[self updateDerivedSum];
 }
 #endif
-
-- (void) dealloc
-{
-	//self.sum = nil;
-	[sum release];
-	sum = nil;
-	[super dealloc];
-}
 
 + (Customer*) insertNewCustomerWithName:(NSString*) newName inManagedObjectContext:(NSManagedObjectContext*) context
 {
 	Customer *newCustomer = [NSEntityDescription insertNewObjectForEntityForName:@"Customer"
-                                                             inManagedObjectContext:context];
+														  inManagedObjectContext:context];
 	newCustomer.name = newName;
 	return newCustomer;
 }
@@ -70,15 +60,78 @@
 	return nil;
 }
 
--(void) updateDerivedSum
+-(void) updateDerivedSumForChange:(NSDictionary *)change
 {
-	double invoicesSum = 0.0;
-	for (Invoice* invoice in self.invoices)
+	if ([self.managedObjectContext.undoManager isUndoing] || [self.managedObjectContext.undoManager isRedoing])
 	{
-		if (!invoice.alreadyPaid.boolValue)
-			invoicesSum += invoice.discountedInvoiceSum.doubleValue;
+		// do not process any changes while undo/redo!
+		return;
 	}
 	
+	id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+	id newValue = [change objectForKey:NSKeyValueChangeNewKey];
+	
+	NSString *keyPath = [change objectForKey:LPKeyValueChangeKeyPathKey];
+	
+	double invoicesSum = 0.0;
+	
+	if ([keyPath isEqualToString:@"discountedInvoiceSum"])
+	{
+		NSLog(@"updating incremental old: %@, new: %@", oldValue, newValue);
+		invoicesSum = self.sum.doubleValue;
+
+		invoicesSum -= [oldValue doubleValue];
+		invoicesSum += [newValue doubleValue];
+	}
+//	else if ([keyPath isEqualToString:@"invoices"])
+//	{
+//		//NSLog(@"updating incremental old: %@, new: %@", oldValue, newValue);
+//		invoicesSum = self.sum.doubleValue;
+//		
+//
+//		
+//		// is there any chance the invoice sum changes while the relation is changed?
+//		// removed invoices from current customer
+//		if (![oldValue isEqual:[NSNull null]] && oldValue != nil)
+//		{
+//			// remove A from Relation containing A,B
+//			// OLD: A,B NEW: B -> A,B MINUS B => A
+//			NSMutableSet *removedInvoices = [NSMutableSet setWithSet:oldValue];
+//			[removedInvoices minusSet:newValue];
+//			for (Invoice *removedInvoice in removedInvoices)
+//			{
+//				NSLog(@"removing: %@", removedInvoice);
+//				if (!removedInvoice.alreadyPaid.boolValue)
+//					invoicesSum -= removedInvoice.discountedInvoiceSum.doubleValue;
+//				
+//			}
+//		}
+//
+//		// added invoices to current customer	
+//		if (![newValue isEqual:[NSNull null]] && newValue != nil)
+//		{
+//			// add A to relation containing B
+//			// OLD: B, NEW: A,B -> A,B minus B => A
+//			NSMutableSet *addedInvoices = [NSMutableSet setWithSet:newValue];
+//			[addedInvoices minusSet:oldValue];
+//			for (Invoice *addedInvoice in addedInvoices)
+//			{
+//				NSLog(@"adding: %@", addedInvoice);
+//				if (!addedInvoice.alreadyPaid.boolValue)
+//					invoicesSum += addedInvoice.discountedInvoiceSum.doubleValue;
+//				
+//			}
+//		}
+//	}
+	else
+	{
+		NSLog(@"updating brute force");
+		for (Invoice* invoice in self.invoices)
+		{
+			if (!invoice.alreadyPaid.boolValue)
+				invoicesSum += invoice.discountedInvoiceSum.doubleValue;
+		}
+	}	
 	// only update sum if really changed
 	if (self.sum == nil || self.sum.doubleValue != invoicesSum)
 		self.sum = [NSNumber numberWithDouble:invoicesSum];

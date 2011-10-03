@@ -50,7 +50,7 @@
 	
 	// create second invoice
 	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];	
-
+	
 	// change second invoice sum
 	secondInvoice.invoiceSum = [NSNumber numberWithDouble:1.0];
 	STAssertTrue(firstCustomer.sum.doubleValue == 2.5, @"customer with invoices sum %@", firstCustomer.sum);	
@@ -108,7 +108,7 @@
 	// adding invoice with sum
 	firstInvoice.customer = firstCustomer;
 	STAssertTrue(observerCount == 3, @"observer count %d", observerCount);
-
+	
 	NSLog(@"delete invoice begin");
 	//deleting invoice within customer
 	[self.context deleteObject:firstInvoice];
@@ -181,6 +181,10 @@
 	STAssertTrue(firstCustomer.sum.doubleValue == 0.0, @"customer with invoices sum %@", firstCustomer.sum);
 	STAssertTrue(observerCount == 0, @"observer count %d", observerCount);
 	
+	
+	// restore consistent state before activating observings!
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:0.0];
+	
 	// now change again with active observings
 	managedObjectContext.observingsActive = YES;
 	firstInvoice.invoiceSum = [NSNumber numberWithDouble:2.0];
@@ -194,10 +198,10 @@
 {
 	[Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
 	[Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
-
+	
 	NSArray* allCustomers = [Customer findAllCustomersInManagedObjectContext:self.context];
 	STAssertTrue(allCustomers.count == 2, @"found customers");
-
+	
 }
 
 -(void) testUndoDelete
@@ -213,8 +217,8 @@
 	STAssertTrue([self.context.undoManager canUndo] == NO, @"undoManager canUndo");
 	STAssertTrue([[self.context undoManager] isUndoRegistrationEnabled] == YES, @"undoRegistration %d", [[self.context undoManager] isUndoRegistrationEnabled]);
 	observerCount = 0;
-
-
+	
+	
 	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
 	STAssertTrue(firstCustomer.sum.doubleValue == 0.0, @"customer without invoices should have zero sum");
 	
@@ -235,7 +239,7 @@
 	secondInvoice.invoiceSum = [NSNumber numberWithDouble:1.0];
 	STAssertTrue(firstCustomer.sum.doubleValue == 2.0, @"customer with invoices sum %@", firstCustomer.sum);
 	STAssertTrue(observerCount == 2, @"observer count %d", observerCount);
-
+	
 	NSLog(@"insertedObjects: %@", [self.context insertedObjects]);
 	
 	[firstCustomer removeObserver:self forKeyPath:@"sum"];
@@ -243,14 +247,14 @@
 	
 	// create undo group for delete operation
 	[self.context processPendingChanges];
-
+	
 	[[self.context undoManager] setActionName:@"initialOperations"];
 	[[self.context undoManager] endUndoGrouping];
 	
 	
-
+	
 	STAssertTrue([[self.context.undoManager undoMenuItemTitle] isEqualToString:@"Undo initialOperations"], @"undoName - %@",[self.context.undoManager undoMenuItemTitle]);
-
+	
 	[self.context processPendingChanges];
 	[[self.context undoManager] beginUndoGrouping];
 	[[self.context undoManager] setActionName:@"delete"];
@@ -272,7 +276,7 @@
 	// test for value change
 	[self.context processPendingChanges];
 	[[self.context undoManager] beginUndoGrouping];
-
+	
 	[[self.context undoManager] setActionName:@"change"];
 	
 	allCustomers = [Customer findAllCustomersInManagedObjectContext:self.context];
@@ -282,9 +286,9 @@
 	observerCount = 0;
 	Customer* undeletedCustomer = [allCustomers lastObject];
 	[undeletedCustomer addObserver:self 
-					forKeyPath:@"sum" 
-					   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
-					   context:@"UnitTest"];
+						forKeyPath:@"sum" 
+						   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+						   context:@"UnitTest"];
 	
 	Invoice* undeletedInvoice = [undeletedCustomer.invoices anyObject];
 	undeletedInvoice.invoiceSum = [NSNumber numberWithDouble:33.33];
@@ -337,13 +341,13 @@
 	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
 	
 	[firstInvoice addObserver:self 
-						forKeyPath:@"discountedInvoiceSum" 
-						   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
-						   context:@"UnitTest"];	
+				   forKeyPath:@"discountedInvoiceSum" 
+					  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+					  context:@"UnitTest"];	
 	
 	STAssertTrue(observerCount == 0, @"observer count %d", observerCount);
 	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 0.0, @"new invoices should have zero sum");
-
+	
 	//change invoice sum
 	firstInvoice.invoiceSum = [NSNumber numberWithDouble:100];
 	STAssertTrue(observerCount == 1, @"observer count %d", observerCount);	
@@ -365,9 +369,9 @@
 	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
 	
 	[firstCustomer addObserver:self 
-				   forKeyPath:@"sum" 
-					  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
-					  context:@"UnitTest"];	
+					forKeyPath:@"sum" 
+					   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+					   context:@"UnitTest"];	
 	
 	STAssertTrue(observerCount == 0, @"observer count %d", observerCount);
 	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 0.0, @"new invoices should have zero sum");
@@ -402,7 +406,7 @@
 	
 	firstInvoice.alreadyPaid = [NSNumber numberWithBool:YES];
 	STAssertTrue(firstCustomer.sum.doubleValue == 100.0, @"customer with invoices sum %@", firstCustomer.sum);
-
+	
 	// changing discount
 	firstCustomer.standardDiscount = [NSNumber numberWithDouble:0.1];
 	// unpaid/unsent invoices get discount
@@ -416,16 +420,24 @@
 
 -(void) testAddInvoiceToCustomerWithDiscount
 {
+	@try
+	{
 	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
 	// changing discount
 	firstCustomer.standardDiscount = [NSNumber numberWithDouble:0.1];
-
+	
 	
 	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];	
 	firstInvoice.invoiceSum = [NSNumber numberWithDouble:100.0];
-
+	
 	STAssertTrue(firstInvoice.invoiceSum.doubleValue == 100.0, @"sum %@", firstInvoice.invoiceSum);
 	STAssertTrue(firstInvoice.discountedInvoiceSum.doubleValue == 90.0, @"sum %@", firstInvoice.discountedInvoiceSum);
+
+	}
+	@catch (NSException * e)
+	{
+		STAssertTrue(e == nil, @"should not fail: %@", e);
+	}
 }
 
 -(void) testChangeCustomerDiscountUndo
@@ -481,7 +493,7 @@
 	
 	[secondInvoice removeObserver:self forKeyPath:@"discount"];
 	
-
+	
 }
 
 -(void) testChangeCustomerDiscountRedo
@@ -494,10 +506,10 @@
 	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
 	Customer* secondCustomer = [Customer insertNewCustomerWithName:@"customer B" inManagedObjectContext:self.context];
 	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
-
+	
 	
 	firstInvoice.invoiceSum = [NSNumber numberWithDouble:100.0];
-
+	
 	
 	STAssertTrue(firstCustomer.sum.doubleValue == 100.0, @"customer with invoices sum %@", firstCustomer.sum);
 	
@@ -510,9 +522,9 @@
 	
 	
 	[firstInvoice addObserver:self 
-					forKeyPath:@"discount" 
-					   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
-					   context:@"UnitTest"];
+				   forKeyPath:@"discount" 
+					  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+					  context:@"UnitTest"];
 	
 	// create undo group to change customer of invoice
 	[self.context processPendingChanges];
@@ -539,6 +551,112 @@
 	[firstInvoice removeObserver:self forKeyPath:@"discount"];
 	
 }
+
+- (void)testFaulting
+{
+	NSError *error = nil;
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	secondInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+	
+	STAssertTrue(firstCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
+	@try
+	{
+		[self.context save:&error];	
+	}
+	@catch (NSException * e)
+	{
+		STAssertTrue(e == nil, @"error: %@", e);
+	}
+
+	// turn both invoices into fault, all data is saved at this point, the context is clean!
+	[self.context refreshObject:firstInvoice mergeChanges:NO];
+	[self.context refreshObject:secondInvoice mergeChanges:NO];
+	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
+	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");
+	
+	STAssertTrue(firstCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
+	
+	// change value of firstInvoice
+	// make sure the other invoice stays faulted
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:5.0];
+	STAssertTrue(firstCustomer.sum.doubleValue == 15.0, @"invoices sum is %@", firstCustomer.sum);
+	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");
+}
+
+- (void)testFaultingInsertObject
+{
+	NSError *error = nil;
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+	
+	STAssertTrue(firstCustomer.sum.doubleValue == 10.0, @"invoices sum is %@", firstCustomer.sum);
+	@try
+	{
+		[self.context save:&error];	
+	}
+	@catch (NSException * e)
+	{
+		STAssertTrue(e == nil, @"error: %@", e);
+	}
+	
+	// turn invoice into fault, all data is saved at this point, the context is clean!
+	[self.context refreshObject:firstInvoice mergeChanges:NO];
+
+	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
+	
+	// insert new invoice
+	// make sure the other invoice stays faulted
+
+	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	secondInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+
+	STAssertTrue(firstCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
+	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");
+}
+
+- (void)testFaultingRemoveObject
+{
+	NSError *error = nil;
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+	
+	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	secondInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+
+	
+	STAssertTrue(firstCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
+	@try
+	{
+		[self.context save:&error];	
+	}
+	@catch (NSException * e)
+	{
+		STAssertTrue(e == nil, @"error: %@", e);
+	}
+	
+	// turn both invoices into fault, all data is saved at this point, the context is clean!
+	[self.context refreshObject:firstInvoice mergeChanges:NO];
+	[self.context refreshObject:secondInvoice mergeChanges:NO];
+	
+	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
+	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");	
+	
+	// delete second invoice
+	// make sure the other invoice stays faulted
+	
+	[self.context deleteObject:secondInvoice];
+	[self.context processPendingChanges];
+	
+	// do I need to process pending changes at this point?
+	STAssertTrue(firstCustomer.sum.doubleValue == 10.0, @"invoices sum is %@", firstCustomer.sum);
+	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");
+}
+
 
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)observerContext

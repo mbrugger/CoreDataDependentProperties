@@ -3,7 +3,7 @@
 #import "LPManagedObjectObservationInfo.h"
 
 #ifndef DEBUG_OBSERVING
-#define DEBUG_OBSERVING 0
+#define DEBUG_OBSERVING 1
 #endif
 
 @implementation LPManagedObject
@@ -148,6 +148,10 @@
 			return;
 		}
 		
+		NSMutableDictionary *observingChanges = [NSMutableDictionary dictionaryWithDictionary:change];
+		[observingChanges setObject:object forKey:LPKeyValueChangeObjectKey];
+		[observingChanges setObject:keyPath forKey:LPKeyValueChangeKeyPathKey];
+		
 		//handle auto observing
 		if (object == self)
 		{
@@ -186,13 +190,17 @@
 				}
 			}
 			if ([managedObjectContext isKindOfClass:[LPManagedObjectContext class]] && managedObjectContext.observingsActive)
-				[self performSelector:NSSelectorFromString(observationInfo.updateSelectorName)];
+			{
+				[self performSelector:[observationInfo updateSelector] withObject:observingChanges];
+			}
 		}
 		else
 		{
 			if (DEBUG_OBSERVING) NSLog(@"Observing Property <%p %@> keyPath: %@ object: <%p %@>", self, [self className], keyPath, object, [object className]);
 			if ([managedObjectContext isKindOfClass:[LPManagedObjectContext class]] && managedObjectContext.observingsActive)
-				[self performSelector:NSSelectorFromString(observationInfo.updateSelectorName)];
+			{
+				[self performSelector:[observationInfo updateSelector] withObject:observingChanges];
+			}
 		}
 	}
 }

@@ -34,5 +34,7 @@ enum LPManagedObjectObservationInfoType {LPManagedObjectObservationInfoRelation 
 @property (retain, nonatomic) NSString* updateSelectorName;
 @property (assign) NSInteger observingType;
 
+-(SEL) updateSelector;
+
 +(LPManagedObjectObservationInfo*) managedObjectObservationInfo;
 @end

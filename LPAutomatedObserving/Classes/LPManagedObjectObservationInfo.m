@@ -49,4 +49,10 @@
 	return description;
 }
 
+-(SEL) updateSelector
+{
+	NSString *selectorName = [self.updateSelectorName stringByAppendingString:@"ForChange:"];
+	return NSSelectorFromString(selectorName);
+}
+
 @end

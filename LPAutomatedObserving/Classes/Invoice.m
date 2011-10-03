@@ -32,7 +32,7 @@
 	return newInvoice;
 }
 
--(void) updateDerivedDiscount
+-(void) updateDerivedDiscountForChange:(NSDictionary *)change
 {
 	//transient property undo gets handeled by undomanager
 	//do nothing in this case!

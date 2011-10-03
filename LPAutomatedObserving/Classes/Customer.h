@@ -5,16 +5,15 @@
 
 @interface Customer :  LPManagedObject  
 {
-	NSNumber* sum;
+	
 }
 
 @property (nonatomic, retain) NSNumber *standardDiscount;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSSet *invoices;
-
 @property (nonatomic, retain) NSNumber *sum;
 
--(void) updateDerivedSum;
+-(void) updateDerivedSumForChange:(NSDictionary *)change;
 
 + (Customer*) insertNewCustomerWithName:(NSString*) newName inManagedObjectContext:(NSManagedObjectContext*) context;
 + (NSArray*) findAllCustomersInManagedObjectContext:(NSManagedObjectContext*) context;

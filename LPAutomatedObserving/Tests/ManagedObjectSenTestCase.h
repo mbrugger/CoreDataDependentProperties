@@ -1,14 +1,12 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 
-@interface ManagedObjectSenTestCase : SenTestCase {
+@interface ManagedObjectSenTestCase : SenTestCase 
+{
 	NSPersistentStoreCoordinator *coordinator;
 	NSManagedObjectContext *context;
 	NSManagedObjectModel *model;
-	NSAutoreleasePool* pool;
-	
-	
-	
+	NSAutoreleasePool *pool;
 }
 
 @property (retain,nonatomic) NSPersistentStoreCoordinator *coordinator;
