@@ -2,6 +2,7 @@
 
 static NSString * const LPKeyValueChangeObjectKey = @"LPKeyValueChangeObjectKey";
 static NSString * const LPKeyValueChangeKeyPathKey = @"LPKeyValueChangeKeyPathKey";
+static NSString * const LPKeyValueChangeObservationInfoKey = @"LPKeyValueChangeObservationInfoKey";
 
 @interface LPManagedObject : NSManagedObject {
 

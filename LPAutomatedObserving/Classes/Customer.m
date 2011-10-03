@@ -1,6 +1,7 @@
 #import "Customer.h"
 
 #import "Invoice.h"
+#import "LPManagedObjectObservationInfo.h"
 
 @implementation Customer 
 
@@ -73,65 +74,80 @@
 	
 	NSString *keyPath = [change objectForKey:LPKeyValueChangeKeyPathKey];
 	
-	double invoicesSum = 0.0;
+	LPManagedObjectObservationInfo *observationInfo = [change objectForKey:LPKeyValueChangeObservationInfoKey];
+	
+	double invoicesSum = self.sum.doubleValue;
 	
 	if ([keyPath isEqualToString:@"discountedInvoiceSum"])
 	{
 		NSLog(@"updating incremental old: %@, new: %@", oldValue, newValue);
 		invoicesSum = self.sum.doubleValue;
-
+		
 		invoicesSum -= [oldValue doubleValue];
 		invoicesSum += [newValue doubleValue];
 	}
-//	else if ([keyPath isEqualToString:@"invoices"])
-//	{
-//		//NSLog(@"updating incremental old: %@, new: %@", oldValue, newValue);
-//		invoicesSum = self.sum.doubleValue;
-//		
-//
-//		
-//		// is there any chance the invoice sum changes while the relation is changed?
-//		// removed invoices from current customer
-//		if (![oldValue isEqual:[NSNull null]] && oldValue != nil)
-//		{
-//			// remove A from Relation containing A,B
-//			// OLD: A,B NEW: B -> A,B MINUS B => A
-//			NSMutableSet *removedInvoices = [NSMutableSet setWithSet:oldValue];
-//			[removedInvoices minusSet:newValue];
-//			for (Invoice *removedInvoice in removedInvoices)
-//			{
-//				NSLog(@"removing: %@", removedInvoice);
-//				if (!removedInvoice.alreadyPaid.boolValue)
-//					invoicesSum -= removedInvoice.discountedInvoiceSum.doubleValue;
-//				
-//			}
-//		}
-//
-//		// added invoices to current customer	
-//		if (![newValue isEqual:[NSNull null]] && newValue != nil)
-//		{
-//			// add A to relation containing B
-//			// OLD: B, NEW: A,B -> A,B minus B => A
-//			NSMutableSet *addedInvoices = [NSMutableSet setWithSet:newValue];
-//			[addedInvoices minusSet:oldValue];
-//			for (Invoice *addedInvoice in addedInvoices)
-//			{
-//				NSLog(@"adding: %@", addedInvoice);
-//				if (!addedInvoice.alreadyPaid.boolValue)
-//					invoicesSum += addedInvoice.discountedInvoiceSum.doubleValue;
-//				
-//			}
-//		}
-//	}
+	else if ([keyPath isEqualToString:@"invoices"])
+	{
+		if ([observationInfo.observedPropertyKeyPath isEqualToString:@"discountedInvoiceSum"])
+		{
+			
+			//NSLog(@"updating incremental old: %@, new: %@", oldValue, newValue);
+			invoicesSum = self.sum.doubleValue;
+			
+			
+			
+			// is there any chance the invoice sum changes while the relation is changed?
+			// removed invoices from current customer
+			if (![oldValue isEqual:[NSNull null]] && oldValue != nil)
+			{
+				// remove A from Relation containing A,B
+				// OLD: A,B NEW: B -> A,B MINUS B => A
+				NSMutableSet *removedInvoices = [NSMutableSet setWithSet:oldValue];
+				[removedInvoices minusSet:newValue];
+				for (Invoice *removedInvoice in removedInvoices)
+				{
+					NSLog(@"removing: %@", removedInvoice);
+					if (!removedInvoice.alreadyPaid.boolValue)
+						invoicesSum -= removedInvoice.discountedInvoiceSum.doubleValue;
+					
+				}
+			}
+			
+			// added invoices to current customer	
+			if (![newValue isEqual:[NSNull null]] && newValue != nil)
+			{
+				// add A to relation containing B
+				// OLD: B, NEW: A,B -> A,B minus B => A
+				NSMutableSet *addedInvoices = [NSMutableSet setWithSet:newValue];
+				[addedInvoices minusSet:oldValue];
+				for (Invoice *addedInvoice in addedInvoices)
+				{
+					NSLog(@"adding: %@", addedInvoice);
+					if (!addedInvoice.alreadyPaid.boolValue)
+						invoicesSum += addedInvoice.discountedInvoiceSum.doubleValue;
+					
+				}
+			}
+			
+		}
+		else
+		{
+			NSLog(@"ignore multiple observings of relation");
+		}
+
+		
+	}
 	else
 	{
 		NSLog(@"updating brute force");
+		invoicesSum = 0.0;
 		for (Invoice* invoice in self.invoices)
 		{
 			if (!invoice.alreadyPaid.boolValue)
 				invoicesSum += invoice.discountedInvoiceSum.doubleValue;
 		}
-	}	
+	}
+	
 	// only update sum if really changed
 	if (self.sum == nil || self.sum.doubleValue != invoicesSum)
 		self.sum = [NSNumber numberWithDouble:invoicesSum];

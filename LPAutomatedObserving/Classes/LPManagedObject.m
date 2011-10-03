@@ -151,6 +151,8 @@
 		NSMutableDictionary *observingChanges = [NSMutableDictionary dictionaryWithDictionary:change];
 		[observingChanges setObject:object forKey:LPKeyValueChangeObjectKey];
 		[observingChanges setObject:keyPath forKey:LPKeyValueChangeKeyPathKey];
+		[observingChanges setObject:observationInfo forKey:LPKeyValueChangeObservationInfoKey];
+		
 		
 		//handle auto observing
 		if (object == self)
