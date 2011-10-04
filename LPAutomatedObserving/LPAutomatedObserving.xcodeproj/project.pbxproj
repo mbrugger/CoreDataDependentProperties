@@ -476,6 +476,7 @@
 				GCC_PREFIX_HEADER = LPAutomatedObserving_Prefix.pch;
 				INFOPLIST_FILE = "Resources/LPAutomatedObserving-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = LPAutomatedObserving;
 				WRAPPER_EXTENSION = app;
@@ -492,6 +493,7 @@
 				GCC_PREFIX_HEADER = LPAutomatedObserving_Prefix.pch;
 				INFOPLIST_FILE = "Resources/LPAutomatedObserving-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = LPAutomatedObserving;
 				WRAPPER_EXTENSION = app;

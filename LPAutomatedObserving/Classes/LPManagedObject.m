@@ -165,11 +165,10 @@
 // awakeFromSnapshotEvents was introduced in 10.6
 // workaround for missing method in LPManagedObjectContext.m
 // - (void)_undoDeletions:(id)deletions;
-#if ((defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED < 1060) || TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+#if ((defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED >= 1060) || TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 
 - (void)awakeFromSnapshotEvents:(NSSnapshotEventType)flags
 {
-	asdasdööö#asd\asdasd;
 	[super awakeFromSnapshotEvents:flags];
 	[self startObserving];
 }
