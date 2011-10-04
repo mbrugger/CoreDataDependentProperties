@@ -1,6 +1,6 @@
 #import "Invoice.h"
 
-#import "Customer.h"
+#import "Person.h"
 
 @implementation Invoice 
 
@@ -20,7 +20,7 @@
 	return [NSArray arrayWithObjects:@"discount", @"invoiceSum", nil];
 }
 
-+(Invoice*) insertNewInvoiceWithCustomer:(Customer*) newCustomer inManagedObjectContext:(NSManagedObjectContext*) context
++(Invoice*) insertNewInvoiceWithCustomer:(Person*) newCustomer inManagedObjectContext:(NSManagedObjectContext*) context
 {
 	if (newCustomer == nil)
 		[NSException raise:@"Customer required" format:@"insertNewInvoice failed because of missing customer"];

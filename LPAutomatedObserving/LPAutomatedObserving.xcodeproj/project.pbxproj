@@ -12,19 +12,21 @@
 		77C8280E06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m */; };
 		8746BB1911A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746BB1811A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m */; };
 		8746BB1A11A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746BB1811A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m */; };
-		8772C44A11A00C37002A9FE0 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44711A00C37002A9FE0 /* Customer.m */; };
+		8772C44A11A00C37002A9FE0 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44711A00C37002A9FE0 /* Person.m */; };
 		8772C44B11A00C37002A9FE0 /* Invoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44911A00C37002A9FE0 /* Invoice.m */; };
 		8772C44E11A00C49002A9FE0 /* LPManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44D11A00C49002A9FE0 /* LPManagedObject.m */; };
 		8772C79511A02E79002A9FE0 /* LPManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C79411A02E79002A9FE0 /* LPManagedObjectContext.m */; };
 		8772C7EA11A07383002A9FE0 /* LPManagedObjectObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C7E911A07383002A9FE0 /* LPManagedObjectObservationInfo.m */; };
 		8772D1E211A190DD002A9FE0 /* ManagedObjectSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772D1D411A190A1002A9FE0 /* ManagedObjectSenTestCase.m */; };
 		8772D1E311A190DD002A9FE0 /* TestLPAutomatedObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772D1D611A190A1002A9FE0 /* TestLPAutomatedObserving.m */; };
-		8772D1E711A190ED002A9FE0 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44711A00C37002A9FE0 /* Customer.m */; };
+		8772D1E711A190ED002A9FE0 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44711A00C37002A9FE0 /* Person.m */; };
 		8772D1E811A190EF002A9FE0 /* Invoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44911A00C37002A9FE0 /* Invoice.m */; };
 		8772D1E911A190F1002A9FE0 /* LPManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44D11A00C49002A9FE0 /* LPManagedObject.m */; };
 		8772D1EA11A190F2002A9FE0 /* LPManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C79411A02E79002A9FE0 /* LPManagedObjectContext.m */; };
 		8772D1EB11A190F3002A9FE0 /* LPManagedObjectObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C7E911A07383002A9FE0 /* LPManagedObjectObservationInfo.m */; };
 		8772D1EE11A190FE002A9FE0 /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* LPAutomatedObserving_DataModel.xcdatamodel */; };
+		8776EB3D143ACC59003AB74E /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EB3C143ACC59003AB74E /* Customer.m */; };
+		8776EB40143ACFD2003AB74E /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EB3C143ACC59003AB74E /* Customer.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -44,8 +46,8 @@
 		77C8280C06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAutomatedObserving_AppDelegate.m; sourceTree = "<group>"; };
 		8746BB1711A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPManagedObject_ObservationInfo.h; sourceTree = "<group>"; };
 		8746BB1811A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPManagedObject_ObservationInfo.m; sourceTree = "<group>"; };
-		8772C44611A00C37002A9FE0 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
-		8772C44711A00C37002A9FE0 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
+		8772C44611A00C37002A9FE0 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		8772C44711A00C37002A9FE0 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		8772C44811A00C37002A9FE0 /* Invoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invoice.h; sourceTree = "<group>"; };
 		8772C44911A00C37002A9FE0 /* Invoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invoice.m; sourceTree = "<group>"; };
 		8772C44C11A00C49002A9FE0 /* LPManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPManagedObject.h; sourceTree = "<group>"; };
@@ -60,6 +62,8 @@
 		8772D1D611A190A1002A9FE0 /* TestLPAutomatedObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLPAutomatedObserving.m; sourceTree = "<group>"; };
 		8772D1DD11A190B1002A9FE0 /* LPAutomatedObservingTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LPAutomatedObservingTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8772D1DE11A190B1002A9FE0 /* LPAutomatedObservingTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LPAutomatedObservingTest-Info.plist"; sourceTree = "<group>"; };
+		8776EB3B143ACC59003AB74E /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
+		8776EB3C143ACC59003AB74E /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* LPAutomatedObserving-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = "LPAutomatedObserving-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* LPAutomatedObserving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LPAutomatedObserving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -88,10 +92,12 @@
 			children = (
 				77C8280B06725ACE000B614F /* LPAutomatedObserving_AppDelegate.h */,
 				77C8280C06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m */,
-				8772C44611A00C37002A9FE0 /* Customer.h */,
-				8772C44711A00C37002A9FE0 /* Customer.m */,
+				8772C44611A00C37002A9FE0 /* Person.h */,
+				8772C44711A00C37002A9FE0 /* Person.m */,
 				8772C44811A00C37002A9FE0 /* Invoice.h */,
 				8772C44911A00C37002A9FE0 /* Invoice.m */,
+				8776EB3B143ACC59003AB74E /* Customer.h */,
+				8776EB3C143ACC59003AB74E /* Customer.m */,
 				8772C44C11A00C49002A9FE0 /* LPManagedObject.h */,
 				8772C44D11A00C49002A9FE0 /* LPManagedObject.m */,
 				8772C79311A02E79002A9FE0 /* LPManagedObjectContext.h */,
@@ -299,13 +305,14 @@
 			files = (
 				8772D1E211A190DD002A9FE0 /* ManagedObjectSenTestCase.m in Sources */,
 				8772D1E311A190DD002A9FE0 /* TestLPAutomatedObserving.m in Sources */,
-				8772D1E711A190ED002A9FE0 /* Customer.m in Sources */,
+				8772D1E711A190ED002A9FE0 /* Person.m in Sources */,
 				8772D1E811A190EF002A9FE0 /* Invoice.m in Sources */,
 				8772D1E911A190F1002A9FE0 /* LPManagedObject.m in Sources */,
 				8772D1EA11A190F2002A9FE0 /* LPManagedObjectContext.m in Sources */,
 				8772D1EB11A190F3002A9FE0 /* LPManagedObjectObservationInfo.m in Sources */,
 				8772D1EE11A190FE002A9FE0 /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */,
 				8746BB1A11A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m in Sources */,
+				8776EB40143ACFD2003AB74E /* Customer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,12 +323,13 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				77C8280E06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m in Sources */,
 				770B37ED0679A11B001EADE2 /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */,
-				8772C44A11A00C37002A9FE0 /* Customer.m in Sources */,
+				8772C44A11A00C37002A9FE0 /* Person.m in Sources */,
 				8772C44B11A00C37002A9FE0 /* Invoice.m in Sources */,
 				8772C44E11A00C49002A9FE0 /* LPManagedObject.m in Sources */,
 				8772C79511A02E79002A9FE0 /* LPManagedObjectContext.m in Sources */,
 				8772C7EA11A07383002A9FE0 /* LPManagedObjectObservationInfo.m in Sources */,
 				8746BB1911A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m in Sources */,
+				8776EB3D143ACC59003AB74E /* Customer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

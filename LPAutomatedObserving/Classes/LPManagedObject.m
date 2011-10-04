@@ -2,8 +2,11 @@
 #import "LPManagedObjectContext.h"
 #import "LPManagedObjectObservationInfo.h"
 
+#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
+
 #ifndef DEBUG_OBSERVING
-#define DEBUG_OBSERVING 1
+#define DEBUG_OBSERVING 0
 #endif
 
 @implementation LPManagedObject
@@ -11,6 +14,25 @@
 
 #pragma mark -
 #pragma mark NSManagedObject overridden methods
+
+
+// collect all observation Infos also for inherited classes
+- (NSArray *)observationInfos
+{
+	LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
+	NSMutableArray *customObservationInfos = [NSMutableArray array];
+	
+	Class currentClass = [self class];
+	do
+	{
+		NSArray* currentClassObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:NSStringFromClass(currentClass)];
+		[customObservationInfos addObjectsFromArray:currentClassObservationInfos];
+		
+		currentClass = class_getSuperclass(currentClass);
+	} while (currentClass != nil && currentClass != [LPManagedObject class]);
+
+	return [NSArray arrayWithArray: customObservationInfos];
+}
 
 -(void) startObserving
 {	
@@ -25,7 +47,7 @@
 	{
 		NSAssert1([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
 		self.observingsActive = YES;		
-		NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
+		NSArray* customObservationInfos = [self observationInfos];
 		for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
 		{
 			id observer = [self valueForKey:customObservationInfo.observerObjectKeyPath];
@@ -69,7 +91,7 @@
 
 		NSAssert1([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
 		
-		NSArray* customObservationInfos = [context.dependendPropertiesObservationInfo objectForKey:[self className]];
+		NSArray* customObservationInfos = [self observationInfos];
 		for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
 		{	
 			id observer = [self valueForKey:customObservationInfo.observerObjectKeyPath];
