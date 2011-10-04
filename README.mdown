@@ -6,6 +6,7 @@ General implementation solving the problem of properties dependent on the proper
 Changes:
 --------
 (03.10.2011)
+
  - Added the customer sum property to the datamodel for performance reasons
  
  - Implemented the update of customer sum without unfaulting all related invoices if an invoice sum changes
@@ -18,6 +19,7 @@ Many thanks to Fahad Gilani for the interesting discussion about changes to the 
 
 --------
 (26.5.2010)
+
  - Modified to work across to-one and to-many relations
  
  - extended Sample and unit tests
