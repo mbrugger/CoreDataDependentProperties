@@ -7,14 +7,19 @@ Changes:
 --------
 (03.10.2011)
  - Added the customer sum property to the datamodel for performance reasons
+ 
  - Implemented the update of customer sum without unfaulting all related invoices if an invoice sum changes
+ 
  - All changes were made for iOS performance optimization
+ 
  - Optimizations for relation changes will be added soon
+ 
 Many thanks to Fahad Gilani for the interesting discussion about changes to the current version.
 
 --------
 (26.5.2010)
  - Modified to work across to-one and to-many relations
+ 
  - extended Sample and unit tests
 
 Problem Description
@@ -47,6 +52,7 @@ HOWTO use the stuff:
   +(NSArray*) keyPathsForValuesAffectingDerived&lt;Key&gt;
 
   -(void) updateDerived&lt;Key&gt;ForChange:(NSDictionary *)change
+  Use the change information to create incremental updates, be carful with multiple observings across relations which trigger multiple updates. Take a look at Person.m for detailed information about this issue.
 
 4) write unit tests!
 
