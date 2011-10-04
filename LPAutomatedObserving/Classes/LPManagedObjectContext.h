@@ -1,4 +1,9 @@
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#else
 #import <Cocoa/Cocoa.h>
+#endif
 
 @class LPManagedObjectObservationInfo;
 @interface LPManagedObjectContext : NSManagedObjectContext

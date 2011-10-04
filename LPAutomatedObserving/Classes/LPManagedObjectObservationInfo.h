@@ -1,4 +1,9 @@
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#import <Foundation/Foundation.h>
+#else
 #import <Cocoa/Cocoa.h>
+#endif
+
 
 enum LPManagedObjectObservationInfoType {LPManagedObjectObservationInfoRelation = 1, LPManagedObjectObservationInfoProperty = 2};
 

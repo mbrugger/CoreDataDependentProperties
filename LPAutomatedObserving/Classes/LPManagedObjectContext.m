@@ -1,7 +1,9 @@
 #import "LPManagedObjectContext.h"
 #import "LPManagedObject.h"
-#import <objc/objc-runtime.h>
 #import <objc/runtime.h>
+#if !TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+#import <objc/objc-runtime.h>
+#endif
 #import "LPManagedObjectObservationInfo.h"
 #import "LPManagedObject_ObservationInfo.h"
 
