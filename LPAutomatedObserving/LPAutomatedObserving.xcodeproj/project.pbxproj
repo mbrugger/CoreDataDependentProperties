@@ -27,6 +27,19 @@
 		8772D1EE11A190FE002A9FE0 /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* LPAutomatedObserving_DataModel.xcdatamodel */; };
 		8776EB3D143ACC59003AB74E /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EB3C143ACC59003AB74E /* Customer.m */; };
 		8776EB40143ACFD2003AB74E /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EB3C143ACC59003AB74E /* Customer.m */; };
+		8776EBDA143B01EF003AB74E /* main-ios.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EBD9143B01EF003AB74E /* main-ios.m */; };
+		8776EC40143B035E003AB74E /* MainWindow_iOS.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8776EC3F143B035E003AB74E /* MainWindow_iOS.xib */; };
+		8776EC43143B0366003AB74E /* AppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EC42143B0366003AB74E /* AppDelegate_iPhone.m */; };
+		8776EC49143B037C003AB74E /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EC48143B037C003AB74E /* AppDelegate_Shared.m */; };
+		8776EC52143B03A3003AB74E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8776EC51143B03A3003AB74E /* CoreData.framework */; };
+		8776EC90143B047D003AB74E /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* LPAutomatedObserving_DataModel.xcdatamodel */; };
+		8776ECA7143B056A003AB74E /* Invoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44911A00C37002A9FE0 /* Invoice.m */; };
+		8776ECA8143B056B003AB74E /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EB3C143ACC59003AB74E /* Customer.m */; };
+		8776ECA9143B056C003AB74E /* LPManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44D11A00C49002A9FE0 /* LPManagedObject.m */; };
+		8776ECAA143B056D003AB74E /* LPManagedObject_ObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746BB1811A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m */; };
+		8776ECAB143B056E003AB74E /* LPManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C79411A02E79002A9FE0 /* LPManagedObjectContext.m */; };
+		8776ECAC143B056E003AB74E /* LPManagedObjectObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C7E911A07383002A9FE0 /* LPManagedObjectObservationInfo.m */; };
+		8776ECAD143B056F003AB74E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44711A00C37002A9FE0 /* Person.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -64,6 +77,15 @@
 		8772D1DE11A190B1002A9FE0 /* LPAutomatedObservingTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LPAutomatedObservingTest-Info.plist"; sourceTree = "<group>"; };
 		8776EB3B143ACC59003AB74E /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
 		8776EB3C143ACC59003AB74E /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
+		8776EBC3143B019F003AB74E /* LPAutomatedObservingIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LPAutomatedObservingIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8776EBC5143B019F003AB74E /* LPAutomatedObservingIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LPAutomatedObservingIOS-Info.plist"; sourceTree = "<group>"; };
+		8776EBD9143B01EF003AB74E /* main-ios.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "main-ios.m"; sourceTree = "<group>"; };
+		8776EC3F143B035E003AB74E /* MainWindow_iOS.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_iOS.xib; sourceTree = "<group>"; };
+		8776EC41143B0366003AB74E /* AppDelegate_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPhone.h; sourceTree = "<group>"; };
+		8776EC42143B0366003AB74E /* AppDelegate_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPhone.m; sourceTree = "<group>"; };
+		8776EC47143B037C003AB74E /* AppDelegate_Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_Shared.h; sourceTree = "<group>"; };
+		8776EC48143B037C003AB74E /* AppDelegate_Shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_Shared.m; sourceTree = "<group>"; };
+		8776EC51143B03A3003AB74E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* LPAutomatedObserving-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = "LPAutomatedObserving-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* LPAutomatedObserving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LPAutomatedObserving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +95,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8776EBC1143B019F003AB74E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8776EC52143B03A3003AB74E /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +163,7 @@
 			children = (
 				8D1107320486CEB800E47090 /* LPAutomatedObserving.app */,
 				8772D1DD11A190B1002A9FE0 /* LPAutomatedObservingTest.octest */,
+				8776EBC3143B019F003AB74E /* LPAutomatedObservingIOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,10 +171,12 @@
 		29B97314FDCFA39411CA2CEA /* LPAutomatedObserving */ = {
 			isa = PBXGroup;
 			children = (
+				8776EC3B143B02E9003AB74E /* Classes-iOS */,
 				8772D1D211A190A1002A9FE0 /* Tests */,
 				7756732906782D8800D1FEB8 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				8776EC3E143B033E003AB74E /* Resources-iOS */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -157,6 +190,7 @@
 			children = (
 				32CA4F630368D1EE00C91783 /* LPAutomatedObserving_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				8776EBD9143B01EF003AB74E /* main-ios.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -168,12 +202,13 @@
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				2F7446970DB6B7EA00F9684A /* MainMenu.xib */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8776EC6D143B03AE003AB74E /* iOS */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -199,6 +234,34 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		8776EC3B143B02E9003AB74E /* Classes-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8776EC47143B037C003AB74E /* AppDelegate_Shared.h */,
+				8776EC48143B037C003AB74E /* AppDelegate_Shared.m */,
+				8776EC41143B0366003AB74E /* AppDelegate_iPhone.h */,
+				8776EC42143B0366003AB74E /* AppDelegate_iPhone.m */,
+			);
+			path = "Classes-iOS";
+			sourceTree = "<group>";
+		};
+		8776EC3E143B033E003AB74E /* Resources-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8776EC3F143B035E003AB74E /* MainWindow_iOS.xib */,
+				8776EBC5143B019F003AB74E /* LPAutomatedObservingIOS-Info.plist */,
+			);
+			path = "Resources-iOS";
+			sourceTree = "<group>";
+		};
+		8776EC6D143B03AE003AB74E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8776EC51143B03A3003AB74E /* CoreData.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -219,6 +282,23 @@
 			productName = LPAutomatedObservingTest;
 			productReference = 8772D1DD11A190B1002A9FE0 /* LPAutomatedObservingTest.octest */;
 			productType = "com.apple.product-type.bundle";
+		};
+		8776EBC2143B019F003AB74E /* LPAutomatedObservingIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8776EBC8143B01A0003AB74E /* Build configuration list for PBXNativeTarget "LPAutomatedObservingIOS" */;
+			buildPhases = (
+				8776EBBF143B019F003AB74E /* Resources */,
+				8776EBC0143B019F003AB74E /* Sources */,
+				8776EBC1143B019F003AB74E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LPAutomatedObservingIOS;
+			productName = LPAutomatedObservingIOS;
+			productReference = 8776EBC3143B019F003AB74E /* LPAutomatedObservingIOS.app */;
+			productType = "com.apple.product-type.application";
 		};
 		8D1107260486CEB800E47090 /* LPAutomatedObserving */ = {
 			isa = PBXNativeTarget;
@@ -259,6 +339,7 @@
 			targets = (
 				8D1107260486CEB800E47090 /* LPAutomatedObserving */,
 				8772D1DC11A190B1002A9FE0 /* LPAutomatedObservingTest */,
+				8776EBC2143B019F003AB74E /* LPAutomatedObservingIOS */,
 			);
 		};
 /* End PBXProject section */
@@ -268,6 +349,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8776EBBF143B019F003AB74E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8776EC40143B035E003AB74E /* MainWindow_iOS.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +402,24 @@
 				8772D1EE11A190FE002A9FE0 /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */,
 				8746BB1A11A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m in Sources */,
 				8776EB40143ACFD2003AB74E /* Customer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8776EBC0143B019F003AB74E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8776EBDA143B01EF003AB74E /* main-ios.m in Sources */,
+				8776EC43143B0366003AB74E /* AppDelegate_iPhone.m in Sources */,
+				8776EC49143B037C003AB74E /* AppDelegate_Shared.m in Sources */,
+				8776EC90143B047D003AB74E /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */,
+				8776ECA7143B056A003AB74E /* Invoice.m in Sources */,
+				8776ECA8143B056B003AB74E /* Customer.m in Sources */,
+				8776ECA9143B056C003AB74E /* LPManagedObject.m in Sources */,
+				8776ECAA143B056D003AB74E /* LPManagedObject_ObservationInfo.m in Sources */,
+				8776ECAB143B056E003AB74E /* LPManagedObjectContext.m in Sources */,
+				8776ECAC143B056E003AB74E /* LPManagedObjectObservationInfo.m in Sources */,
+				8776ECAD143B056F003AB74E /* Person.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +474,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LPAutomatedObserving_Prefix.pch;
-				INFOPLIST_FILE = "LPAutomatedObserving-Info.plist";
+				INFOPLIST_FILE = "Resources/LPAutomatedObserving-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = LPAutomatedObserving;
@@ -383,7 +490,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LPAutomatedObserving_Prefix.pch;
-				INFOPLIST_FILE = "LPAutomatedObserving-Info.plist";
+				INFOPLIST_FILE = "Resources/LPAutomatedObserving-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = LPAutomatedObserving;
@@ -470,6 +577,55 @@
 			};
 			name = Release;
 		};
+		8776EBC6143B01A0003AB74E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources-iOS/LPAutomatedObservingIOS-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LPAutomatedObservingIOS;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8776EBC7143B01A0003AB74E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources-iOS/LPAutomatedObservingIOS-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LPAutomatedObservingIOS;
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -496,6 +652,15 @@
 			buildConfigurations = (
 				8772D1DF11A190B2002A9FE0 /* Debug */,
 				8772D1E011A190B2002A9FE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8776EBC8143B01A0003AB74E /* Build configuration list for PBXNativeTarget "LPAutomatedObservingIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8776EBC6143B01A0003AB74E /* Debug */,
+				8776EBC7143B01A0003AB74E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

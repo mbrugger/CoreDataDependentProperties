@@ -2,8 +2,10 @@
 #import "LPManagedObjectContext.h"
 #import "LPManagedObjectObservationInfo.h"
 
-#import <objc/objc-runtime.h>
 #import <objc/runtime.h>
+#if !TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+#import <objc/objc-runtime.h>
+#endif
 
 #ifndef DEBUG_OBSERVING
 #define DEBUG_OBSERVING 0
@@ -30,7 +32,7 @@
 		
 		currentClass = class_getSuperclass(currentClass);
 	} while (currentClass != nil && currentClass != [LPManagedObject class]);
-
+  
 	return [NSArray arrayWithArray: customObservationInfos];
 }
 
@@ -42,7 +44,7 @@
 		// do not start observing in other managed object contexts
 		return;
 	}
-
+  
 	if (!self.observingsActive)
 	{
 		NSAssert1([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
@@ -67,11 +69,22 @@
 			
 			for (LPManagedObject* observerObject in observer)
 			{
-				if (DEBUG_OBSERVING) NSLog(@"startObserving <%p %@> observes <%p %@> keyPath: %@", observer, [observer className], self, [self className], observationKeyPath);
+        if (DEBUG_OBSERVING) {
+          NSString *observerClassName = nil;
+          NSString *selfClassName = nil;
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+          observerClassName = NSStringFromClass([observer class]);
+          selfClassName = NSStringFromClass([self class]);
+#else
+          observerClassName = [observer className];
+          selfClassName = [self className];
+#endif
+          NSLog(@"startObserving <%p %@> observes <%p %@> keyPath: %@", observer, observerClassName, self, selfClassName, observationKeyPath);
+        }
 				[self addObserver: observerObject
-					   forKeyPath:observationKeyPath
-						  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
-						  context:customObservationInfo];
+               forKeyPath:observationKeyPath
+                  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
+                  context:customObservationInfo];
 			}
 		}
 	}
@@ -88,14 +101,14 @@
 	
 	if (self.observingsActive)
 	{
-
+    
 		NSAssert1([context isKindOfClass:[LPManagedObjectContext class]], @"error expected LPManagedObjectContext got %@", context);
 		
 		NSArray* customObservationInfos = [self observationInfos];
 		for (LPManagedObjectObservationInfo* customObservationInfo in customObservationInfos)
 		{	
 			id observer = [self valueForKey:customObservationInfo.observerObjectKeyPath];
-
+      
 			//wrap observer into a set
 			//support for to-one relation observing
 			if (observer != nil && ![observer isKindOfClass:[NSSet class]])
@@ -111,9 +124,20 @@
 			
 			for (LPManagedObject* observerObject in observer)
 			{
-				if (DEBUG_OBSERVING) NSLog(@"stopObserving <%p %@> observes <%p %@> keyPath: %@", observer, [observer className], self, [self className], observationKeyPath);
+        if (DEBUG_OBSERVING) {
+          NSString *observerClassName = nil;
+          NSString *selfClassName = nil;
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+          observerClassName = NSStringFromClass([observer class]);
+          selfClassName = NSStringFromClass([self class]);
+#else
+          observerClassName = [observer className];
+          selfClassName = [self className];
+#endif        
+          NSLog(@"stopObserving <%p %@> observes <%p %@> keyPath: %@", observer, observerClassName, self, selfClassName, observationKeyPath);
+        }
 				[self removeObserver:observerObject
-						  forKeyPath:observationKeyPath];
+                  forKeyPath:observationKeyPath];
 			}
 		}
 		
@@ -141,14 +165,15 @@
 // awakeFromSnapshotEvents was introduced in 10.6
 // workaround for missing method in LPManagedObjectContext.m
 // - (void)_undoDeletions:(id)deletions;
-#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
-	#if !(__MAC_OS_X_VERSION_MIN_REQUIRED < 1060)
+#if ((defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED < 1060) || TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+
 - (void)awakeFromSnapshotEvents:(NSSnapshotEventType)flags
 {
+	asdasdööö#asd\asdasd;
 	[super awakeFromSnapshotEvents:flags];
 	[self startObserving];
 }
-	#endif
+
 #endif
 
 -(void) willTurnIntoFault
@@ -180,7 +205,19 @@
 		if (object == self)
 		{
 			// this is always the to many relation self observings
-			if (DEBUG_OBSERVING) NSLog(@"Observing Relation <%p %@> keyPath: %@ object: <%p %@>", self, [self className], keyPath, object, [object className]);
+      if (DEBUG_OBSERVING) {
+        NSString *objectClassName = nil;
+        NSString *selfClassName = nil;
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+        objectClassName = NSStringFromClass([object class]);
+        selfClassName = NSStringFromClass([self class]);
+#else
+        objectClassName = [object className];
+        selfClassName = [self className];
+#endif
+        
+        NSLog(@"Observing Relation <%p %@> keyPath: %@ object: <%p %@>", self, selfClassName, keyPath, object, objectClassName);
+      }
 			id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
 			id newValue = [change objectForKey:NSKeyValueChangeNewKey];
 			
@@ -194,7 +231,7 @@
 				for (id object in oldValue)
 				{
 					[object removeObserver: self
-								forKeyPath:observationInfo.observedPropertyKeyPath];
+                      forKeyPath:observationInfo.observedPropertyKeyPath];
 				}
 			}
 			
@@ -208,9 +245,9 @@
 				for (id object in newValue)
 				{
 					[object addObserver: self
-							 forKeyPath:observationInfo.observedPropertyKeyPath 
-								options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
-								context:observationInfo];	
+                   forKeyPath:observationInfo.observedPropertyKeyPath 
+                      options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
+                      context:observationInfo];	
 				}
 			}
 			if ([managedObjectContext isKindOfClass:[LPManagedObjectContext class]] && managedObjectContext.observingsActive)
@@ -220,7 +257,18 @@
 		}
 		else
 		{
-			if (DEBUG_OBSERVING) NSLog(@"Observing Property <%p %@> keyPath: %@ object: <%p %@>", self, [self className], keyPath, object, [object className]);
+      if (DEBUG_OBSERVING) {
+        NSString *objectClassName = nil;
+        NSString *selfClassName = nil;
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+        objectClassName = NSStringFromClass([object class]);
+        selfClassName = NSStringFromClass([self class]);
+#else
+        objectClassName = [object className];
+        selfClassName = [self className];
+#endif      
+        NSLog(@"Observing Property <%p %@> keyPath: %@ object: <%p %@>", self, selfClassName, keyPath, object, objectClassName);
+      }
 			if ([managedObjectContext isKindOfClass:[LPManagedObjectContext class]] && managedObjectContext.observingsActive)
 			{
 				[self performSelector:[observationInfo updateSelector] withObject:observingChanges];
