@@ -564,27 +564,47 @@
 	STAssertTrue(firstCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
 	@try
 	{
-		[self.context save:&error];	
+		BOOL success = [self.context save:&error];	
+		STAssertTrue(success == YES, @"error could not save changes");
 	}
 	@catch (NSException * e)
 	{
-		STAssertTrue(e == nil, @"error: %@", e);
+		STAssertTrue(e == nil, @"error - %@", e);
 	}
 
+	
+
+	
 	// turn both invoices into fault, all data is saved at this point, the context is clean!
-	[self.context refreshObject:firstInvoice mergeChanges:NO];
-	[self.context refreshObject:secondInvoice mergeChanges:NO];
+	// as this does not work in iOS, reset the context to make sure everything is faulted
+	// only happens in iOS Tests
+//	[self.context refreshObject:firstInvoice mergeChanges:NO];
+//	[self.context refreshObject:secondInvoice mergeChanges:NO];
+	
+	[self.context reset];	
+	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
+	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");
+
+
+	
+	Customer *fetchedCustomer = [Customer findAllCustomersInManagedObjectContext:self.context].lastObject;
+	STAssertTrue(fetchedCustomer != nil, @"fetched customer missing");
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 20.0, @"fetchedCustomer sum not loaded correctly %@", fetchedCustomer);
+	STAssertTrue(fetchedCustomer.invoices.count == 2, @"fetchedCustomer.invoices %@", fetchedCustomer.invoices);
+	
+	firstInvoice = [fetchedCustomer.invoices.allObjects objectAtIndex:0];
+	secondInvoice = [fetchedCustomer.invoices.allObjects objectAtIndex:1];
+	
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", fetchedCustomer.sum);
 	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
 	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");
 	
-	STAssertTrue(firstCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
 	
 	// change value of firstInvoice
 	// make sure the other invoice stays faulted
 	firstInvoice.invoiceSum = [NSNumber numberWithDouble:5.0];
-	STAssertTrue(firstCustomer.sum.doubleValue == 15.0, @"invoices sum is %@", firstCustomer.sum);
-	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");
-}
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 15.0, @"invoices sum is %@", fetchedCustomer.sum);
+	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");}
 
 - (void)testFaultingInsertObject
 {
@@ -604,17 +624,24 @@
 	}
 	
 	// turn invoice into fault, all data is saved at this point, the context is clean!
-	[self.context refreshObject:firstInvoice mergeChanges:NO];
+//	[self.context refreshObject:firstInvoice mergeChanges:NO];
+	[self.context reset];
 
 	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
 	
 	// insert new invoice
 	// make sure the other invoice stays faulted
 
-	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	Customer *fetchedCustomer = [Customer findAllCustomersInManagedObjectContext:self.context].lastObject;
+	STAssertTrue(fetchedCustomer != nil, @"fetched customer missing");
+	STAssertTrue(fetchedCustomer.invoices.count == 1, @"fetchedCustomer.invoices %@", fetchedCustomer.invoices);
+	
+	firstInvoice = [fetchedCustomer.invoices.allObjects objectAtIndex:0];
+	
+	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:fetchedCustomer inManagedObjectContext:self.context];
 	secondInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
 
-	STAssertTrue(firstCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", fetchedCustomer.sum);
 	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");
 }
 
@@ -640,11 +667,27 @@
 	}
 	
 	// turn both invoices into fault, all data is saved at this point, the context is clean!
-	[self.context refreshObject:firstInvoice mergeChanges:NO];
-	[self.context refreshObject:secondInvoice mergeChanges:NO];
+//	[self.context refreshObject:firstInvoice mergeChanges:NO];
+//	[self.context refreshObject:secondInvoice mergeChanges:NO];
+	
+	[self.context reset];
 	
 	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
 	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");	
+	
+	
+	Customer *fetchedCustomer = [Customer findAllCustomersInManagedObjectContext:self.context].lastObject;
+	STAssertTrue(fetchedCustomer != nil, @"fetched customer missing");
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 20.0, @"fetchedCustomer sum not loaded correctly %@", fetchedCustomer);
+	STAssertTrue(fetchedCustomer.invoices.count == 2, @"fetchedCustomer.invoices %@", fetchedCustomer.invoices);
+	
+	firstInvoice = [fetchedCustomer.invoices.allObjects objectAtIndex:0];
+	secondInvoice = [fetchedCustomer.invoices.allObjects objectAtIndex:1];
+	
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
+	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
+	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");
+	
 	
 	// delete second invoice
 	// make sure the other invoice stays faulted
@@ -653,7 +696,7 @@
 	[self.context processPendingChanges];
 	
 	// do I need to process pending changes at this point?
-	STAssertTrue(firstCustomer.sum.doubleValue == 10.0, @"invoices sum is %@", firstCustomer.sum);
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 10.0, @"invoices sum is %@", fetchedCustomer.sum);
 	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");
 }
 
