@@ -10,6 +10,17 @@
 		2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7446970DB6B7EA00F9684A /* MainMenu.xib */; };
 		770B37ED0679A11B001EADE2 /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* LPAutomatedObserving_DataModel.xcdatamodel */; };
 		77C8280E06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m */; };
+		870ADC7C143B7E250061B474 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EB3C143ACC59003AB74E /* Customer.m */; };
+		870ADC7D143B7E250061B474 /* Invoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44911A00C37002A9FE0 /* Invoice.m */; };
+		870ADC7E143B7E250061B474 /* LPManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44D11A00C49002A9FE0 /* LPManagedObject.m */; };
+		870ADC7F143B7E250061B474 /* LPManagedObject_ObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746BB1811A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m */; };
+		870ADC80143B7E250061B474 /* LPManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C79411A02E79002A9FE0 /* LPManagedObjectContext.m */; };
+		870ADC81143B7E250061B474 /* LPManagedObjectObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C7E911A07383002A9FE0 /* LPManagedObjectObservationInfo.m */; };
+		870ADC82143B7E250061B474 /* ManagedObjectSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772D1D411A190A1002A9FE0 /* ManagedObjectSenTestCase.m */; };
+		870ADC83143B7E250061B474 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44711A00C37002A9FE0 /* Person.m */; };
+		870ADC84143B7E250061B474 /* TestLPAutomatedObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772D1D611A190A1002A9FE0 /* TestLPAutomatedObserving.m */; };
+		870ADC8E143B7E8C0061B474 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870ADC8D143B7E8C0061B474 /* CoreData.framework */; };
+		870ADC93143B7E970061B474 /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* LPAutomatedObserving_DataModel.xcdatamodel */; };
 		8746BB1911A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746BB1811A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m */; };
 		8746BB1A11A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746BB1811A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m */; };
 		8772C44A11A00C37002A9FE0 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44711A00C37002A9FE0 /* Person.m */; };
@@ -57,6 +68,9 @@
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		77C8280B06725ACE000B614F /* LPAutomatedObserving_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAutomatedObserving_AppDelegate.h; sourceTree = "<group>"; };
 		77C8280C06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAutomatedObserving_AppDelegate.m; sourceTree = "<group>"; };
+		870ADC76143B7E0D0061B474 /* LPautomatedObservingTestIOS.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LPautomatedObservingTestIOS.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		870ADC77143B7E0D0061B474 /* LPautomatedObservingTestIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LPautomatedObservingTestIOS-Info.plist"; sourceTree = "<group>"; };
+		870ADC8D143B7E8C0061B474 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8746BB1711A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPManagedObject_ObservationInfo.h; sourceTree = "<group>"; };
 		8746BB1811A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPManagedObject_ObservationInfo.m; sourceTree = "<group>"; };
 		8772C44611A00C37002A9FE0 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
@@ -91,6 +105,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		870ADC73143B7E0D0061B474 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				870ADC8E143B7E8C0061B474 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8772D1DA11A190B1002A9FE0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -164,6 +186,7 @@
 				8D1107320486CEB800E47090 /* LPAutomatedObserving.app */,
 				8772D1DD11A190B1002A9FE0 /* LPAutomatedObservingTest.octest */,
 				8776EBC3143B019F003AB74E /* LPAutomatedObservingIOS.app */,
+				870ADC76143B7E0D0061B474 /* LPautomatedObservingTestIOS.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +204,8 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				8772D1DE11A190B1002A9FE0 /* LPAutomatedObservingTest-Info.plist */,
+				870ADC77143B7E0D0061B474 /* LPautomatedObservingTestIOS-Info.plist */,
+				870ADC8D143B7E8C0061B474 /* CoreData.framework */,
 			);
 			name = LPAutomatedObserving;
 			sourceTree = "<group>";
@@ -265,6 +290,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		870ADC75143B7E0D0061B474 /* LPautomatedObservingTestIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 870ADC7B143B7E0E0061B474 /* Build configuration list for PBXNativeTarget "LPautomatedObservingTestIOS" */;
+			buildPhases = (
+				870ADC71143B7E0D0061B474 /* Resources */,
+				870ADC72143B7E0D0061B474 /* Sources */,
+				870ADC73143B7E0D0061B474 /* Frameworks */,
+				870ADC74143B7E0D0061B474 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LPautomatedObservingTestIOS;
+			productName = LPautomatedObservingTestIOS;
+			productReference = 870ADC76143B7E0D0061B474 /* LPautomatedObservingTestIOS.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8772D1DC11A190B1002A9FE0 /* LPAutomatedObservingTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8772D1E111A190B2002A9FE0 /* Build configuration list for PBXNativeTarget "LPAutomatedObservingTest" */;
@@ -340,11 +383,19 @@
 				8D1107260486CEB800E47090 /* LPAutomatedObserving */,
 				8772D1DC11A190B1002A9FE0 /* LPAutomatedObservingTest */,
 				8776EBC2143B019F003AB74E /* LPAutomatedObservingIOS */,
+				870ADC75143B7E0D0061B474 /* LPautomatedObservingTestIOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		870ADC71143B7E0D0061B474 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8772D1D811A190B1002A9FE0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -372,6 +423,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		870ADC74143B7E0D0061B474 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		8772D1DB11A190B1002A9FE0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,6 +452,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		870ADC72143B7E0D0061B474 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				870ADC7C143B7E250061B474 /* Customer.m in Sources */,
+				870ADC7D143B7E250061B474 /* Invoice.m in Sources */,
+				870ADC7E143B7E250061B474 /* LPManagedObject.m in Sources */,
+				870ADC7F143B7E250061B474 /* LPManagedObject_ObservationInfo.m in Sources */,
+				870ADC80143B7E250061B474 /* LPManagedObjectContext.m in Sources */,
+				870ADC81143B7E250061B474 /* LPManagedObjectObservationInfo.m in Sources */,
+				870ADC82143B7E250061B474 /* ManagedObjectSenTestCase.m in Sources */,
+				870ADC83143B7E250061B474 /* Person.m in Sources */,
+				870ADC84143B7E250061B474 /* TestLPAutomatedObserving.m in Sources */,
+				870ADC93143B7E970061B474 /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8772D1D911A190B1002A9FE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -525,6 +606,68 @@
 			};
 			name = Release;
 		};
+		870ADC79143B7E0E0061B474 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "LPautomatedObservingTestIOS-Info.plist";
+				OTHER_CFLAGS = "-DTARGET_IPHONE_SIMULATOR";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LPautomatedObservingTestIOS;
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		870ADC7A143B7E0E0061B474 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "LPautomatedObservingTestIOS-Info.plist";
+				OTHER_CFLAGS = "-DTARGET_IPHONE_SIMULATOR";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LPautomatedObservingTestIOS;
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		8772D1DF11A190B2002A9FE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -645,6 +788,15 @@
 			buildConfigurations = (
 				26FC0A890875C7B200E6366F /* Debug */,
 				26FC0A8A0875C7B200E6366F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		870ADC7B143B7E0E0061B474 /* Build configuration list for PBXNativeTarget "LPautomatedObservingTestIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				870ADC79143B7E0E0061B474 /* Debug */,
+				870ADC7A143B7E0E0061B474 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

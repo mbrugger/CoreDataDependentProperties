@@ -1,3 +1,8 @@
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#endif
+
 #import <SenTestingKit/SenTestingKit.h>
 
 
