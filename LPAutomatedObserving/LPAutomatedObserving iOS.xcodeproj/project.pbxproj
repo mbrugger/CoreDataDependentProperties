@@ -16,7 +16,6 @@
 		870ADC82143B7E250061B474 /* ManagedObjectSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772D1D411A190A1002A9FE0 /* ManagedObjectSenTestCase.m */; };
 		870ADC83143B7E250061B474 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44711A00C37002A9FE0 /* Person.m */; };
 		870ADC84143B7E250061B474 /* TestLPAutomatedObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772D1D611A190A1002A9FE0 /* TestLPAutomatedObserving.m */; };
-		870ADC8E143B7E8C0061B474 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870ADC8D143B7E8C0061B474 /* CoreData.framework */; };
 		870ADC93143B7E970061B474 /* LPAutomatedObserving_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* LPAutomatedObserving_DataModel.xcdatamodel */; };
 		8776EBDA143B01EF003AB74E /* main-ios.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776EBD9143B01EF003AB74E /* main-ios.m */; };
 		8776EC40143B035E003AB74E /* MainWindow_iOS.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8776EC3F143B035E003AB74E /* MainWindow_iOS.xib */; };
@@ -34,20 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		2F7446980DB6B7EA00F9684A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* LPAutomatedObserving_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAutomatedObserving_Prefix.pch; sourceTree = "<group>"; };
 		770B37EC0679A11B001EADE2 /* LPAutomatedObserving_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = LPAutomatedObserving_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		77C8280B06725ACE000B614F /* LPAutomatedObserving_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAutomatedObserving_AppDelegate.h; sourceTree = "<group>"; };
-		77C8280C06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAutomatedObserving_AppDelegate.m; sourceTree = "<group>"; };
 		870ADC76143B7E0D0061B474 /* LPautomatedObservingTestIOS.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LPautomatedObservingTestIOS.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		870ADC77143B7E0D0061B474 /* LPautomatedObservingTestIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LPautomatedObservingTestIOS-Info.plist"; sourceTree = "<group>"; };
-		870ADC8D143B7E8C0061B474 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8746BB1711A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPManagedObject_ObservationInfo.h; sourceTree = "<group>"; };
 		8746BB1811A3F40F00AC46A7 /* LPManagedObject_ObservationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPManagedObject_ObservationInfo.m; sourceTree = "<group>"; };
 		8772C44611A00C37002A9FE0 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
@@ -64,7 +56,6 @@
 		8772D1D411A190A1002A9FE0 /* ManagedObjectSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectSenTestCase.m; sourceTree = "<group>"; };
 		8772D1D511A190A1002A9FE0 /* TestLPAutomatedObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLPAutomatedObserving.h; sourceTree = "<group>"; };
 		8772D1D611A190A1002A9FE0 /* TestLPAutomatedObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLPAutomatedObserving.m; sourceTree = "<group>"; };
-		8772D1DE11A190B1002A9FE0 /* LPAutomatedObservingTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LPAutomatedObservingTest-Info.plist"; sourceTree = "<group>"; };
 		8776EB3B143ACC59003AB74E /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
 		8776EB3C143ACC59003AB74E /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
 		8776EBC3143B019F003AB74E /* LPAutomatedObservingIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LPAutomatedObservingIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +67,6 @@
 		8776EC47143B037C003AB74E /* AppDelegate_Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_Shared.h; sourceTree = "<group>"; };
 		8776EC48143B037C003AB74E /* AppDelegate_Shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_Shared.m; sourceTree = "<group>"; };
 		8776EC51143B03A3003AB74E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		8D1107310486CEB800E47090 /* LPAutomatedObserving-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = "LPAutomatedObserving-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +74,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				870ADC8E143B7E8C0061B474 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,8 +91,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				77C8280B06725ACE000B614F /* LPAutomatedObserving_AppDelegate.h */,
-				77C8280C06725ACE000B614F /* LPAutomatedObserving_AppDelegate.m */,
 				8772C44611A00C37002A9FE0 /* Person.h */,
 				8772C44711A00C37002A9FE0 /* Person.m */,
 				8772C44811A00C37002A9FE0 /* Invoice.h */,
@@ -158,12 +145,9 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				8776EC3E143B033E003AB74E /* Resources-iOS */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				8772D1DE11A190B1002A9FE0 /* LPAutomatedObservingTest-Info.plist */,
 				870ADC77143B7E0D0061B474 /* LPautomatedObservingTestIOS-Info.plist */,
-				870ADC8D143B7E8C0061B474 /* CoreData.framework */,
 			);
 			name = LPAutomatedObserving;
 			sourceTree = "<group>";
@@ -171,21 +155,9 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* LPAutomatedObserving_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
 				8776EBD9143B01EF003AB74E /* main-ios.m */,
 			);
 			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				8D1107310486CEB800E47090 /* LPAutomatedObserving-Info.plist */,
-				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				2F7446970DB6B7EA00F9684A /* MainMenu.xib */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -379,25 +351,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				089C165DFE840E0CC02AAC07 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		2F7446970DB6B7EA00F9684A /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F7446980DB6B7EA00F9684A /* English */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		26FC0A890875C7B200E6366F /* Debug */ = {
