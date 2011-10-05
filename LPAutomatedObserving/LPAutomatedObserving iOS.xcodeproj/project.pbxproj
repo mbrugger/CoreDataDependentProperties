@@ -30,6 +30,7 @@
 		8776ECAB143B056E003AB74E /* LPManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C79411A02E79002A9FE0 /* LPManagedObjectContext.m */; };
 		8776ECAC143B056E003AB74E /* LPManagedObjectObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C7E911A07383002A9FE0 /* LPManagedObjectObservationInfo.m */; };
 		8776ECAD143B056F003AB74E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 8772C44711A00C37002A9FE0 /* Person.m */; };
+		878A8684143C675B001A1AA8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8776EC51143B03A3003AB74E /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				878A8684143C675B001A1AA8 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

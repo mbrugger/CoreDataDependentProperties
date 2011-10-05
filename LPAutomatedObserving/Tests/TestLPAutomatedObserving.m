@@ -604,7 +604,8 @@
 	// make sure the other invoice stays faulted
 	firstInvoice.invoiceSum = [NSNumber numberWithDouble:5.0];
 	STAssertTrue(fetchedCustomer.sum.doubleValue == 15.0, @"invoices sum is %@", fetchedCustomer.sum);
-	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");}
+	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");
+}
 
 - (void)testFaultingInsertObject
 {
@@ -700,6 +701,56 @@
 	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");
 }
 
+- (void)testFaultingStandardDiscountChanged
+{
+	NSError *error = nil;
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	secondInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+	
+	STAssertTrue(firstCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
+	@try
+	{
+		BOOL success = [self.context save:&error];	
+		STAssertTrue(success == YES, @"error could not save changes");
+	}
+	@catch (NSException * e)
+	{
+		STAssertTrue(e == nil, @"error - %@", e);
+	}
+	
+	
+	
+	
+	// turn both invoices into fault, all data is saved at this point, the context is clean!
+	// as this does not work in iOS, reset the context to make sure everything is faulted
+	// only happens in iOS Tests
+	//	[self.context refreshObject:firstInvoice mergeChanges:NO];
+	//	[self.context refreshObject:secondInvoice mergeChanges:NO];
+	
+	[self.context reset];	
+	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
+	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");
+	NSLog(@"context reset done");
+	
+	NSLog(@"load custoer");
+	Customer *fetchedCustomer = [Customer findAllCustomersInManagedObjectContext:self.context].lastObject;
+	STAssertTrue(fetchedCustomer != nil, @"fetched customer missing");
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 20.0, @"fetchedCustomer sum not loaded correctly %@", fetchedCustomer);
+	STAssertTrue(fetchedCustomer.invoices.count == 2, @"fetchedCustomer.invoices %@", fetchedCustomer.invoices);
+	NSLog(@"customer loaded");
+	NSLog(@"change discount");
+	fetchedCustomer.standardDiscount = [NSNumber numberWithDouble:0.1];
+	NSLog(@"discount changed");	
+	firstInvoice = [fetchedCustomer.invoices.allObjects objectAtIndex:0];
+	secondInvoice = [fetchedCustomer.invoices.allObjects objectAtIndex:1];
+	
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 18.0, @"invoices sum is %@", fetchedCustomer.sum);
+	STAssertTrue([firstInvoice isFault] == NO, @"firstInvoice must be fault");	
+	STAssertTrue([secondInvoice isFault] == NO, @"secondInvoice must be fault");
+}
 
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)observerContext
