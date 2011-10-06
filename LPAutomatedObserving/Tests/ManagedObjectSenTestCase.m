@@ -16,9 +16,9 @@
 	{
 		pool = [[NSAutoreleasePool alloc] init];
 		
-		NSBundle* bundle = [NSBundle bundleWithIdentifier:@"at.nimblo.LPAutmatedObserving.ModelTest"];
+		NSBundle* bundle = [NSBundle bundleWithIdentifier:@"eu.brugger.martin.CDDP"];
 		//NSLog(@"bundle: %@", bundle);
-		NSString* path = [bundle pathForResource:@"LPAutomatedObserving_DataModel" ofType:@"mom"];
+		NSString* path = [bundle pathForResource:@"CoreDataDependentPropertiesDataModel" ofType:@"mom"];
 		//NSLog(@"path: %@", path);
 		NSURL* modelURL = [NSURL URLWithString:path];
 		self.model = [[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] autorelease];
@@ -32,7 +32,10 @@
 		NSFileManager  * fileManager = [NSFileManager defaultManager];
 		NSError* error = nil;
 		if (![fileManager fileExistsAtPath:tempFilePath])
-			[fileManager createDirectoryAtPath:tempFilePath attributes:nil];
+        {
+            STAssertTrue([fileManager createDirectoryAtPath:tempFilePath withIntermediateDirectories: YES attributes:nil error:&error], @"error creating temp dir: %@", error);
+        }
+
 		
 		NSString *persistentStoreFileString = [tempFilePath stringByAppendingPathComponent:@"test.sqlite"];
 		if ([fileManager fileExistsAtPath:persistentStoreFileString])
@@ -52,7 +55,7 @@
 		
 		
 		[tempContext setPersistentStoreCoordinator:coordinator];
-		[tempContext setRetainsRegisteredObjects:YES];
+
 		[tempContext prepareDependentProperties];	
 		
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR

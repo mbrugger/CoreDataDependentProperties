@@ -27,6 +27,7 @@
 @implementation LPManagedObjectContext
 @synthesize dependendPropertiesObservationInfo;
 @synthesize observingsActive;
+@synthesize isMergingChanges;
 
 - (id) init
 {
@@ -155,5 +156,22 @@
 }
 	#endif
 #endif
+
+- (void)mergeChangesFromContextDidSaveNotification:(NSNotification *)notification
+{
+    @try 
+    {
+        self.isMergingChanges = YES;
+        [super mergeChangesFromContextDidSaveNotification:notification];
+    }
+    @catch (NSException *exception) 
+    {
+        [exception raise];
+    }
+    @finally 
+    {
+        self.isMergingChanges = NO;
+    }
+}
 @end 
 
