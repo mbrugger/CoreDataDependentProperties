@@ -2,6 +2,7 @@
 
 #import "Invoice.h"
 #import "LPManagedObjectObservationInfo.h"
+#import "LPManagedObjectContext.h"
 
 @implementation Person 
 
@@ -26,8 +27,13 @@
 
 -(void) updateDerivedSumForChange:(NSDictionary *)change
 {
-	if ([self.managedObjectContext.undoManager isUndoing] || [self.managedObjectContext.undoManager isRedoing])
+	if ([self.managedObjectContext.undoManager isUndoing] 
+        || [self.managedObjectContext.undoManager isRedoing] 
+        || [((LPManagedObjectContext *)self.managedObjectContext) isMergingChanges])
 	{
+        // do not process changes while context merge is in progress
+        // the property derivedSum was already calculated correctly in other context the merge is performed with
+        
 		// do not process any changes while undo/redo!
 		return;
 	}

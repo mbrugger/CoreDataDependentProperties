@@ -73,13 +73,13 @@
 					NSString *observerClassName = nil;
 					NSString *selfClassName = nil;
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-					observerClassName = NSStringFromClass([observer class]);
+					observerClassName = NSStringFromClass([observerObject class]);
 					selfClassName = NSStringFromClass([self class]);
 #else
-					observerClassName = [observer className];
+					observerClassName = [observerObject className];
 					selfClassName = [self className];
 #endif
-					NSLog(@"startObserving <%p %@> observes <%p %@> keyPath: %@", observer, observerClassName, self, selfClassName, observationKeyPath);
+					NSLog(@"startObserving <%p %@> observes <%p %@> keyPath: %@", observerObject, observerClassName, self, selfClassName, observationKeyPath);
 				}
 				[self addObserver: observerObject
 					   forKeyPath:observationKeyPath
@@ -128,13 +128,13 @@
 					NSString *observerClassName = nil;
 					NSString *selfClassName = nil;
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-					observerClassName = NSStringFromClass([observer class]);
+					observerClassName = NSStringFromClass([observerObject class]);
 					selfClassName = NSStringFromClass([self class]);
 #else
-					observerClassName = [observer className];
+					observerClassName = [observerObject className];
 					selfClassName = [self className];
 #endif        
-					NSLog(@"stopObserving <%p %@> observes <%p %@> keyPath: %@", observer, observerClassName, self, selfClassName, observationKeyPath);
+					NSLog(@"stopObserving <%p %@> observes <%p %@> keyPath: %@", observerObject, observerClassName, self, selfClassName, observationKeyPath);
 				}
 				[self removeObserver:observerObject
 						  forKeyPath:observationKeyPath];
@@ -178,8 +178,29 @@
 
 - (void)awakeFromSnapshotEvents:(NSSnapshotEventType)flags
 {
+    
+    
 	[super awakeFromSnapshotEvents:flags];
-	[self startObserving];
+    switch (flags) {
+        case NSSnapshotEventUndoDeletion:
+        case NSSnapshotEventUndoInsertion:            
+        case NSSnapshotEventUndoUpdate:
+        case NSSnapshotEventRollback:
+        case NSSnapshotEventMergePolicy:
+            if (DEBUG_OBSERVING) 
+            {
+                NSLog(@"%@ - awakeFromSnapshotEvents %x", [self objectID], flags);
+            }
+            [self startObserving];            
+            break;
+            
+        case NSSnapshotEventRefresh:
+            // do not start observing if object is only refreshed
+            // TODO: check if it is really not necessary with additional test cases
+        default:
+            break;
+    }
+    
 }
 
 #endif
@@ -233,7 +254,7 @@
 			}
 			id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
 			id newValue = [change objectForKey:NSKeyValueChangeNewKey];
-			
+            //			NSLog(@"change: %@", change);
 			if (![oldValue isEqual:[NSNull null]] && oldValue != nil)
 			{
 				// if relation is to-one wrap object into set
@@ -243,8 +264,13 @@
 				// disable observing
 				for (id object in oldValue)
 				{
-					[object removeObserver: self
-								forKeyPath:observationInfo.observedPropertyKeyPath];
+                    // observer responsibility is inverted at this point!
+                    // if the object is faulted, it is currently not being observed by self!
+                    // do not try to remove observing 
+                    if (![object isFault])
+                    {
+                        [object removeObserver: self forKeyPath:observationInfo.observedPropertyKeyPath];
+                    }
 				}
 			}
 			
@@ -257,10 +283,17 @@
 				//establish observing
 				for (id object in newValue)
 				{
-					[object addObserver: self
-							 forKeyPath:observationInfo.observedPropertyKeyPath 
-								options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
-								context:observationInfo];	
+                    // observer responsibility is inverted at this point!
+                    // if the object is faulted, it would attach observers on awakeFromFetch
+                    // do not start observing 
+                    if (![object isFault])
+                    {
+                        
+                        [object addObserver: self
+                                 forKeyPath:observationInfo.observedPropertyKeyPath 
+                                    options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
+                                    context:observationInfo];	
+                    }
 				}
 			}
 			if ([managedObjectContext isKindOfClass:[LPManagedObjectContext class]] && managedObjectContext.observingsActive)
