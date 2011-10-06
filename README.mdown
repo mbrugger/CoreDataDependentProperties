@@ -5,6 +5,14 @@ General implementation solving the problem of properties dependent on the proper
 
 Changes:
 --------
+(06.10.2011)
+
+ - Created a new project in Xcode 4, the old Xcode 3 projects currently do not work and will be removed soon
+ 
+ - Added support for merging contexts, ATTENTION: See Person.m how to handle incremental udpates while merging! If the propery is modeled in your Core Data datamodel ignore change processing while merging!
+ 
+ - awakeFromSnapshotEvents: needs more testing, will add testcases soon
+--------
 (03.10.2011)
 
  - Added the customer sum property to the datamodel for performance reasons
