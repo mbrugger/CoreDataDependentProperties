@@ -52,6 +52,8 @@ Undo&Redo is fully functional with this implementation.
 
 HOWTO use the stuff:
 --------------------
+0) write more tests!
+
 1) Add LPManagedObjectContext, LPManagedObjectContextObservationInfo, LPManagedObject_ObservationInfo and LPManagedObject to your project
 
 2) Exchange the current NSManagedObjectContext with a LPManagedObjectContext (LPAutomatedObserving_AppDelegate.m:113)
@@ -65,7 +67,7 @@ HOWTO use the stuff:
   -(void) updateDerived&lt;Key&gt;ForChange:(NSDictionary *)change
   Use the change information to create incremental updates, be carful with multiple observings across relations which trigger multiple updates. Take a look at Person.m for detailed information about this issue.
 
-4) write unit tests!
+
 
 Finished!
 
