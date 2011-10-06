@@ -12,6 +12,7 @@ Changes:
  - Added support for merging contexts, ATTENTION: See Person.m how to handle incremental udpates while merging! If the propery is modeled in your Core Data datamodel ignore change processing while merging!
  
  - awakeFromSnapshotEvents: needs more testing, will add testcases soon
+ 
 --------
 (03.10.2011)
 
