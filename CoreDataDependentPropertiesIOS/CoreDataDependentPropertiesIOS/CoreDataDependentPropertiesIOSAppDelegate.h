@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LPManagedObjectContext;
 
 @interface CoreDataDependentPropertiesIOSAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -14,7 +15,7 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) LPManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 

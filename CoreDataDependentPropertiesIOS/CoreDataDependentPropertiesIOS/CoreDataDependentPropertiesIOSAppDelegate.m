@@ -9,6 +9,7 @@
 #import "CoreDataDependentPropertiesIOSAppDelegate.h"
 
 #import "RootViewController.h"
+#import "LPManagedObjectContext.h"
 
 @implementation CoreDataDependentPropertiesIOSAppDelegate
 
@@ -119,8 +120,9 @@
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil)
     {
-        __managedObjectContext = [[NSManagedObjectContext alloc] init];
+        __managedObjectContext = [[LPManagedObjectContext alloc] init];
         [__managedObjectContext setPersistentStoreCoordinator:coordinator];
+        [__managedObjectContext prepareDependentProperties];
     }
     return __managedObjectContext;
 }
