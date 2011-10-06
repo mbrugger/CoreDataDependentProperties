@@ -90,28 +90,28 @@
 //	}
 //	// ----------------------------- simple update ------------------------------------
 //	else
-	{
-		// if update type is unknown, simple recalculate the full sum
-		NSDate *startDate = [NSDate date];
+{
+	// if update type is unknown, simple recalculate the full sum
+	NSDate *startDate = [NSDate date];
 
-		for (NSInteger count = 0; count < 10000; count++)
-		{
-			invoicesSum = 0.0;
-			invoicesSum = [[self valueForKeyPath:@"invoices.@sum.discountedInvoiceSum"] doubleValue];
-		}
-		NSLog(@"calculation time @sum: %f", [[NSDate date] timeIntervalSinceDate:startDate]);
-		startDate = [NSDate date];
-		
-		for (NSInteger count = 0; count < 10000; count++)
-		{
-			for (Invoice* invoice in self.invoices)
-			{
-//				if (!invoice.alreadyPaid.boolValue)
-					invoicesSum += invoice.discountedInvoiceSum.doubleValue;
-			}
-		}		
-		NSLog(@"calculation time looping: %f", [[NSDate date] timeIntervalSinceDate:startDate]);		
+	for (NSInteger count = 0; count < 10000; count++)
+	{
+		invoicesSum = 0.0;
+		invoicesSum = [[self valueForKeyPath:@"invoices.@sum.discountedInvoiceSum"] doubleValue];
 	}
+	NSLog(@"calculation time @sum: %f", [[NSDate date] timeIntervalSinceDate:startDate]);
+	startDate = [NSDate date];
+	
+	for (NSInteger count = 0; count < 10000; count++)
+	{
+		for (Invoice* invoice in self.invoices)
+		{
+//				if (!invoice.alreadyPaid.boolValue)
+				invoicesSum += invoice.discountedInvoiceSum.doubleValue;
+		}
+	}		
+	NSLog(@"calculation time looping: %f", [[NSDate date] timeIntervalSinceDate:startDate]);		
+}
 	
 	// only update sum if really changed
 	if (self.sum == nil || self.sum.doubleValue != invoicesSum)

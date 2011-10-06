@@ -1,3 +1,13 @@
 build
 *.mode1v3
 *.pbxuser
+
+LPAutomatedObserving/LPAutomatedObserving.xcodeproj/xcuserdata/mbrugger.xcuserdatad/xcschemes/xcschememanagement.plist
+
+LPAutomatedObserving/LPAutomatedObserving.xcodeproj/xcuserdata/mbrugger.xcuserdatad/xcschemes/LPAutomatedObservingTest.xcscheme
+
+LPAutomatedObserving/LPAutomatedObserving.xcodeproj/xcuserdata/mbrugger.xcuserdatad/xcschemes/LPAutomatedObserving.xcscheme
+
+LPAutomatedObserving/LPAutomatedObserving.xcodeproj/xcuserdata/mbrugger.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
+
+LPAutomatedObserving/LPAutomatedObserving.xcodeproj/project.xcworkspace/xcuserdata/mbrugger.xcuserdatad/UserInterfaceState.xcuserstate
