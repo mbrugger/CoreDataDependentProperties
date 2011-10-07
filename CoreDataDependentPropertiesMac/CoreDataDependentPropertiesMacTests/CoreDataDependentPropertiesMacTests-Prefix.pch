@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'CoreDataDependentPropertiesMacTests' target in the 'CoreDataDependentPropertiesMacTests' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

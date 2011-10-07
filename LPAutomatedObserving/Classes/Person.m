@@ -44,15 +44,31 @@
 	NSString *keyPath = [change objectForKey:LPKeyValueChangeKeyPathKey];
 	
 	LPManagedObjectObservationInfo *observationInfo = [change objectForKey:LPKeyValueChangeObservationInfoKey];
+    Invoice *invoice = [change objectForKey:LPKeyValueChangeObjectKey];
 	
 	double invoicesSum = self.sum.doubleValue;
-	
-	if ([keyPath isEqualToString:@"discountedInvoiceSum"])
+	if ([keyPath isEqualToString:@"alreadyPaid"])
+    {
+        invoicesSum = self.sum.doubleValue;
+        
+        if ([oldValue boolValue] == NO && [newValue boolValue] == YES)
+        {
+            invoicesSum -= invoice.discountedInvoiceSum.doubleValue;
+        }
+        else if ([oldValue boolValue] == YES && [newValue boolValue] == NO)
+        {
+            invoicesSum += invoice.discountedInvoiceSum.doubleValue;
+        }
+    }
+	else if ([keyPath isEqualToString:@"discountedInvoiceSum"])
 	{
 		invoicesSum = self.sum.doubleValue;
 		
-		invoicesSum -= [oldValue doubleValue];
-		invoicesSum += [newValue doubleValue];
+        if (!invoice.alreadyPaid.boolValue)
+        {
+            invoicesSum -= [oldValue doubleValue];
+            invoicesSum += [newValue doubleValue];
+        }
 	}
 	else if ([keyPath isEqualToString:@"invoices"])
 	{

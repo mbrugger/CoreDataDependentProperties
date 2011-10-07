@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		872F7132143E2DB300570045 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872F7131143E2DB300570045 /* Cocoa.framework */; };
+		872F713C143E2DB300570045 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 872F713A143E2DB300570045 /* InfoPlist.strings */; };
+		872F713F143E2DB300570045 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F713E143E2DB300570045 /* main.m */; };
+		872F7142143E2DB300570045 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 872F7140143E2DB300570045 /* Credits.rtf */; };
+		872F7145143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7144143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m */; };
+		872F7148143E2DB300570045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872F7146143E2DB300570045 /* MainMenu.xib */; };
+		872F714B143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 872F7149143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld */; };
+		872F7152143E2DB300570045 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872F7131143E2DB300570045 /* Cocoa.framework */; };
+		872F715A143E2DB300570045 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 872F7158143E2DB300570045 /* InfoPlist.strings */; };
+		872F715D143E2DB300570045 /* CoreDataDependentPropertiesMacTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 872F715C143E2DB300570045 /* CoreDataDependentPropertiesMacTests.h */; };
+		872F715F143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F715E143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		872F7153143E2DB300570045 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 872F7124143E2DB300570045 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 872F712C143E2DB300570045;
+			remoteInfo = CoreDataDependentPropertiesMac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		872F712D143E2DB300570045 /* CoreDataDependentPropertiesMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDependentPropertiesMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		872F7131143E2DB300570045 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		872F7134143E2DB300570045 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		872F7135143E2DB300570045 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		872F7136143E2DB300570045 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		872F7139143E2DB300570045 /* CoreDataDependentPropertiesMac-Info.plist */ = {isa = PBXFileReference; path = "CoreDataDependentPropertiesMac-Info.plist"; sourceTree = "<group>"; };
+		872F713B143E2DB300570045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		872F713D143E2DB300570045 /* CoreDataDependentPropertiesMac-Prefix.pch */ = {isa = PBXFileReference; path = "CoreDataDependentPropertiesMac-Prefix.pch"; sourceTree = "<group>"; };
+		872F713E143E2DB300570045 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		872F7141143E2DB300570045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		872F7143143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.h */ = {isa = PBXFileReference; path = CoreDataDependentPropertiesMacAppDelegate.h; sourceTree = "<group>"; };
+		872F7144143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataDependentPropertiesMacAppDelegate.m; sourceTree = "<group>"; };
+		872F7147143E2DB300570045 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		872F714A143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataDependentPropertiesMac.xcdatamodel; sourceTree = "<group>"; };
+		872F7151143E2DB300570045 /* CoreDataDependentPropertiesMacTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataDependentPropertiesMacTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		872F7157143E2DB300570045 /* CoreDataDependentPropertiesMacTests-Info.plist */ = {isa = PBXFileReference; path = "CoreDataDependentPropertiesMacTests-Info.plist"; sourceTree = "<group>"; };
+		872F7159143E2DB300570045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		872F715B143E2DB300570045 /* CoreDataDependentPropertiesMacTests-Prefix.pch */ = {isa = PBXFileReference; path = "CoreDataDependentPropertiesMacTests-Prefix.pch"; sourceTree = "<group>"; };
+		872F715C143E2DB300570045 /* CoreDataDependentPropertiesMacTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataDependentPropertiesMacTests.h; sourceTree = "<group>"; };
+		872F715E143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataDependentPropertiesMacTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		872F712A143E2DB300570045 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				872F7132143E2DB300570045 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		872F714D143E2DB300570045 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				872F7152143E2DB300570045 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		872F7122143E2DB300570045 = {
+			isa = PBXGroup;
+			children = (
+				872F7137143E2DB300570045 /* CoreDataDependentPropertiesMac */,
+				872F7155143E2DB300570045 /* CoreDataDependentPropertiesMacTests */,
+				872F7130143E2DB300570045 /* Frameworks */,
+				872F712E143E2DB300570045 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		872F712E143E2DB300570045 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				872F712D143E2DB300570045 /* CoreDataDependentPropertiesMac.app */,
+				872F7151143E2DB300570045 /* CoreDataDependentPropertiesMacTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		872F7130143E2DB300570045 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				872F7131143E2DB300570045 /* Cocoa.framework */,
+				872F7133143E2DB300570045 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		872F7133143E2DB300570045 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				872F7134143E2DB300570045 /* AppKit.framework */,
+				872F7135143E2DB300570045 /* CoreData.framework */,
+				872F7136143E2DB300570045 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		872F7137143E2DB300570045 /* CoreDataDependentPropertiesMac */ = {
+			isa = PBXGroup;
+			children = (
+				872F7143143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.h */,
+				872F7144143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m */,
+				872F7146143E2DB300570045 /* MainMenu.xib */,
+				872F7149143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld */,
+				872F7138143E2DB300570045 /* Supporting Files */,
+			);
+			path = CoreDataDependentPropertiesMac;
+			sourceTree = "<group>";
+		};
+		872F7138143E2DB300570045 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				872F7139143E2DB300570045 /* CoreDataDependentPropertiesMac-Info.plist */,
+				872F713A143E2DB300570045 /* InfoPlist.strings */,
+				872F713D143E2DB300570045 /* CoreDataDependentPropertiesMac-Prefix.pch */,
+				872F713E143E2DB300570045 /* main.m */,
+				872F7140143E2DB300570045 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		872F7155143E2DB300570045 /* CoreDataDependentPropertiesMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				872F715C143E2DB300570045 /* CoreDataDependentPropertiesMacTests.h */,
+				872F715E143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m */,
+				872F7156143E2DB300570045 /* Supporting Files */,
+			);
+			path = CoreDataDependentPropertiesMacTests;
+			sourceTree = "<group>";
+		};
+		872F7156143E2DB300570045 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				872F7157143E2DB300570045 /* CoreDataDependentPropertiesMacTests-Info.plist */,
+				872F7158143E2DB300570045 /* InfoPlist.strings */,
+				872F715B143E2DB300570045 /* CoreDataDependentPropertiesMacTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		872F712C143E2DB300570045 /* CoreDataDependentPropertiesMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 872F7162143E2DB300570045 /* Build configuration list for PBXNativeTarget "CoreDataDependentPropertiesMac" */;
+			buildPhases = (
+				872F7129143E2DB300570045 /* Sources */,
+				872F712A143E2DB300570045 /* Frameworks */,
+				872F712B143E2DB300570045 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreDataDependentPropertiesMac;
+			productName = CoreDataDependentPropertiesMac;
+			productReference = 872F712D143E2DB300570045 /* CoreDataDependentPropertiesMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		872F7150143E2DB300570045 /* CoreDataDependentPropertiesMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 872F7165143E2DB300570045 /* Build configuration list for PBXNativeTarget "CoreDataDependentPropertiesMacTests" */;
+			buildPhases = (
+				872F714C143E2DB300570045 /* Sources */,
+				872F714D143E2DB300570045 /* Frameworks */,
+				872F714E143E2DB300570045 /* Resources */,
+				872F714F143E2DB300570045 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				872F7154143E2DB300570045 /* PBXTargetDependency */,
+			);
+			name = CoreDataDependentPropertiesMacTests;
+			productName = CoreDataDependentPropertiesMacTests;
+			productReference = 872F7151143E2DB300570045 /* CoreDataDependentPropertiesMacTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		872F7124143E2DB300570045 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 872F7127143E2DB300570045 /* Build configuration list for PBXProject "CoreDataDependentPropertiesMac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 872F7122143E2DB300570045;
+			productRefGroup = 872F712E143E2DB300570045 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				872F712C143E2DB300570045 /* CoreDataDependentPropertiesMac */,
+				872F7150143E2DB300570045 /* CoreDataDependentPropertiesMacTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		872F712B143E2DB300570045 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				872F713C143E2DB300570045 /* InfoPlist.strings in Resources */,
+				872F7142143E2DB300570045 /* Credits.rtf in Resources */,
+				872F7148143E2DB300570045 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		872F714E143E2DB300570045 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				872F715A143E2DB300570045 /* InfoPlist.strings in Resources */,
+				872F715D143E2DB300570045 /* CoreDataDependentPropertiesMacTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		872F714F143E2DB300570045 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		872F7129143E2DB300570045 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				872F713F143E2DB300570045 /* main.m in Sources */,
+				872F7145143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m in Sources */,
+				872F714B143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		872F714C143E2DB300570045 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				872F715F143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		872F7154143E2DB300570045 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 872F712C143E2DB300570045 /* CoreDataDependentPropertiesMac */;
+			targetProxy = 872F7153143E2DB300570045 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		872F713A143E2DB300570045 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				872F713B143E2DB300570045 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		872F7140143E2DB300570045 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				872F7141143E2DB300570045 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		872F7146143E2DB300570045 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				872F7147143E2DB300570045 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		872F7158143E2DB300570045 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				872F7159143E2DB300570045 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		872F7160143E2DB300570045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		872F7161143E2DB300570045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		872F7163143E2DB300570045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CoreDataDependentPropertiesMac/CoreDataDependentPropertiesMac-Prefix.pch";
+				INFOPLIST_FILE = "CoreDataDependentPropertiesMac/CoreDataDependentPropertiesMac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		872F7164143E2DB300570045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CoreDataDependentPropertiesMac/CoreDataDependentPropertiesMac-Prefix.pch";
+				INFOPLIST_FILE = "CoreDataDependentPropertiesMac/CoreDataDependentPropertiesMac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		872F7166143E2DB300570045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CoreDataDependentPropertiesMac.app/Contents/MacOS/CoreDataDependentPropertiesMac";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CoreDataDependentPropertiesMacTests/CoreDataDependentPropertiesMacTests-Prefix.pch";
+				INFOPLIST_FILE = "CoreDataDependentPropertiesMacTests/CoreDataDependentPropertiesMacTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		872F7167143E2DB300570045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CoreDataDependentPropertiesMac.app/Contents/MacOS/CoreDataDependentPropertiesMac";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CoreDataDependentPropertiesMacTests/CoreDataDependentPropertiesMacTests-Prefix.pch";
+				INFOPLIST_FILE = "CoreDataDependentPropertiesMacTests/CoreDataDependentPropertiesMacTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		872F7127143E2DB300570045 /* Build configuration list for PBXProject "CoreDataDependentPropertiesMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				872F7160143E2DB300570045 /* Debug */,
+				872F7161143E2DB300570045 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		872F7162143E2DB300570045 /* Build configuration list for PBXNativeTarget "CoreDataDependentPropertiesMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				872F7163143E2DB300570045 /* Debug */,
+				872F7164143E2DB300570045 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		872F7165143E2DB300570045 /* Build configuration list for PBXNativeTarget "CoreDataDependentPropertiesMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				872F7166143E2DB300570045 /* Debug */,
+				872F7167143E2DB300570045 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		872F7149143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				872F714A143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodel */,
+			);
+			currentVersion = 872F714A143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodel */;
+			path = CoreDataDependentPropertiesMac.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 872F7124143E2DB300570045 /* Project object */;
+}
