@@ -109,6 +109,73 @@
     [insertContext release];
 }
 
+- (void)testContextMergeDeletedObjects
+{
+    NSError *error = nil;
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+	Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+	Invoice* secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	secondInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+	
+	STAssertTrue(firstCustomer.sum.doubleValue == 20.0, @"invoices sum is %@", firstCustomer.sum);
+	@try
+	{
+		BOOL success = [self.context save:&error];	
+		STAssertTrue(success == YES, @"error could not save changes");
+	}
+	@catch (NSException * e)
+	{
+		STAssertTrue(e == nil, @"error - %@", e);
+	}
+    
+    //[self.context reset];
+    NSLog(@"XX fault invoices");
+	[self.context refreshObject:firstInvoice mergeChanges:NO];
+	[self.context refreshObject:secondInvoice mergeChanges:NO];
+    NSLog(@"XX fault invoices done");
+    
+    STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
+	STAssertTrue([secondInvoice isFault] == YES, @"secondInvoice must be fault");
+    
+    
+    // create new context for inserting invoice
+    LPManagedObjectContext *insertContext = [[LPManagedObjectContext alloc] init];
+    insertContext.persistentStoreCoordinator = self.context.persistentStoreCoordinator;
+    [insertContext prepareDependentProperties];	
+    NSLog(@"XX load customer");
+	Customer *fetchedCustomer = [Customer findAllCustomersInManagedObjectContext:insertContext].lastObject;
+	STAssertTrue(fetchedCustomer != nil, @"fetched customer missing");
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 20.0, @"fetchedCustomer sum not loaded correctly %@", fetchedCustomer);
+	STAssertTrue(fetchedCustomer.invoices.count == 2, @"fetchedCustomer.invoices %@", fetchedCustomer.invoices);
+    
+    Invoice *thirdInvoice = [Invoice insertNewInvoiceWithCustomer:fetchedCustomer inManagedObjectContext:insertContext];
+	thirdInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+    
+	STAssertTrue(fetchedCustomer.sum.doubleValue == 30.0, @"invoices sum is %@", fetchedCustomer.sum);
+    
+    [insertContext deleteObject: [insertContext objectWithID: [firstInvoice objectID]]];
+    [insertContext deleteObject: [insertContext objectWithID: [secondInvoice objectID]]];
+    [insertContext deleteObject: [insertContext objectWithID: [thirdInvoice objectID]]];
+    
+    // save and merge contexts
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:insertContext];
+    @try
+	{
+        NSLog(@"XX save insert context");
+		BOOL success = [insertContext save:&error];	
+		STAssertTrue(success == YES, @"error could not save changes");
+	}
+	@catch (NSException * e)
+	{
+		STAssertTrue(e == nil, @"error - %@", e);
+	}
+    NSLog(@"XX DONE");
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:insertContext];
+    [insertContext release];
+}
+
+
 - (void)mergeChanges:(NSNotification *)notification
 {
     NSLog(@"XX merge changes to main context");
