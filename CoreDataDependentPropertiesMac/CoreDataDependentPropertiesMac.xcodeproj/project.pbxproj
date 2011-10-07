@@ -11,13 +11,21 @@
 		872F713C143E2DB300570045 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 872F713A143E2DB300570045 /* InfoPlist.strings */; };
 		872F713F143E2DB300570045 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F713E143E2DB300570045 /* main.m */; };
 		872F7142143E2DB300570045 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 872F7140143E2DB300570045 /* Credits.rtf */; };
-		872F7145143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7144143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m */; };
-		872F7148143E2DB300570045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872F7146143E2DB300570045 /* MainMenu.xib */; };
-		872F714B143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 872F7149143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld */; };
 		872F7152143E2DB300570045 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872F7131143E2DB300570045 /* Cocoa.framework */; };
 		872F715A143E2DB300570045 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 872F7158143E2DB300570045 /* InfoPlist.strings */; };
 		872F715D143E2DB300570045 /* CoreDataDependentPropertiesMacTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 872F715C143E2DB300570045 /* CoreDataDependentPropertiesMacTests.h */; };
-		872F715F143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F715E143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m */; };
+		872F716B143E2DE800570045 /* LPAutomatedObserving_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7169143E2DE800570045 /* LPAutomatedObserving_AppDelegate.m */; };
+		872F716C143E2DE800570045 /* CoreDataDependentPropertiesDataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 872F716A143E2DE800570045 /* CoreDataDependentPropertiesDataModel.xcdatamodel */; };
+		872F7176143E2E3100570045 /* LPManagedObject_ObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F716F143E2E3100570045 /* LPManagedObject_ObservationInfo.m */; };
+		872F7177143E2E3100570045 /* LPManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7171143E2E3100570045 /* LPManagedObject.m */; };
+		872F7178143E2E3100570045 /* LPManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7173143E2E3100570045 /* LPManagedObjectContext.m */; };
+		872F7179143E2E3100570045 /* LPManagedObjectObservationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7175143E2E3100570045 /* LPManagedObjectObservationInfo.m */; };
+		872F7180143E2E3B00570045 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F717B143E2E3B00570045 /* Customer.m */; };
+		872F7181143E2E3B00570045 /* Invoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F717D143E2E3B00570045 /* Invoice.m */; };
+		872F7182143E2E3B00570045 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F717F143E2E3B00570045 /* Person.m */; };
+		872F7186143E300E00570045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872F7187143E300E00570045 /* MainMenu.xib */; };
+		872F718E143E309A00570045 /* ManagedObjectSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7189143E309A00570045 /* ManagedObjectSenTestCase.m */; };
+		87C11595143F713500E2EA33 /* TestCoreDataDependentPropertiesContextMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F718B143E309A00570045 /* TestCoreDataDependentPropertiesContextMerge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,21 +44,43 @@
 		872F7134143E2DB300570045 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		872F7135143E2DB300570045 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		872F7136143E2DB300570045 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		872F7139143E2DB300570045 /* CoreDataDependentPropertiesMac-Info.plist */ = {isa = PBXFileReference; path = "CoreDataDependentPropertiesMac-Info.plist"; sourceTree = "<group>"; };
+		872F7139143E2DB300570045 /* CoreDataDependentPropertiesMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreDataDependentPropertiesMac-Info.plist"; sourceTree = "<group>"; };
 		872F713B143E2DB300570045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		872F713D143E2DB300570045 /* CoreDataDependentPropertiesMac-Prefix.pch */ = {isa = PBXFileReference; path = "CoreDataDependentPropertiesMac-Prefix.pch"; sourceTree = "<group>"; };
+		872F713D143E2DB300570045 /* CoreDataDependentPropertiesMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataDependentPropertiesMac-Prefix.pch"; sourceTree = "<group>"; };
 		872F713E143E2DB300570045 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		872F7141143E2DB300570045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		872F7143143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.h */ = {isa = PBXFileReference; path = CoreDataDependentPropertiesMacAppDelegate.h; sourceTree = "<group>"; };
-		872F7144143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataDependentPropertiesMacAppDelegate.m; sourceTree = "<group>"; };
-		872F7147143E2DB300570045 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		872F714A143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataDependentPropertiesMac.xcdatamodel; sourceTree = "<group>"; };
 		872F7151143E2DB300570045 /* CoreDataDependentPropertiesMacTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataDependentPropertiesMacTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		872F7157143E2DB300570045 /* CoreDataDependentPropertiesMacTests-Info.plist */ = {isa = PBXFileReference; path = "CoreDataDependentPropertiesMacTests-Info.plist"; sourceTree = "<group>"; };
+		872F7157143E2DB300570045 /* CoreDataDependentPropertiesMacTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreDataDependentPropertiesMacTests-Info.plist"; sourceTree = "<group>"; };
 		872F7159143E2DB300570045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		872F715B143E2DB300570045 /* CoreDataDependentPropertiesMacTests-Prefix.pch */ = {isa = PBXFileReference; path = "CoreDataDependentPropertiesMacTests-Prefix.pch"; sourceTree = "<group>"; };
+		872F715B143E2DB300570045 /* CoreDataDependentPropertiesMacTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataDependentPropertiesMacTests-Prefix.pch"; sourceTree = "<group>"; };
 		872F715C143E2DB300570045 /* CoreDataDependentPropertiesMacTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataDependentPropertiesMacTests.h; sourceTree = "<group>"; };
 		872F715E143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataDependentPropertiesMacTests.m; sourceTree = "<group>"; };
+		872F7168143E2DE800570045 /* LPAutomatedObserving_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPAutomatedObserving_AppDelegate.h; path = ../../LPAutomatedObserving/Classes/LPAutomatedObserving_AppDelegate.h; sourceTree = "<group>"; };
+		872F7169143E2DE800570045 /* LPAutomatedObserving_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPAutomatedObserving_AppDelegate.m; path = ../../LPAutomatedObserving/Classes/LPAutomatedObserving_AppDelegate.m; sourceTree = "<group>"; };
+		872F716A143E2DE800570045 /* CoreDataDependentPropertiesDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = CoreDataDependentPropertiesDataModel.xcdatamodel; path = ../../LPAutomatedObserving/CoreDataDependentPropertiesDataModel.xcdatamodel; sourceTree = "<group>"; };
+		872F716E143E2E3100570045 /* LPManagedObject_ObservationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPManagedObject_ObservationInfo.h; path = ../LPAutomatedObserving/Classes/LPManagedObject_ObservationInfo.h; sourceTree = "<group>"; };
+		872F716F143E2E3100570045 /* LPManagedObject_ObservationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPManagedObject_ObservationInfo.m; path = ../LPAutomatedObserving/Classes/LPManagedObject_ObservationInfo.m; sourceTree = "<group>"; };
+		872F7170143E2E3100570045 /* LPManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPManagedObject.h; path = ../LPAutomatedObserving/Classes/LPManagedObject.h; sourceTree = "<group>"; };
+		872F7171143E2E3100570045 /* LPManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPManagedObject.m; path = ../LPAutomatedObserving/Classes/LPManagedObject.m; sourceTree = "<group>"; };
+		872F7172143E2E3100570045 /* LPManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPManagedObjectContext.h; path = ../LPAutomatedObserving/Classes/LPManagedObjectContext.h; sourceTree = "<group>"; };
+		872F7173143E2E3100570045 /* LPManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPManagedObjectContext.m; path = ../LPAutomatedObserving/Classes/LPManagedObjectContext.m; sourceTree = "<group>"; };
+		872F7174143E2E3100570045 /* LPManagedObjectObservationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPManagedObjectObservationInfo.h; path = ../LPAutomatedObserving/Classes/LPManagedObjectObservationInfo.h; sourceTree = "<group>"; };
+		872F7175143E2E3100570045 /* LPManagedObjectObservationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPManagedObjectObservationInfo.m; path = ../LPAutomatedObserving/Classes/LPManagedObjectObservationInfo.m; sourceTree = "<group>"; };
+		872F717A143E2E3B00570045 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Customer.h; path = ../../LPAutomatedObserving/Classes/Customer.h; sourceTree = "<group>"; };
+		872F717B143E2E3B00570045 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Customer.m; path = ../../LPAutomatedObserving/Classes/Customer.m; sourceTree = "<group>"; };
+		872F717C143E2E3B00570045 /* Invoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Invoice.h; path = ../../LPAutomatedObserving/Classes/Invoice.h; sourceTree = "<group>"; };
+		872F717D143E2E3B00570045 /* Invoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Invoice.m; path = ../../LPAutomatedObserving/Classes/Invoice.m; sourceTree = "<group>"; };
+		872F717E143E2E3B00570045 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = ../../LPAutomatedObserving/Classes/Person.h; sourceTree = "<group>"; };
+		872F717F143E2E3B00570045 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = ../../LPAutomatedObserving/Classes/Person.m; sourceTree = "<group>"; };
+		872F7187143E300E00570045 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		872F7188143E309A00570045 /* ManagedObjectSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjectSenTestCase.h; path = ../../LPAutomatedObserving/Tests/ManagedObjectSenTestCase.h; sourceTree = "<group>"; };
+		872F7189143E309A00570045 /* ManagedObjectSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjectSenTestCase.m; path = ../../LPAutomatedObserving/Tests/ManagedObjectSenTestCase.m; sourceTree = "<group>"; };
+		872F718A143E309A00570045 /* TestCoreDataDependentPropertiesContextMerge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCoreDataDependentPropertiesContextMerge.h; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesContextMerge.h; sourceTree = "<group>"; };
+		872F718B143E309A00570045 /* TestCoreDataDependentPropertiesContextMerge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCoreDataDependentPropertiesContextMerge.m; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesContextMerge.m; sourceTree = "<group>"; };
+		872F718C143E309A00570045 /* TestLPAutomatedObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestLPAutomatedObserving.h; path = ../../LPAutomatedObserving/Tests/TestLPAutomatedObserving.h; sourceTree = "<group>"; };
+		872F718D143E309A00570045 /* TestLPAutomatedObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestLPAutomatedObserving.m; path = ../../LPAutomatedObserving/Tests/TestLPAutomatedObserving.m; sourceTree = "<group>"; };
+		872F7191143E330700570045 /* TestCoreDataDependentPropertiesUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCoreDataDependentPropertiesUndoManager.h; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesUndoManager.h; sourceTree = "<group>"; };
+		872F7192143E330700570045 /* TestCoreDataDependentPropertiesUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCoreDataDependentPropertiesUndoManager.m; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesUndoManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +106,7 @@
 		872F7122143E2DB300570045 = {
 			isa = PBXGroup;
 			children = (
+				872F716D143E2E0900570045 /* Shared Code */,
 				872F7137143E2DB300570045 /* CoreDataDependentPropertiesMac */,
 				872F7155143E2DB300570045 /* CoreDataDependentPropertiesMacTests */,
 				872F7130143E2DB300570045 /* Frameworks */,
@@ -114,10 +145,15 @@
 		872F7137143E2DB300570045 /* CoreDataDependentPropertiesMac */ = {
 			isa = PBXGroup;
 			children = (
-				872F7143143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.h */,
-				872F7144143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m */,
-				872F7146143E2DB300570045 /* MainMenu.xib */,
-				872F7149143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld */,
+				872F717A143E2E3B00570045 /* Customer.h */,
+				872F717B143E2E3B00570045 /* Customer.m */,
+				872F717C143E2E3B00570045 /* Invoice.h */,
+				872F717D143E2E3B00570045 /* Invoice.m */,
+				872F717E143E2E3B00570045 /* Person.h */,
+				872F717F143E2E3B00570045 /* Person.m */,
+				872F7168143E2DE800570045 /* LPAutomatedObserving_AppDelegate.h */,
+				872F7169143E2DE800570045 /* LPAutomatedObserving_AppDelegate.m */,
+				872F716A143E2DE800570045 /* CoreDataDependentPropertiesDataModel.xcdatamodel */,
 				872F7138143E2DB300570045 /* Supporting Files */,
 			);
 			path = CoreDataDependentPropertiesMac;
@@ -126,6 +162,7 @@
 		872F7138143E2DB300570045 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				872F7187143E300E00570045 /* MainMenu.xib */,
 				872F7139143E2DB300570045 /* CoreDataDependentPropertiesMac-Info.plist */,
 				872F713A143E2DB300570045 /* InfoPlist.strings */,
 				872F713D143E2DB300570045 /* CoreDataDependentPropertiesMac-Prefix.pch */,
@@ -138,8 +175,16 @@
 		872F7155143E2DB300570045 /* CoreDataDependentPropertiesMacTests */ = {
 			isa = PBXGroup;
 			children = (
+				872F7188143E309A00570045 /* ManagedObjectSenTestCase.h */,
+				872F7189143E309A00570045 /* ManagedObjectSenTestCase.m */,
+				872F718A143E309A00570045 /* TestCoreDataDependentPropertiesContextMerge.h */,
+				872F718B143E309A00570045 /* TestCoreDataDependentPropertiesContextMerge.m */,
+				872F718C143E309A00570045 /* TestLPAutomatedObserving.h */,
+				872F718D143E309A00570045 /* TestLPAutomatedObserving.m */,
 				872F715C143E2DB300570045 /* CoreDataDependentPropertiesMacTests.h */,
 				872F715E143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m */,
+				872F7191143E330700570045 /* TestCoreDataDependentPropertiesUndoManager.h */,
+				872F7192143E330700570045 /* TestCoreDataDependentPropertiesUndoManager.m */,
 				872F7156143E2DB300570045 /* Supporting Files */,
 			);
 			path = CoreDataDependentPropertiesMacTests;
@@ -153,6 +198,21 @@
 				872F715B143E2DB300570045 /* CoreDataDependentPropertiesMacTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		872F716D143E2E0900570045 /* Shared Code */ = {
+			isa = PBXGroup;
+			children = (
+				872F716E143E2E3100570045 /* LPManagedObject_ObservationInfo.h */,
+				872F716F143E2E3100570045 /* LPManagedObject_ObservationInfo.m */,
+				872F7170143E2E3100570045 /* LPManagedObject.h */,
+				872F7171143E2E3100570045 /* LPManagedObject.m */,
+				872F7172143E2E3100570045 /* LPManagedObjectContext.h */,
+				872F7173143E2E3100570045 /* LPManagedObjectContext.m */,
+				872F7174143E2E3100570045 /* LPManagedObjectObservationInfo.h */,
+				872F7175143E2E3100570045 /* LPManagedObjectObservationInfo.m */,
+			);
+			name = "Shared Code";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +265,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				English,
 			);
 			mainGroup = 872F7122143E2DB300570045;
 			productRefGroup = 872F712E143E2DB300570045 /* Products */;
@@ -224,7 +285,7 @@
 			files = (
 				872F713C143E2DB300570045 /* InfoPlist.strings in Resources */,
 				872F7142143E2DB300570045 /* Credits.rtf in Resources */,
-				872F7148143E2DB300570045 /* MainMenu.xib in Resources */,
+				872F7186143E300E00570045 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,8 +322,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				872F713F143E2DB300570045 /* main.m in Sources */,
-				872F7145143E2DB300570045 /* CoreDataDependentPropertiesMacAppDelegate.m in Sources */,
-				872F714B143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld in Sources */,
+				872F716B143E2DE800570045 /* LPAutomatedObserving_AppDelegate.m in Sources */,
+				872F716C143E2DE800570045 /* CoreDataDependentPropertiesDataModel.xcdatamodel in Sources */,
+				872F7176143E2E3100570045 /* LPManagedObject_ObservationInfo.m in Sources */,
+				872F7177143E2E3100570045 /* LPManagedObject.m in Sources */,
+				872F7178143E2E3100570045 /* LPManagedObjectContext.m in Sources */,
+				872F7179143E2E3100570045 /* LPManagedObjectObservationInfo.m in Sources */,
+				872F7180143E2E3B00570045 /* Customer.m in Sources */,
+				872F7181143E2E3B00570045 /* Invoice.m in Sources */,
+				872F7182143E2E3B00570045 /* Person.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +338,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				872F715F143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m in Sources */,
+				872F718E143E309A00570045 /* ManagedObjectSenTestCase.m in Sources */,
+				87C11595143F713500E2EA33 /* TestCoreDataDependentPropertiesContextMerge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,14 +368,6 @@
 				872F7141143E2DB300570045 /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		872F7146143E2DB300570045 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				872F7147143E2DB300570045 /* en */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		872F7158143E2DB300570045 /* InfoPlist.strings */ = {
@@ -445,6 +506,7 @@
 				872F7164143E2DB300570045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		872F7165143E2DB300570045 /* Build configuration list for PBXNativeTarget "CoreDataDependentPropertiesMacTests" */ = {
 			isa = XCConfigurationList;
@@ -453,21 +515,9 @@
 				872F7167143E2DB300570045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		872F7149143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				872F714A143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodel */,
-			);
-			currentVersion = 872F714A143E2DB300570045 /* CoreDataDependentPropertiesMac.xcdatamodel */;
-			path = CoreDataDependentPropertiesMac.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 872F7124143E2DB300570045 /* Project object */;
 }

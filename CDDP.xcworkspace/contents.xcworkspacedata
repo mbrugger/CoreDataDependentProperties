@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CoreDataDependentPropertiesMac/CoreDataDependentPropertiesMac.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:CoreDataDependentPropertiesIOS/CoreDataDependentPropertiesIOS.xcodeproj">
    </FileRef>
 </Workspace>
