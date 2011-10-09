@@ -40,12 +40,14 @@
 -(NSString*) description
 {
 	NSMutableString* description = [NSMutableString stringWithCapacity:128];
-	[description appendFormat:@"observerClassName: %@, ", self.observerClassName];
-	[description appendFormat:@"observingType: %@, ", self.observingType == LPManagedObjectObservationInfoRelation?@"relation":@"property"];
-	[description appendFormat:@"observerObjectKeyPath: %@, ", self.observerObjectKeyPath];
-	[description appendFormat:@"observedPropertyKeyPath: %@, ", self.observedPropertyKeyPath];
-	[description appendFormat:@"observedRelationKeyPath: %@, ", self.observedRelationKeyPath];
-	[description appendFormat:@"updateSelectorName: %@, ", self.updateSelectorName];
+    [description appendFormat:@"<%@: %p> {\n", [self className], self];
+	[description appendFormat:@"\t      observerClassName: %@\n", self.observerClassName];
+	[description appendFormat:@"\t          observingType: %@\n", self.observingType == LPManagedObjectObservationInfoRelation?@"relation":@"property"];
+	[description appendFormat:@"\t  observerObjectKeyPath: %@\n", self.observerObjectKeyPath];
+	[description appendFormat:@"\tobservedPropertyKeyPath: %@\n", self.observedPropertyKeyPath];
+	[description appendFormat:@"\tobservedRelationKeyPath: %@\n", self.observedRelationKeyPath];
+	[description appendFormat:@"\t     updateSelectorName: %@\n", self.updateSelectorName];
+    [description appendFormat:@"\t}"];
 	return description;
 }
 

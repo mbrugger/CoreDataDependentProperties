@@ -3,6 +3,10 @@
 #import "Invoice.h"
 #import "LPManagedObjectContext.h"
 
+#define TEST_ALREADY_PAID 1
+#define TEST_INVOICE_SUM 1
+#define TEST_STANDARD_DISCOUNT 1
+
 @implementation TestLPAutomatedObserving
 
 
@@ -119,6 +123,7 @@
 	[firstCustomer removeObserver:self forKeyPath:@"sum"];
 }
 
+#if TEST_ALREADY_PAID
 - (void)testAlreadyPaidObservings
 {
 	observerCount = 0;
@@ -159,6 +164,7 @@
 	NSLog(@"delete invoice end");
 	[firstCustomer removeObserver:self forKeyPath:@"sum"];
 }
+#endif
 
 - (void)testChangePaidInvoice
 {
@@ -274,6 +280,7 @@
 	[firstCustomer removeObserver:self forKeyPath:@"sum"];
 }
 
+#if TEST_STANDARD_DISCOUNT
 - (void)testChangeCustomerDiscount
 {
 	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
@@ -433,6 +440,8 @@
 	
 }
 
+#endif
+
 - (void)testFaulting
 {
 	NSError *error = nil;
@@ -582,6 +591,8 @@
 	STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");
 }
 
+#if TEST_STANDARD_DISCOUNT
+
 - (void)testFaultingStandardDiscountChanged
 {
 	NSError *error = nil;
@@ -632,7 +643,7 @@
 	STAssertTrue([firstInvoice isFault] == NO, @"firstInvoice must not be fault");	
 	STAssertTrue([secondInvoice isFault] == NO, @"secondInvoice must not be fault");
 }
-
+#endif
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)observerContext

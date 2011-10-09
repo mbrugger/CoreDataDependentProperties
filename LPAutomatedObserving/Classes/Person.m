@@ -16,14 +16,74 @@
 	return [NSArray arrayWithObjects:@"invoices.discountedInvoiceSum", @"invoices.alreadyPaid", nil];
 }
 
-#if MACOSX_DEPLOYMENT_TARGET >= 1060
+//#if MACOSX_DEPLOYMENT_TARGET >= 1060
 - (void)awakeFromSnapshotEvents:(NSSnapshotEventType)flags
 {
+    NSLog(@"Person %p awakeFromSnapshotEvents %d", self, (int)flags);
 	[super awakeFromSnapshotEvents:flags];
 }
-#endif
+//#endif
 
 
+- (void)awakeFromFetch
+{
+    NSLog(@"Person %p awakeFromFetch", self);    
+    [super awakeFromFetch];
+}
+
+- (void)awakeFromInsert
+{
+    NSLog(@"Person %p awakeFromInsert", self);
+    [super awakeFromInsert];
+}
+
+- (void)willTurnIntoFault
+{
+    NSLog(@"Person %p willTurnIntoFault", self);
+    [super willTurnIntoFault];
+}
+
+- (void)startObserving
+{
+    [super startObserving];
+//    [self addObserver:self forKeyPath:@"standardDiscount" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)   context:@"xxx"];
+}
+
+- (void)stopObserving
+{
+//    [self removeObserver:self forKeyPath:@"standardDiscount"];
+    [super stopObserving];
+}
+
+- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath
+{
+    if ([observer.className isEqualToString:@"Invoice"])// && [observer.description rangeOfString:@"p1"].location != NSNotFound)
+    {
+        NSLog(@"invoice %p stop observing %@ of customer %p - deleted: %d", observer, keyPath, self, [observer isDeleted]);
+    }
+    [super removeObserver:observer forKeyPath:keyPath];
+}
+
+- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context
+{
+    if ([observer.className isEqualToString:@"Invoice"])// && [observer.description rangeOfString:@"p1"].location != NSNotFound)
+    {
+        NSLog(@"invoice %p start observing %@ of customer %p - deleted: %d", observer, keyPath, self, [observer isDeleted]);
+    }
+    [super addObserver:observer forKeyPath:keyPath options:options context:context];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context != @"xxx")
+    {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+    else
+    {
+        NSLog(@"XXXXXXXXXXXXXXXXXXXXXXX changed standard discount!");
+    }
+}
 
 -(void) updateDerivedSumForChange:(NSDictionary *)change
 {

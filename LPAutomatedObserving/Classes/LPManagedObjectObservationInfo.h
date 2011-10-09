@@ -10,6 +10,7 @@ enum LPManagedObjectObservationInfoType {LPManagedObjectObservationInfoRelation 
 @interface LPManagedObjectObservationInfo : NSObject 
 {
 	// class responsible for starting/stopping observation on awakeFromInsert/Fetch and willTurnIntoFault
+    // class also responsible for updating observings if intermediate relations change
 	NSString* observerClassName;	
 	
 	// keypath for observer object (keypath to the observer relativ to the observed object)

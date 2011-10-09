@@ -24,8 +24,9 @@
 		872F7181143E2E3B00570045 /* Invoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F717D143E2E3B00570045 /* Invoice.m */; };
 		872F7182143E2E3B00570045 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F717F143E2E3B00570045 /* Person.m */; };
 		872F7186143E300E00570045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872F7187143E300E00570045 /* MainMenu.xib */; };
-		872F718E143E309A00570045 /* ManagedObjectSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7189143E309A00570045 /* ManagedObjectSenTestCase.m */; };
-		87C11595143F713500E2EA33 /* TestCoreDataDependentPropertiesContextMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F718B143E309A00570045 /* TestCoreDataDependentPropertiesContextMerge.m */; };
+		87C115991440224000E2EA33 /* ManagedObjectSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7189143E309A00570045 /* ManagedObjectSenTestCase.m */; };
+		87C1159C1440224000E2EA33 /* CoreDataDependentPropertiesMacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F715E143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m */; };
+		87C1159E1440327200E2EA33 /* TestCoreDataDependentPropertiesContextMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F718B143E309A00570045 /* TestCoreDataDependentPropertiesContextMerge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -338,8 +339,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				872F718E143E309A00570045 /* ManagedObjectSenTestCase.m in Sources */,
-				87C11595143F713500E2EA33 /* TestCoreDataDependentPropertiesContextMerge.m in Sources */,
+				87C115991440224000E2EA33 /* ManagedObjectSenTestCase.m in Sources */,
+				87C1159C1440224000E2EA33 /* CoreDataDependentPropertiesMacTests.m in Sources */,
+				87C1159E1440327200E2EA33 /* TestCoreDataDependentPropertiesContextMerge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

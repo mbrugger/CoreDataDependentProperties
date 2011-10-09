@@ -112,6 +112,8 @@ static NSString* const LPManagedObjectInterestingSelectorPrefix = @"keyPathsForV
 		
 		// create relation observing established by observer
 		// observer responsible for observing additional objects in its relation
+        // reduces the amount of updates necessary in relation changes
+        // is not responsible for establishing observings!
 		LPManagedObjectObservationInfo* relationObservingInfo = [LPManagedObjectObservationInfo managedObjectObservationInfo];
 		
 		relationObservingInfo.observerClassName = [entityDescription managedObjectClassName];

@@ -112,7 +112,11 @@
 
 // adds observation info to the internal observation info dictionary
 -(void) addObservationInfo:(LPManagedObjectObservationInfo*) newObservationInfo
-{
+{   
+    if (DEBUG_OBSERVING)
+    {
+        NSLog(@"add observer information: %@", newObservationInfo);
+    }
 	NSMutableArray* observationInfosForClass = [self.dependendPropertiesObservationInfo objectForKey:newObservationInfo.observerClassName];
 	if (observationInfosForClass == nil)
 	{
@@ -128,6 +132,7 @@
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 	#if (__MAC_OS_X_VERSION_MIN_REQUIRED < 1060)
 
+#error Make sure you really want to use this code!
 - (void)_undoDeletions:(id)deletions
 {
 	[super _undoDeletions:deletions];
@@ -162,6 +167,15 @@
     @try 
     {
         self.isMergingChanges = YES;
+//        for (LPManagedObject *object in self.registeredObjects)
+//        {
+//            if ([object isKindOfClass:[LPManagedObject class]] && object.observingsActive)
+//            {
+//                [object stopObserving];
+//            }
+//        }
+//        self.observingsActive = NO;
+//        NSLog(@"all observings stopped");
         [super mergeChangesFromContextDidSaveNotification:notification];
     }
     @catch (NSException *exception) 
@@ -171,6 +185,14 @@
     @finally 
     {
         self.isMergingChanges = NO;
+//        for (LPManagedObject *object in self.registeredObjects)
+//        {
+//            if ([object isKindOfClass:[LPManagedObject class]] && ![object isFault])
+//            {
+//                [object startObserving];
+//            }
+//        }
+//        NSLog(@"all observings started");
     }
 }
 @end 
