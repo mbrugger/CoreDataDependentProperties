@@ -235,6 +235,63 @@
     STAssertTrue(firstCustomer.sum.doubleValue == 31.0 , @"invoices sum is %@", firstCustomer.sum);
 }
 
+- (void)testInvalidContextMergeSituation
+{
+    NSError *error = nil;
+	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
+    Invoice* firstInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+	firstInvoice.invoiceSum = [NSNumber numberWithDouble:10.0];
+
+    @try
+	{
+		BOOL success = [self.context save:&error];	
+		STAssertTrue(success == YES, @"error could not save changes");
+	}
+	@catch (NSException * e)
+	{
+		STAssertTrue(e == nil, @"error - %@", e);
+	}    
+    NSLog(@"XX fault invoices");
+	[self.context refreshObject:firstInvoice mergeChanges:NO];
+    //    [self.context refreshObject:firstCustomer mergeChanges:NO];
+    NSLog(@"XX fault invoices done");
+    STAssertTrue([firstInvoice isFault] == YES, @"firstInvoice must be fault");	
+    
+    // create new context for inserting invoice
+    LPManagedObjectContext *insertContext = [[LPManagedObjectContext alloc] init];
+    insertContext.persistentStoreCoordinator = self.context.persistentStoreCoordinator;
+    [insertContext prepareDependentProperties];	
+    Customer *fetchedCustomer = (Customer *)[insertContext objectWithID:[firstCustomer objectID]];
+    
+    Invoice *newInvoice = [Invoice insertNewInvoiceWithCustomer:fetchedCustomer inManagedObjectContext:insertContext];
+    newInvoice.invoiceSum = [NSNumber numberWithDouble:10.5];
+    
+    STAssertTrue(fetchedCustomer.sum.doubleValue == 20.5, @"invoices sum is %@", fetchedCustomer.sum);
+    
+    // also manipulate first invoice before merging contexts
+    firstInvoice.invoiceSum = [NSNumber numberWithDouble:100.0];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:insertContext];
+    
+    @try
+	{
+        NSLog(@"XX save insert context");
+		BOOL success = [insertContext save:&error];	
+		STAssertTrue(success == YES, @"error could not save changes");
+	}
+	@catch (NSException * e)
+	{
+		STAssertTrue(e == nil, @"error - %@", e);
+	}
+    NSLog(@"XX DONE");
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:insertContext];
+    [insertContext release];
+
+#warn This assert will currently fail as customer sum is not updated during merge!
+//    STAssertTrue(firstCustomer.sum.doubleValue == 110.5, @"context not merged correctly %@", firstCustomer);
+
+}
 
 - (void)mergeChanges:(NSNotification *)notification
 {

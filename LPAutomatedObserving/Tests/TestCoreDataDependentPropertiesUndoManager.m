@@ -48,7 +48,7 @@
 	STAssertTrue(firstCustomer.sum.doubleValue == 2.0, @"customer with invoices sum %@", firstCustomer.sum);
 	STAssertTrue(observerCount == 2, @"observer count %d", observerCount);
 	
-	NSLog(@"insertedObjects: %@", [self.context insertedObjects]);
+//	NSLog(@"insertedObjects: %@", [self.context insertedObjects]);
 	
 	[firstCustomer removeObserver:self forKeyPath:@"sum"];
 	
@@ -156,7 +156,7 @@
 	firstInvoice.invoiceSum = [NSNumber numberWithDouble:1.0];
 	STAssertTrue(firstCustomer.sum.doubleValue == 1.0, @"customer with invoices sum %@", firstCustomer.sum);
 
-	NSLog(@"insertedObjects: %@", [self.context insertedObjects]);
+//	NSLog(@"insertedObjects: %@", [self.context insertedObjects]);
 	
 	// create undo group for delete operation
 	[self.context processPendingChanges];

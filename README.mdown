@@ -5,6 +5,17 @@ General implementation solving the problem of properties dependent on the proper
 
 Changes:
 --------
+(09.10.2011)
+
+ - Xcode4 Workspace now working with both iOS and Mac version, codesharing should be simplified
+ 
+ - Added a warning for users building a 10.5 deployment target. Future development will focus on iOS/Mac
+
+ - Context merges now supported, unfortunately observings need to be deactivated during merge. Take a look at testInvalidContextMergeSituation in TestCoreDataDependentPropertiesContextMerge.m
+ 
+ - Added several unittests for context merges and undo/redo handling
+
+--------
 (06.10.2011)
 
  - Created a new project in Xcode 4, the old Xcode 3 projects currently do not work and will be removed soon
