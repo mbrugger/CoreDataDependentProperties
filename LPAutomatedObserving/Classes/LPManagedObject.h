@@ -16,4 +16,7 @@ static NSString * const LPKeyValueChangeObservationInfoKey = @"LPKeyValueChangeO
 }
 
 @property (assign) BOOL observingsActive;
+- (void)startObserving;
+- (void)stopObserving;
+
 @end

@@ -27,6 +27,8 @@
 		87C115991440224000E2EA33 /* ManagedObjectSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7189143E309A00570045 /* ManagedObjectSenTestCase.m */; };
 		87C1159C1440224000E2EA33 /* CoreDataDependentPropertiesMacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F715E143E2DB300570045 /* CoreDataDependentPropertiesMacTests.m */; };
 		87C1159E1440327200E2EA33 /* TestCoreDataDependentPropertiesContextMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F718B143E309A00570045 /* TestCoreDataDependentPropertiesContextMerge.m */; };
+		87F14E0E144191D800584183 /* TestLPAutomatedObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F718D143E309A00570045 /* TestLPAutomatedObserving.m */; };
+		87F14E10144191DD00584183 /* TestCoreDataDependentPropertiesUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872F7192143E330700570045 /* TestCoreDataDependentPropertiesUndoManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -342,6 +344,8 @@
 				87C115991440224000E2EA33 /* ManagedObjectSenTestCase.m in Sources */,
 				87C1159C1440224000E2EA33 /* CoreDataDependentPropertiesMacTests.m in Sources */,
 				87C1159E1440327200E2EA33 /* TestCoreDataDependentPropertiesContextMerge.m in Sources */,
+				87F14E0E144191D800584183 /* TestLPAutomatedObserving.m in Sources */,
+				87F14E10144191DD00584183 /* TestCoreDataDependentPropertiesUndoManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

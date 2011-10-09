@@ -36,6 +36,7 @@
 		87B0EC50143D7BE500377DC1 /* ManagedObjectSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B0EC4D143D7BE500377DC1 /* ManagedObjectSenTestCase.m */; };
 		87B0EC53143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 87B0EC52143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel */; };
 		87B0EC54143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 87B0EC52143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel */; };
+		87F14E1314419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F14E1214419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		87B0EC4E143D7BE500377DC1 /* TestLPAutomatedObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestLPAutomatedObserving.h; path = ../../LPAutomatedObserving/Tests/TestLPAutomatedObserving.h; sourceTree = "<group>"; };
 		87B0EC4F143D7BE500377DC1 /* TestLPAutomatedObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestLPAutomatedObserving.m; path = ../../LPAutomatedObserving/Tests/TestLPAutomatedObserving.m; sourceTree = "<group>"; };
 		87B0EC52143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = CoreDataDependentPropertiesDataModel.xcdatamodel; path = ../../LPAutomatedObserving/CoreDataDependentPropertiesDataModel.xcdatamodel; sourceTree = "<group>"; };
+		87F14E1114419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCoreDataDependentPropertiesUndoManager.h; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesUndoManager.h; sourceTree = "<group>"; };
+		87F14E1214419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCoreDataDependentPropertiesUndoManager.m; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesUndoManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 		87B0EC1C143D7B4B00377DC1 /* CoreDataDependentPropertiesIOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				87F14E1114419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.h */,
+				87F14E1214419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m */,
 				87B0EC4C143D7BE500377DC1 /* ManagedObjectSenTestCase.h */,
 				87B0EC4D143D7BE500377DC1 /* ManagedObjectSenTestCase.m */,
 				87B0EC4E143D7BE500377DC1 /* TestLPAutomatedObserving.h */,
@@ -351,6 +356,7 @@
 				87B0EC54143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel in Sources */,
 				875CC730143DE286004F62A3 /* TestCoreDataDependentPropertiesContextMerge.m in Sources */,
 				875CC733143DFCB1004F62A3 /* TestLPAutomatedObserving.m in Sources */,
+				87F14E1314419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

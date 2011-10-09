@@ -173,16 +173,17 @@
 	[[self.context undoManager] setActionName:@"delete"];
 	
 	[self.context deleteObject:firstInvoice];
-	
+	STAssertTrue([firstInvoice isDeleted] == YES,@"invoice deleted %@", firstInvoice);
+    
     [self.context processPendingChanges];
 	[[self.context undoManager] endUndoGrouping];
 	
 	
-    STAssertTrue([firstInvoice isDeleted] == YES,@"invoice not deleted %@", firstInvoice);
+    
     // undo delete invoice
     [[self.context undoManager] undo];
 
-    STAssertTrue([firstInvoice isDeleted] == NO,@"invoice is deleted %@", firstInvoice);    
+    STAssertTrue([firstInvoice isDeleted] == NO,@"invoice is not deleted %@", firstInvoice);    
     
     // delete again
     [self.context processPendingChanges];
@@ -190,11 +191,11 @@
 	[[self.context undoManager] setActionName:@"delete"];
 	
 	[self.context deleteObject:firstInvoice];
-
+    STAssertTrue([firstInvoice isDeleted] == YES,@"invoice deleted %@", firstInvoice);    
 	[self.context processPendingChanges];
 	[[self.context undoManager] endUndoGrouping];
     
-    STAssertTrue([firstInvoice isDeleted] == YES,@"invoice not deleted %@", firstInvoice);    
+
     
 }
 

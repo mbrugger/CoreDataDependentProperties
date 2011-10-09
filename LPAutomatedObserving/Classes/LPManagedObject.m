@@ -36,7 +36,7 @@
 	return [NSArray arrayWithArray: customObservationInfos];
 }
 
--(void) startObserving
+- (void)startObserving
 {	
 	LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
 	if (![context isKindOfClass:[LPManagedObjectContext class]])
@@ -102,7 +102,7 @@
 	}
 }
 
--(void) stopObserving
+- (void)stopObserving
 {
 	LPManagedObjectContext* context = (LPManagedObjectContext*)[self managedObjectContext];
 	if (![context isKindOfClass:[LPManagedObjectContext class]])
@@ -168,7 +168,7 @@
 	}
 }
 
--(void) awakeFromFetch
+- (void)awakeFromFetch
 {
 	if (DEBUG_OBSERVING) 
 	{
@@ -178,7 +178,7 @@
 	[self startObserving];
 }
 
--(void) awakeFromInsert
+- (void)awakeFromInsert
 {
 	if (DEBUG_OBSERVING) 
 	{
@@ -197,8 +197,6 @@
 
 - (void)awakeFromSnapshotEvents:(NSSnapshotEventType)flags
 {
-    
-    
 	[super awakeFromSnapshotEvents:flags];
     switch (flags) {
         case NSSnapshotEventUndoDeletion:
@@ -220,13 +218,12 @@
             // TODO: check if it is really not necessary with additional test cases
         default:
             break;
-    }
-    
+    }    
 }
 
 #endif
 
--(void) willTurnIntoFault
+- (void)willTurnIntoFault
 {
 	if (DEBUG_OBSERVING) 
 	{
@@ -237,7 +234,7 @@
 	[super willTurnIntoFault];
 }
 
--(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	LPManagedObjectContext* managedObjectContext = (LPManagedObjectContext*) self.managedObjectContext;	
 	
@@ -247,10 +244,6 @@
         // do not handle observing if context is not an LPManagedObjectContext
         && [managedObjectContext isKindOfClass:[LPManagedObjectContext class]])
 	{
-        if ([observationInfo.observedPropertyKeyPath isEqualToString:@"standardDiscount"])
-        {
-            // NSLog(@"standardDiscount observing %@", observationInfo);
-        }
 		
 		NSMutableDictionary *observingChanges = [NSMutableDictionary dictionaryWithDictionary:change];
 		[observingChanges setObject:object forKey:LPKeyValueChangeObjectKey];
@@ -333,15 +326,6 @@
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
-
-//- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context
-//{
-//    if ([keyPath isEqualToString:@"standardDiscount"] && [[observer className] isEqualToString:@"Invoice"])
-//    {
-//        NSLog(@"where does the magic happen?");
-//    }
-//    [super addObserver:observer forKeyPath:keyPath options:options context:context];
-//}
 
 @end
 

@@ -68,42 +68,4 @@
 	return [NSNumber numberWithDouble:sum - sum*discount];
 }
 
-- (void)prepareForDeletion
-{
-    NSLog(@"prepareForDeletion %p %@", self, self.className);
-}
-
-//-(void) stopObserving
-//{
-//    NSLog(@"stopObserving %p", self);
-//    [super stopObserving];
-//}
-//
-//-(void) startObserving
-//{
-//    NSLog(@"startObserving %p", self);
-//    [super startObserving];
-//}
-
-//- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context
-//{
-//    if (observer == self
-////        && [[observer className] isEqualToString:@"Invoice"]
-//        )
-//    {
-//        NSLog(@"invoice addObserver: <%p, %@> forKeyPath: %@", observer, [observer className], keyPath);
-//        NSLog(@"context: %@", context);
-//    }
-//    [super addObserver:observer forKeyPath:keyPath options:options context:context];
-//}
-
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//{
-//    NSLog(@"=======================================================");
-//    NSLog(@"observe: keyPath: %@ - object: %p %@", keyPath, object, [object className]);
-//    NSLog(@"context: %@", context);
-//    NSLog(@"=======================================================");
-//    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-//}
-
 @end

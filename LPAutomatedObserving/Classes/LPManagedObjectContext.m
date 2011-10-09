@@ -80,6 +80,34 @@
 		}
 	}	
 }
+
+- (void)startObserving
+{
+    self.observingsActive = YES;
+    for (LPManagedObject *object in self.registeredObjects)
+    {
+        if ([object isKindOfClass:[LPManagedObject class]] && ![object isFault])
+        {
+            [object startObserving];
+        }
+    }
+    if (DEBUG_OBSERVING) NSLog(@"all observings started");
+}
+
+- (void)stopObserving
+{
+    for (LPManagedObject *object in self.registeredObjects)
+    {
+        if ([object isKindOfClass:[LPManagedObject class]] && object.observingsActive)
+        {
+            [object stopObserving];
+        }
+    }
+    self.observingsActive = NO;
+    if (DEBUG_OBSERVING) NSLog(@"all observings stopped");    
+}
+
+
 @end
 
 #pragma mark -
@@ -167,15 +195,7 @@
     @try 
     {
         self.isMergingChanges = YES;
-//        for (LPManagedObject *object in self.registeredObjects)
-//        {
-//            if ([object isKindOfClass:[LPManagedObject class]] && object.observingsActive)
-//            {
-//                [object stopObserving];
-//            }
-//        }
-//        self.observingsActive = NO;
-//        NSLog(@"all observings stopped");
+        [self stopObserving];
         [super mergeChangesFromContextDidSaveNotification:notification];
     }
     @catch (NSException *exception) 
@@ -185,14 +205,7 @@
     @finally 
     {
         self.isMergingChanges = NO;
-//        for (LPManagedObject *object in self.registeredObjects)
-//        {
-//            if ([object isKindOfClass:[LPManagedObject class]] && ![object isFault])
-//            {
-//                [object startObserving];
-//            }
-//        }
-//        NSLog(@"all observings started");
+        [self startObserving];
     }
 }
 @end 

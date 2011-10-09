@@ -20,5 +20,8 @@
 @property (assign) BOOL observingsActive;
 @property (assign) BOOL isMergingChanges;
 
--(void) prepareDependentProperties;
+- (void)prepareDependentProperties;
+
+- (void)startObserving;
+- (void)stopObserving;
 @end

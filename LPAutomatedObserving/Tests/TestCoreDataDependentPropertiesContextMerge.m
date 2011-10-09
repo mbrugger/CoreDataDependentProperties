@@ -14,7 +14,7 @@
 
 @implementation TestCoreDataDependentPropertiesContextMerge
 
-- (void)xtestChangeRelationObjects
+- (void)testChangeRelationObjects
 {
 	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
 	Customer* secondCustomer = [Customer insertNewCustomerWithName:@"customer B" inManagedObjectContext:self.context];
@@ -41,7 +41,7 @@
     STAssertTrue([firstInvoice observationInfo] == nil, @"object must not be observed while faulted %@", [firstInvoice observationInfo]);
 }
 
-- (void)xtestContextMerge
+- (void)testContextMerge
 {
     NSError *error = nil;
 	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
@@ -175,7 +175,7 @@
     [insertContext release];
 }
 
-- (void)xtestSimpleContextMerge
+- (void)testSimpleContextMerge
 {
     NSError *error = nil;
 	Customer* firstCustomer = [Customer insertNewCustomerWithName:@"customer A" inManagedObjectContext:self.context];
@@ -207,6 +207,10 @@
     Customer *fetchedCustomer = (Customer *)[insertContext objectWithID:[firstCustomer objectID]];
     
     Invoice *newInvoice = [Invoice insertNewInvoiceWithCustomer:fetchedCustomer inManagedObjectContext:insertContext];
+    newInvoice.invoiceSum = [NSNumber numberWithDouble:10.5];
+    
+    STAssertTrue(fetchedCustomer.sum.doubleValue == 20.5, @"invoices sum is %@", fetchedCustomer.sum);
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:insertContext];
     
     @try
@@ -223,6 +227,12 @@
     NSLog(@"XX DONE");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:insertContext];
     [insertContext release];
+
+    
+    // check if observings still work after merge!
+    Invoice *secondInvoice = [Invoice insertNewInvoiceWithCustomer:firstCustomer inManagedObjectContext:self.context];
+    secondInvoice.invoiceSum = [NSNumber numberWithDouble:10.5];
+    STAssertTrue(firstCustomer.sum.doubleValue == 31.0 , @"invoices sum is %@", firstCustomer.sum);
 }
 
 

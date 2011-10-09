@@ -40,7 +40,7 @@
 -(NSString*) description
 {
 	NSMutableString* description = [NSMutableString stringWithCapacity:128];
-    [description appendFormat:@"<%@: %p> {\n", [self className], self];
+    [description appendFormat:@"<%@: %p> {\n", NSStringFromClass([self class]), self];
 	[description appendFormat:@"\t      observerClassName: %@\n", self.observerClassName];
 	[description appendFormat:@"\t          observingType: %@\n", self.observingType == LPManagedObjectObservationInfoRelation?@"relation":@"property"];
 	[description appendFormat:@"\t  observerObjectKeyPath: %@\n", self.observerObjectKeyPath];
