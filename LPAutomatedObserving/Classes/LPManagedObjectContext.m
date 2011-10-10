@@ -36,6 +36,7 @@
 	{
 		observingsActive = YES;
 		self.dependendPropertiesObservationInfo = nil;
+        [self setRetainsRegisteredObjects:YES];
 	}
 	return self;
 }
@@ -44,15 +45,14 @@
 {
     // stop all observings
     [self stopObserving];
-    
-    
+        
 	// cleanup dictionary as last step after all managedObjects died
 	// workaround necessary here?
-	NSMutableDictionary * temporaryRetainedDictionary = [self.dependendPropertiesObservationInfo retain];
+//	NSMutableDictionary * temporaryRetainedDictionary = [self.dependendPropertiesObservationInfo retain];
     [dependendPropertiesObservationInfo release], dependendPropertiesObservationInfo = nil;
 	[super dealloc];
-	[temporaryRetainedDictionary release];
-	temporaryRetainedDictionary = nil;
+//	[temporaryRetainedDictionary release];
+//	temporaryRetainedDictionary = nil;
 }
 
 #pragma mark Dependend properties specific code

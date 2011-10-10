@@ -240,85 +240,87 @@
 	
 	LPManagedObjectObservationInfo *observationInfo = (LPManagedObjectObservationInfo *)context;
 	if (observationInfo != nil 
-        && [observationInfo isKindOfClass:[LPManagedObjectObservationInfo class]]
-        // do not handle observing if context is not an LPManagedObjectContext
-        && [managedObjectContext isKindOfClass:[LPManagedObjectContext class]])
+        && [observationInfo isKindOfClass:[LPManagedObjectObservationInfo class]])
 	{
-		
-		NSMutableDictionary *observingChanges = [NSMutableDictionary dictionaryWithDictionary:change];
-		[observingChanges setObject:object forKey:LPKeyValueChangeObjectKey];
-		[observingChanges setObject:keyPath forKey:LPKeyValueChangeKeyPathKey];
-		[observingChanges setObject:observationInfo forKey:LPKeyValueChangeObservationInfoKey];
-		
-		//handle auto observing
-		if (object == self && observationInfo.observingType == LPManagedObjectObservationInfoProperty)
-		{
-            // update observings
-            if (DEBUG_OBSERVING) {
-                NSString *objectClassName = nil;
-                NSString *selfClassName = nil;
+        // ignore observing if context is not an LPManagedObjectContext
+		if (managedObjectContext != nil
+            && [managedObjectContext isKindOfClass:[LPManagedObjectContext class]])
+        {
+            NSMutableDictionary *observingChanges = [NSMutableDictionary dictionaryWithDictionary:change];
+            [observingChanges setObject:object forKey:LPKeyValueChangeObjectKey];
+            [observingChanges setObject:keyPath forKey:LPKeyValueChangeKeyPathKey];
+            [observingChanges setObject:observationInfo forKey:LPKeyValueChangeObservationInfoKey];
+            
+            //handle auto observing
+            if (object == self && observationInfo.observingType == LPManagedObjectObservationInfoProperty)
+            {
+                // update observings
+                if (DEBUG_OBSERVING) {
+                    NSString *objectClassName = nil;
+                    NSString *selfClassName = nil;
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-                objectClassName = NSStringFromClass([object class]);
-                selfClassName = NSStringFromClass([self class]);
+                    objectClassName = NSStringFromClass([object class]);
+                    selfClassName = NSStringFromClass([self class]);
 #else
-                objectClassName = [object className];
-                selfClassName = [self className];
+                    objectClassName = [object className];
+                    selfClassName = [self className];
 #endif
-                
-                NSLog(@"Observing Relation <%p %@> keyPath: %@ object: <%p %@>", self, selfClassName, keyPath, object, objectClassName);
-            }
-            id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
-            id newValue = [change objectForKey:NSKeyValueChangeNewKey];
-            //			NSLog(@"change: %@", change);
-            if (![oldValue isEqual:[NSNull null]] && oldValue != nil)
-            {
-                // if relation is to-one wrap object into set
-                if (![oldValue isKindOfClass:[NSSet class]])
-                    oldValue = [NSSet setWithObject:oldValue];
-                
-                // disable observing
-                for (id dependentObject in oldValue)
-                {
-                    [self removeObserver: dependentObject forKeyPath:observationInfo.observedPropertyKeyPath];
+                    
+                    NSLog(@"Observing Relation <%p %@> keyPath: %@ object: <%p %@>", self, selfClassName, keyPath, object, objectClassName);
                 }
-            }
-            
-            if (![newValue isEqual:[NSNull null]] && newValue != nil)
-            {
-                // if relation is to-one wrap object into set
-                if (![newValue isKindOfClass:[NSSet class]])
-                    newValue = [NSSet setWithObject:newValue];				
-                
-                //establish observing
-                for (id dependentObject in newValue)
+                id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+                id newValue = [change objectForKey:NSKeyValueChangeNewKey];
+                //			NSLog(@"change: %@", change);
+                if (![oldValue isEqual:[NSNull null]] && oldValue != nil)
                 {
-                    [self addObserver: dependentObject
-                           forKeyPath:observationInfo.observedPropertyKeyPath 
-                              options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
-                              context:observationInfo];
+                    // if relation is to-one wrap object into set
+                    if (![oldValue isKindOfClass:[NSSet class]])
+                        oldValue = [NSSet setWithObject:oldValue];
+                    
+                    // disable observing
+                    for (id dependentObject in oldValue)
+                    {
+                        [self removeObserver: dependentObject forKeyPath:observationInfo.observedPropertyKeyPath];
+                    }
                 }
+                
+                if (![newValue isEqual:[NSNull null]] && newValue != nil)
+                {
+                    // if relation is to-one wrap object into set
+                    if (![newValue isKindOfClass:[NSSet class]])
+                        newValue = [NSSet setWithObject:newValue];				
+                    
+                    //establish observing
+                    for (id dependentObject in newValue)
+                    {
+                        [self addObserver: dependentObject
+                               forKeyPath:observationInfo.observedPropertyKeyPath 
+                                  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) 
+                                  context:observationInfo];
+                    }
+                }
+                
             }
-            
-		}
-		else
-		{
-			if (DEBUG_OBSERVING) {
-				NSString *objectClassName = nil;
-				NSString *selfClassName = nil;
+            else
+            {
+                if (DEBUG_OBSERVING) {
+                    NSString *objectClassName = nil;
+                    NSString *selfClassName = nil;
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-				objectClassName = NSStringFromClass([object class]);
-				selfClassName = NSStringFromClass([self class]);
+                    objectClassName = NSStringFromClass([object class]);
+                    selfClassName = NSStringFromClass([self class]);
 #else
-				objectClassName = [object className];
-				selfClassName = [self className];
+                    objectClassName = [object className];
+                    selfClassName = [self className];
 #endif      
-				NSLog(@"Observing Property <%p %@> keyPath: %@ object: <%p %@>", self, selfClassName, keyPath, object, objectClassName);
-			}
-			if ([managedObjectContext isKindOfClass:[LPManagedObjectContext class]] && managedObjectContext.observingsActive)
-			{
-				[self performSelector:[observationInfo updateSelector] withObject:observingChanges];
-			}
-		}
+                    NSLog(@"Observing Property <%p %@> keyPath: %@ object: <%p %@>", self, selfClassName, keyPath, object, objectClassName);
+                }
+                if ([managedObjectContext isKindOfClass:[LPManagedObjectContext class]] && managedObjectContext.observingsActive)
+                {
+                    [self performSelector:[observationInfo updateSelector] withObject:observingChanges];
+                }
+            }
+        }
 	}
     else
     {
