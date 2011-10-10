@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailViewController.h"
 
 @class LPManagedObjectContext;
 @class Customer;
-@interface CustomerDetailViewController : UIViewController {
+@interface CustomerDetailViewController : DetailViewController {
     
     UITextField *customerNameTextfield;
     UITextField *standardDiscountTextField;
@@ -20,9 +21,6 @@
 @property (nonatomic, retain) IBOutlet UITextField *standardDiscountTextField;
 @property (nonatomic, retain) IBOutlet UILabel *customerSumLabel;
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) Customer *customer;
-
-@property (nonatomic, retain) LPManagedObjectContext *editContext;
 
 @end

@@ -101,6 +101,7 @@
 
 - (void)stopObserving
 {
+    self.observingsActive = NO;
     for (LPManagedObject *object in self.registeredObjects)
     {
         if ([object isKindOfClass:[LPManagedObject class]] && object.observingsActive)
@@ -108,7 +109,7 @@
             [object stopObserving];
         }
     }
-    self.observingsActive = NO;
+
     if (DEBUG_OBSERVING) NSLog(@"all observings stopped");    
 }
 

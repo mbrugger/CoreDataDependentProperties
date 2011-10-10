@@ -40,6 +40,9 @@
 		87E4D75414434A9E00413B30 /* CustomerInvoicesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E4D75214434A9E00413B30 /* CustomerInvoicesTableViewController.xib */; };
 		87E4D7591443508800413B30 /* CustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E4D7571443508800413B30 /* CustomerDetailViewController.m */; };
 		87E4D75A1443508800413B30 /* CustomerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E4D7581443508800413B30 /* CustomerDetailViewController.xib */; };
+		87E4D75E14435A2300413B30 /* InvoiceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E4D75C14435A2300413B30 /* InvoiceDetailViewController.m */; };
+		87E4D75F14435A2300413B30 /* InvoiceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E4D75D14435A2300413B30 /* InvoiceDetailViewController.xib */; };
+		87E4D76214435B4A00413B30 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E4D76114435B4A00413B30 /* DetailViewController.m */; };
 		87F14E1314419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F14E1214419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +105,11 @@
 		87E4D7561443508800413B30 /* CustomerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailViewController.h; sourceTree = "<group>"; };
 		87E4D7571443508800413B30 /* CustomerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailViewController.m; sourceTree = "<group>"; };
 		87E4D7581443508800413B30 /* CustomerDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerDetailViewController.xib; sourceTree = "<group>"; };
+		87E4D75B14435A2300413B30 /* InvoiceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoiceDetailViewController.h; sourceTree = "<group>"; };
+		87E4D75C14435A2300413B30 /* InvoiceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoiceDetailViewController.m; sourceTree = "<group>"; };
+		87E4D75D14435A2300413B30 /* InvoiceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceDetailViewController.xib; sourceTree = "<group>"; };
+		87E4D76014435B4A00413B30 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		87E4D76114435B4A00413B30 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		87F14E1114419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCoreDataDependentPropertiesUndoManager.h; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesUndoManager.h; sourceTree = "<group>"; };
 		87F14E1214419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCoreDataDependentPropertiesUndoManager.m; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesUndoManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +188,11 @@
 				87E4D7561443508800413B30 /* CustomerDetailViewController.h */,
 				87E4D7571443508800413B30 /* CustomerDetailViewController.m */,
 				87E4D7581443508800413B30 /* CustomerDetailViewController.xib */,
+				87E4D75B14435A2300413B30 /* InvoiceDetailViewController.h */,
+				87E4D75C14435A2300413B30 /* InvoiceDetailViewController.m */,
+				87E4D75D14435A2300413B30 /* InvoiceDetailViewController.xib */,
+				87E4D76014435B4A00413B30 /* DetailViewController.h */,
+				87E4D76114435B4A00413B30 /* DetailViewController.m */,
 			);
 			path = CoreDataDependentPropertiesIOS;
 			sourceTree = "<group>";
@@ -316,6 +329,7 @@
 				87B0EC0F143D7B4A00377DC1 /* RootViewController.xib in Resources */,
 				87E4D75414434A9E00413B30 /* CustomerInvoicesTableViewController.xib in Resources */,
 				87E4D75A1443508800413B30 /* CustomerDetailViewController.xib in Resources */,
+				87E4D75F14435A2300413B30 /* InvoiceDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +378,8 @@
 				87B0EC53143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel in Sources */,
 				87E4D75314434A9E00413B30 /* CustomerInvoicesTableViewController.m in Sources */,
 				87E4D7591443508800413B30 /* CustomerDetailViewController.m in Sources */,
+				87E4D75E14435A2300413B30 /* InvoiceDetailViewController.m in Sources */,
+				87E4D76214435B4A00413B30 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,8 +15,6 @@
 @synthesize standardDiscountTextField;
 @synthesize customerSumLabel;
 
-@synthesize managedObjectContext=__managedObjectContext;
-@synthesize editContext=__editContext;
 
 @synthesize customer=__customer;
 
@@ -34,8 +32,6 @@
     [customerNameTextfield release];
     [standardDiscountTextField release];
     [customerSumLabel release];
-    [__managedObjectContext release];
-    [__editContext release];
     [__customer release];
     [super dealloc];
 }
@@ -54,22 +50,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.editContext = [[[LPManagedObjectContext alloc] init] autorelease];
-    self.editContext.persistentStoreCoordinator = self.managedObjectContext.persistentStoreCoordinator;
-    [self.editContext prepareDependentProperties];
     
     Customer *customer = [Customer insertNewCustomerWithName:@"" inManagedObjectContext:self.editContext];
     self.customer = customer;
     
     self.customerNameTextField.text = customer.name;
     
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction)];
-    self.navigationItem.rightBarButtonItem = doneButton;
-    [doneButton release];
-    
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelAction)];
-    self.navigationItem.leftBarButtonItem = cancelButton;
-    [cancelButton release];
+
 }
 
 - (void)viewDidUnload
@@ -87,41 +74,10 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-#pragma mark - 
-#pragma mark Actions
 
 - (void)doneAction
 {
     self.customer.name = self.customerNameTextField.text;
-    
-    // merge context
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:self.editContext];
-    NSError *error = nil;
-
-    BOOL success = [self.editContext save:&error];	
-    
-    if (!success)
-    {
-        NSLog(@"error: %@", error);
-    }
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:self.editContext];
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    [super doneAction];
 }
-
-- (void)cancelAction
-{
-    
-    [self.navigationController popViewControllerAnimated:YES];    
-}
-
-#pragma mark Context merge - 
-
-- (void)mergeChanges:(NSNotification *)notification
-{
-    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
-}
-
-
-
 @end

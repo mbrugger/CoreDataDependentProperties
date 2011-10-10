@@ -9,6 +9,7 @@
 #import "CustomerInvoicesTableViewController.h"
 #import "Customer.h"
 #import "Invoice.h"
+#import "InvoiceDetailViewController.h"
 
 @interface CustomerInvoicesTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -177,14 +178,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    InvoiceDetailViewController *detailViewController = [[InvoiceDetailViewController alloc] initWithNibName:@"InvoiceDetailViewController" bundle:nil];
+    detailViewController.managedObjectContext = self.managedObjectContext;
+    detailViewController.customer = self.customer;
+    
+    Invoice *invoice = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    detailViewController.invoice = invoice;
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    [detailViewController release];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -216,9 +218,11 @@
     
     [fetchRequest setPredicate:predicate];
     
+    
+    NSString *cacheName = [NSString stringWithFormat:@"cache-customer-%@", self.customer.objectID];
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Invoices"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:cacheName];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -301,9 +305,12 @@
 #pragma mark - Actions
 - (IBAction)insertNewObject
 {
-    Invoice *invoice = [Invoice insertNewInvoiceWithCustomer:self.customer inManagedObjectContext:self.managedObjectContext];
-    invoice.invoiceNumber = [NSString stringWithFormat:@"c-%5d",self.customer.invoices.count+1];
-    invoice.invoiceSum = [NSNumber numberWithDouble:self.customer.invoices.count+1.5];
+    InvoiceDetailViewController *detailViewController = [[InvoiceDetailViewController alloc] initWithNibName:@"InvoiceDetailViewController" bundle:nil];
+    detailViewController.managedObjectContext = self.managedObjectContext;
+    detailViewController.customer = self.customer;
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    [detailViewController release];
     
 }
 
