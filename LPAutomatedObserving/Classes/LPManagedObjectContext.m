@@ -36,7 +36,7 @@
 	{
 		observingsActive = YES;
 		self.dependendPropertiesObservationInfo = nil;
-        [self setRetainsRegisteredObjects:YES];
+        [super setRetainsRegisteredObjects:YES];
 	}
 	return self;
 }
@@ -53,6 +53,14 @@
 	[super dealloc];
 //	[temporaryRetainedDictionary release];
 //	temporaryRetainedDictionary = nil;
+}
+
+#pragma mark -
+
+- (void)setRetainsRegisteredObjects:(BOOL)flag
+{
+    NSAssert(flag == NO, @"LPManagedObjectContext must retain its registered objects!");
+    [super setRetainsRegisteredObjects:flag];
 }
 
 #pragma mark Dependend properties specific code
