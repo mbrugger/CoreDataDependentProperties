@@ -36,6 +36,10 @@
 		87B0EC50143D7BE500377DC1 /* ManagedObjectSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B0EC4D143D7BE500377DC1 /* ManagedObjectSenTestCase.m */; };
 		87B0EC53143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 87B0EC52143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel */; };
 		87B0EC54143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 87B0EC52143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel */; };
+		87E4D75314434A9E00413B30 /* CustomerInvoicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E4D75114434A9E00413B30 /* CustomerInvoicesTableViewController.m */; };
+		87E4D75414434A9E00413B30 /* CustomerInvoicesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E4D75214434A9E00413B30 /* CustomerInvoicesTableViewController.xib */; };
+		87E4D7591443508800413B30 /* CustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E4D7571443508800413B30 /* CustomerDetailViewController.m */; };
+		87E4D75A1443508800413B30 /* CustomerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E4D7581443508800413B30 /* CustomerDetailViewController.xib */; };
 		87F14E1314419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F14E1214419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +96,12 @@
 		87B0EC4E143D7BE500377DC1 /* TestLPAutomatedObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestLPAutomatedObserving.h; path = ../../LPAutomatedObserving/Tests/TestLPAutomatedObserving.h; sourceTree = "<group>"; };
 		87B0EC4F143D7BE500377DC1 /* TestLPAutomatedObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestLPAutomatedObserving.m; path = ../../LPAutomatedObserving/Tests/TestLPAutomatedObserving.m; sourceTree = "<group>"; };
 		87B0EC52143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = CoreDataDependentPropertiesDataModel.xcdatamodel; path = ../../LPAutomatedObserving/CoreDataDependentPropertiesDataModel.xcdatamodel; sourceTree = "<group>"; };
+		87E4D75014434A9E00413B30 /* CustomerInvoicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerInvoicesTableViewController.h; sourceTree = "<group>"; };
+		87E4D75114434A9E00413B30 /* CustomerInvoicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerInvoicesTableViewController.m; sourceTree = "<group>"; };
+		87E4D75214434A9E00413B30 /* CustomerInvoicesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerInvoicesTableViewController.xib; sourceTree = "<group>"; };
+		87E4D7561443508800413B30 /* CustomerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailViewController.h; sourceTree = "<group>"; };
+		87E4D7571443508800413B30 /* CustomerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailViewController.m; sourceTree = "<group>"; };
+		87E4D7581443508800413B30 /* CustomerDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerDetailViewController.xib; sourceTree = "<group>"; };
 		87F14E1114419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCoreDataDependentPropertiesUndoManager.h; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesUndoManager.h; sourceTree = "<group>"; };
 		87F14E1214419CC500584183 /* TestCoreDataDependentPropertiesUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCoreDataDependentPropertiesUndoManager.m; path = ../../LPAutomatedObserving/Tests/TestCoreDataDependentPropertiesUndoManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +174,12 @@
 				87B0EC0B143D7B4A00377DC1 /* RootViewController.m */,
 				87B0EC0D143D7B4A00377DC1 /* RootViewController.xib */,
 				87B0EBF9143D7B4A00377DC1 /* Supporting Files */,
+				87E4D75014434A9E00413B30 /* CustomerInvoicesTableViewController.h */,
+				87E4D75114434A9E00413B30 /* CustomerInvoicesTableViewController.m */,
+				87E4D75214434A9E00413B30 /* CustomerInvoicesTableViewController.xib */,
+				87E4D7561443508800413B30 /* CustomerDetailViewController.h */,
+				87E4D7571443508800413B30 /* CustomerDetailViewController.m */,
+				87E4D7581443508800413B30 /* CustomerDetailViewController.xib */,
 			);
 			path = CoreDataDependentPropertiesIOS;
 			sourceTree = "<group>";
@@ -298,6 +314,8 @@
 				87B0EBFD143D7B4A00377DC1 /* InfoPlist.strings in Resources */,
 				87B0EC09143D7B4A00377DC1 /* MainWindow.xib in Resources */,
 				87B0EC0F143D7B4A00377DC1 /* RootViewController.xib in Resources */,
+				87E4D75414434A9E00413B30 /* CustomerInvoicesTableViewController.xib in Resources */,
+				87E4D75A1443508800413B30 /* CustomerDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +362,8 @@
 				87B0EC48143D7BA700377DC1 /* LPManagedObjectObservationInfo.m in Sources */,
 				87B0EC4A143D7BA700377DC1 /* Person.m in Sources */,
 				87B0EC53143D7C4300377DC1 /* CoreDataDependentPropertiesDataModel.xcdatamodel in Sources */,
+				87E4D75314434A9E00413B30 /* CustomerInvoicesTableViewController.m in Sources */,
+				87E4D7591443508800413B30 /* CustomerDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,9 +42,14 @@
 
 - (void) dealloc
 {
+    // stop all observings
+    [self stopObserving];
+    
+    
 	// cleanup dictionary as last step after all managedObjects died
 	// workaround necessary here?
 	NSMutableDictionary * temporaryRetainedDictionary = [self.dependendPropertiesObservationInfo retain];
+    [dependendPropertiesObservationInfo release], dependendPropertiesObservationInfo = nil;
 	[super dealloc];
 	[temporaryRetainedDictionary release];
 	temporaryRetainedDictionary = nil;
